@@ -1,0 +1,31 @@
+package com.bbs.utils;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class HibernateSessionFactory {
+	@Autowired
+	private static SessionFactory sessionFactory;
+	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+
+	public static Session getSession() throws HibernateException {
+		Session session = (Session) threadLocal.get();
+
+		if (session == null || !session.isOpen()) {
+			if (sessionFactory == null) {
+				rebuildSessionFactory();
+			}
+			session = (sessionFactory != null) ? sessionFactory.openSession()
+					: null;
+			threadLocal.set(session);
+		}
+
+		return session;
+	}
+
+	private HibernateSessionFactory() {
+
+	}
+}

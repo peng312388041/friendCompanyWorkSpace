@@ -1,0 +1,26 @@
+package com.bbs.entity;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+//article_id	integer
+//article_title	varchar
+//article_content	text
+//article_regist_date	datetime
+//article_last_edit_date	datetime
+//article_delete_date	datetime
+//article_active	boolean
+
+public class Article implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
+	private String title;
+	private String content;
+	private LocalDateTime registDate;
+	private LocalDateTime lastEditDate;
+	private LocalDateTime deleteDate;
+	private boolean active;
+}

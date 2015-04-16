@@ -1,0 +1,11 @@
+package com.bbs.utils;
+
+import java.util.List;
+
+public class PaginationSupport {
+	private List items;
+	private int startIndex;
+	private int pageSize;
+	private int 
+	
+}

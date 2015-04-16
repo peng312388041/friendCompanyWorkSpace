@@ -1,0 +1,11 @@
+package com.bbs.dao;
+
+import com.bbs.utils.PaginationSupport;
+
+public interface IBaseDao  {
+//	public PaginationSupport getPageByCeritia()
+//	{
+//		
+//	}
+
+}

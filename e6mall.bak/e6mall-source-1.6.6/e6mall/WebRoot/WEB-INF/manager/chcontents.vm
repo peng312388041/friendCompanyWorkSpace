@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="styles/style.css" rel="stylesheet" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
+<title>频道内容</title>
+</head>
+<body>
+<div id="body-wrapper">
+  <div id="sidebar">
+    <div id="sidebar-wrapper">
+      <h1 id="sidebar-title"><a href="#">E6Mall网店系统管理</a></h1>
+      <a href="#"><img id="logo" alt="E6Mall网店系统管理" src="images/logo.png"></a>
+      <div id="profile-links">欢迎, <a title="Edit your profile" href="#">$!{session.getAttribute("manager").account}</a>, 你有 <a title="0 条信息" href="#messages" rel="modal">0 条信息</a><br />
+        <br />
+        <a href="../" title="商城首页" target="_blank">商城首页</a> | <a title="退出" href="logout.htm">退出</a> </div>
+      <ul id="main-nav">
+        <li><a href="index.htm" class="nav-top-item no-submenu">管理控制台 </a>
+        <li><a class="nav-top-item" href="#">商品 </a>
+          <ul>
+            <li><a href="goods.htm">商品信息</a></li>
+            <li><a href="goods_input.htm">添加新商品</a></li>
+            <li><a href="comments.htm">用户评论</a></li>
+            <li><a href="categorys.htm">商品类别</a></li>
+            <li><a href="gstypes.htm">商品类型</a></li>
+            <li><a href="specitems.htm">商品规格</a></li>
+            <li><a href="extattrs.htm">商品扩展属性</a></li>
+            <li><a href="brands.htm">品牌管理</a></li>
+            <li><a href="goods_import.htm">商品批量导入</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">订单 </a>
+          <ul>
+            <li><a href="orders.htm">订单列表</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">用户和组 </a>
+          <ul>
+            <li><a href="members.htm">会员账户</a></li>
+            <li><a href="groups.htm">会员等级</a></li>
+            <li><a href="payin_getout.htm">充值提现申请</a></li>
+            <li><a href="bank.htm">资金管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">权限管理 </a>
+          <ul>
+            <li><a href="managers.htm">管理员列表</a></li>
+            <li><a href="mgroups.htm">角色管理</a></li>
+            <li><a href="#">管理员日志</a></li>
+          </ul>
+        <li><a class="nav-top-item current" href="#">网站频道 </a>
+          <ul>
+            <li><a href="channels.htm">频道列表</a></li>
+            <li><a href="documents.htm">文章列表</a></li>
+            <li><a href="doccates.htm">文章类别</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">商店配置 </a>
+          <ul>
+            <li><a href="configs.htm">系统设置</a></li>
+            <li><a href="paymodes.htm">第三方支付</a></li>
+            <li><a href="districts.htm">地区管理</a></li>
+            <li><a href="logistics.htm">第三方物流</a></li>
+            <li><a href="#">货币管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">数据库管理 </a>
+          <ul>
+            <li><a href="#">数据备份</a></li>
+            <li><a href="#">数据迁移</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="main-content">
+    <p>管理控制台 - 网站频道 - 频道内容</p>
+    <ul class="shortcut-buttons-set">
+      <li><a class="shortcut-button" href="channels.htm"><span><img alt="icon" src="images/menu_return.png"><br />
+        返回频道列表 </span></a></li>
+      <li><a class="shortcut-button" href="channel_input.htm"><span><img alt="icon" src="images/pencil_48.png" /><br />
+      新建频道 </span></a></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="content-box">
+      <div class="content-box-header">
+        <h3>$!{channel.title}</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td>频道ID</td>
+              <td>频道名称</td>
+              <td>网页模板</td>
+              <td>频道说明</td>
+            </tr>
+            <tr>
+              <td>$!{channel.id}</td>
+              <td>$!{channel.title}</td>
+              <td>$!{channel.template.path}/$!{channel.template.name}</td>
+              <td>$!{channel.intro}</td>
+            </tr>
+          </table>          
+        </div>
+      </div>
+    </div>
+    <div class="content-box">
+      <div class="content-box-header">
+        <h3>$!{channel.title}的内容</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab2">
+          <form id="form1" name="form1" method="post" action="chcontents_del.htm?ca=$!{channel.id}">
+          <table width="100%" border="0" cellspacing="0" cellpadding="3">
+            <tr>
+              <td>[<a href="chcontent_input.htm?ca=$!{channel.id}">为$!{channel.title}增加内容</a>]</td>
+            </tr>
+          </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="2">
+            <tr>
+              <td width="10">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>模板代码</td>
+              <td>类型</td>
+              <td>商品分类</td>
+              <td>数量</td>
+              <td>偏移</td>
+              <td>标记</td>
+              <td>详细页显示</td>
+              <td>语言</td>
+            </tr>
+            #foreach( $item in $list )
+          <tr>
+            <td><input name="checkbox" type="checkbox" id="checkbox" value="$!{item.id}"></td>
+            <td><a href="chcontent_edit.htm?ct=$!{item.id}">编辑</a></td>
+            <td>$item.type</td>
+            <td>$!{item.typetext}</td>
+            <td>
+              #if( $item.type=='dmenu' )[$!{item.doccate.name}]文章目录下的子目录#end
+              #if( $item.type=='dlist' )[$!{item.doccate.name}]目录下的文章列表#end
+              #if( $item.type=='drclist' )[$!{item.doccate.name}]目录下的推荐文章列表#end
+              #if( $item.type=='dpagelist' )[$!{item.doccate.name}]目录下的文章列表分页#end
+              #if( $item.type=='dsingle' )文章：[$!{item.document.title}]#end
+              #if( ( $item.type=='gmenu' || $item.type=='glist' || $item.type=='grclist' || $item.type=='gpagelist' ) && !$item.category )
+              [所有商品分类]
+              #else
+              #if( $item.type=='gmenu' )[$!{item.category.name}]商品目录下的子目录#end
+              #if( $item.type=='glist' )[$!{item.category.name}]目录下的商品列表#end
+              #if( $item.type=='grclist' )[$!{item.category.name}]目录下的推荐文章列表#end
+              #if( $item.type=='gpagelist' )[$!{item.category.name}]目录下的文章列表分页#end
+              #end
+              #if( $item.hasKeyword('hot') )[热销]#end
+              #if( $item.hasKeyword('new') )[新品]#end
+              #if( $item.hasKeyword('btq') )[精品]#end
+              #if( $item.type=='gsingle' )商品：[$!{item.goods.name}]#end
+            </td>
+            <td>$!{item.number}</td>
+            <td>$!{item.offset}</td>
+            <td>$!{item.marker}</td>
+            <td>#if( $item.detail=='yes' )是#else否#end</td>
+            <td>$!{item.locale.name}</td>
+          </tr>
+          #end
+          <tr>
+            <td colspan="10"><input type="submit" name="button" id="button" value="删除"></td>
+          </tr>
+          </table>
+          </form>
+        </div>
+      </div>
+    </div>
+<div class="clear"></div>
+    <div id="footer"><small> © Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a></a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a> | <a href="#">Top</a> </small></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>E6Mall在线商城</title>
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/global.css" rel="stylesheet" type="text/css" />
+<link href="styles/inside.css" rel="stylesheet" type="text/css" />
+<link href="styles/Shopping.css" rel="stylesheet" type="text/css" />
+<link href="styles/jquery-ui-1.8.5.custom.css" rel="stylesheet" type="text/css" />
+<link href="styles/validate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui-1.8.5.custom.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.filloptions.js"></script>
+<script type="text/javascript" src="scripts/easy_validator.pack.js"></script>
+<script type="text/javascript" src="scripts/jquery.bgiframe.min.js"></script>
+<script type="text/javascript">
+function getDistrict(_id){
+	jQuery("#district1").FillOptions("getdistrict.htm?id="+_id,{datatype:"json",textfield:"name",valuefiled:"id"});
+}
+
+jQuery(document).ready( function(){
+     jQuery("div#other_st").hide();
+     jQuery("#open_ost").bind('click',function(){
+            var theAnswer=jQuery("div#other_st");
+            if(theAnswer.is(":hidden")) {
+				theAnswer.show();
+				jQuery("#open_ost").attr("checked",true);
+				jQuery("input[id=close_ost]").attr("checked",false);
+			} else {
+				theAnswer.hide();
+				jQuery("#open_ost").attr("checked",false);
+			}
+     });
+	 jQuery("input[id=close_ost]").bind('click',function(){
+            var theAnswer=jQuery("div#other_st");
+			jQuery("#open_ost").attr("checked",false);
+            theAnswer.hide();
+			
+			//如果关闭其他地址输入，关闭较验
+			jQuery("input[name='staddress.name']").removeAttr("reg");
+			jQuery("input[name='staddress.name']").removeAttr("tip");
+			jQuery("input[name='staddress.address']").removeAttr("reg");
+			jQuery("input[name='staddress.address']").removeAttr("tip");
+			jQuery("input[name='staddress.postcode']").removeAttr("reg");
+			jQuery("input[name='staddress.postcode']").removeAttr("tip");
+			jQuery("input[name='staddress.telephone']").removeAttr("reg");
+			jQuery("input[name='staddress.telephone']").removeAttr("tip");
+			
+			
+			//var $str = $("input[name='str']:checked").val();
+			//getFreight($str);
+     });
+	 
+	 
+	 jQuery("#dialog").dialog({ modal: true, width:630, height:260, overlay: { opacity: 0.5, background: "black" } });
+});
+
+var count = 0;
+	try {
+		count = $session.getAttribute("orders").orderitems.size();
+	} catch (err) {
+	}
+
+var isExtendsValidate = true;
+	 function extendsValidate(){
+		  if(count <= 0){
+			alert("购物车是空的。");
+			return false;
+		  }
+		  if(!jQuery("#open_ost").attr("checked")){
+			  if(jQuery("[name='str']:checked").length < 1){
+				  alert("请选择一个收货地址 或 填写其他收货地址。");
+				  return false;
+			  }
+		  }
+		  
+		  if(jQuery("[name='pm']:checked").length < 1){
+			alert("请选择一个支付方式。");
+			return false;
+		  }
+	 }
+</script>
+</head>
+<body>
+<div id="Box-top">
+  <div id="Box-top-nav"><a onfocus="this.blur()" target="_blank" href="member/">我的账户</a><a onfocus="this.blur()" href="#">每日特惠</a><a onfocus="this.blur()" href="#">断码专区</a><a onfocus="this.blur()" href="#">积分回馈</a><a onfocus="this.blur()" href="#">论坛</a><a onfocus="this.blur()" href="#">网站联盟</a><a onfocus="this.blur()" href="#">帮助中心</a><a onfocus="this.blur()" href="#"><img src="images/Home-box_01.jpg" width="70" height="16" alt="在线客服" /></a></div>
+  <div id="Box-top-logo">
+    <h1><a onfocus="this.blur()" href="#"><img src="images/Home-box_03.jpg" alt="E6Mall 铱王星 在线商城" width="244" height="32" /></a></h1>
+    <p class="Box-top-login">
+    	#if( $session.getAttribute("member") )
+        	<span class="gray">您好,</span>
+            <span class="c_orange"<a target="_blank" href="member/index.htm">$!{session.getAttribute("member").account}</a></span>
+            &nbsp
+            <span>欢迎光临E6Mall 铱王星。</span>
+            <a href="member/logout.htm" class="gray">退出</a>
+         #else
+         	您好，欢迎光临E6Mall 铱王星。<a onfocus="this.blur()" href="login.htm">登录</a> | <a onfocus="this.blur()" href="register.htm">注册</a>
+        #end
+    </p>
+    <p class="Box-top-tel"><img src="images/Home-box_05.jpg" alt="订购热线" width="122" height="14" /></p>
+    <div class="clear"></div>
+  </div>
+  <!------------------------nav------------------------>
+  <div id="Box-nav">
+    <ul>
+      <li><a onfocus="this.blur()" href="index.htm">首页</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=2ffdf86fa01f44d9a5ee997a4cba6426">潮流服饰</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=87e9d2853d7b48f1a7867e3f87f44356">美容护肤</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=702742dcbf4b4467972e6c4ef46d6316">手机数码</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=833fb464077d4a77a2a4553212193f76">珠宝饰品</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=10ff85acdec645349dd6a52e3f0a58c8">食品保健</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=dc1a3f5f11e94de3a82dce52be404483">图书音像</a></li>
+    </ul>
+    <p><img src="images/Home-box_07.jpg" alt="http://www.<a href="http://www.e6mall.com" target="_blank">e6mall.com</a>" width="187" height="26" border="0" /></p>
+    <div class="clear"></div>
+  </div>
+  <div id="Box-menu-left">
+    <div class="Box-sort white"><span>热门分类：</span><a href="#">手机</a><a href="#">T恤</a><a href="#">连衣裙</a><a href="#">雪纺裙</a><a href="#">玫琳凯</a><span class="orange">特别关注：</span><a href="#">IPHONE四代无锁版</a>|<a href="#">诺基亚E71售1650元</a>|<a href="#">会员积分换购</a></div>
+    <div class="Box-search">
+      <form action="browse.htm" method="post" id="search">
+        <label>
+          <input name="keyword" type="text" id="keyword" value="$!{keyword}">
+        </label>
+        <label>
+          <select name="c" id="c">
+            <option value="">所有分类</option>
+            #foreach( $item in $caterootlist )
+            <option value="$!{item.id}" #if($category.id==$item.id)selected="selected"#end>$!{item.name}</option>
+            #end
+          </select>
+        </label>
+        <input name="button" type="submit" id="button" value="搜索" class="button" />
+        <label>热门关键词:<a href="browse.htm?c=&&keyword=手机">手机</a><a href="browse.htm?c=&&keyword=资生堂">资生堂</a><a href="browse.htm?c=&&keyword=玫琳凯">玫琳凯</a><a href="browse.htm?c=&&keyword=T恤">T恤</a><a href="browse.htm?c=&&keyword=裙子">裙子</a><a href="browse.htm?c=&&keyword=歌莉娅">歌莉娅</a><a href="browse.htm?c=&&keyword=玉兰油">玉兰油</a></label>
+      </form>
+    </div>
+  </div>
+  <div id="Box-menu-right"><img src="images/Home-box_02.jpg" width="17" height="16" class="icon" /><a href="my_scart.htm" title="订单金额：$!{cart.getCartAmount()}元">购物车中有 <b>$!{cart.getCartNumber()}</b> 件商品</a><a href="my_scart.htm"><img src="images/Home-box_11.jpg" width="53" height="19" border="0" class="button-b" /></a></div>
+  <div class="clear"></div>
+</div>
+<div class="Box-banner"><img src="images/Home-box_15.jpg" width="980" height="60" /></div>
+<!------------------------内容------------------------>
+
+
+
+<div class="gouwu">
+  <div class="gouwu1"> <span style=" float:left">您的位置： 首页 &gt; 我的E6Mall &gt; 我的购物车</span> <span style="float:right;">购物车帮您一次性完成批量购买与付款，下单更便捷，付款更简单！如何使用购物车 </span> </div>
+  <div class="clear"></div>
+  <div class="zhishi" style="margin-top:10px;"> <span class="xiaoguo2" style="float:left;">1. 查看购物车</span> <span class="xiaoguo1" style="float:left;">2. 确认订单信息</span> <span class="xiaoguo3" style="float:left;">3. 付款</span> <span class="xiaoguo4" style="float:left;">4. 确认收货</span> <span class="xiaoguo5" style="float:left;">5. 评价</span> </div>
+  <div class="clear"></div>
+  
+  <div class="btn">
+      <form id="form1" name="form1" method="post" action="checkout.htm">
+      <div class="btn1">
+        <h3><span>确认收货地址：</span> </h3>
+        <ul>
+          #foreach( $item in $member.staddresses )
+          <li>收货地址：&nbsp;&nbsp;&nbsp;<span>*</span>
+            <input type="radio" name="str" id="close_ost" value="$!{item.id}">
+            $!{item.district.district.name} $!{item.district.name} $!{item.address} 姓名：$!{item.name} 邮编：$!{item.postcode} 电话：$!{item.telephone} 手机：$!{item.mobile}
+          </li>
+          #end
+          <li>其他收货地址：&nbsp;&nbsp;&nbsp;<span>*</span>
+            <input name="open_ost" type="radio" id="open_ost" value="">
+          </li>
+          <li>
+            <div id="other_st" style="display:none">
+        	<table width="100%" border="0" cellspacing="0" cellpadding="5">
+              <tr>
+                <td>其他收货地址：</td>
+              </tr>
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
+                  <tr>
+                    <td align="right">收货地区：</td>
+                    <td>
+                    <select name="select" id="select" onchange="getDistrict(this.value)">
+                  	  <option value="">请选择省份/地区</option>
+                      #foreach( $item in $districtroot )
+                      <option value="$!{item.id}">$!{item.name}</option>
+                      #end
+                    </select>
+                    </td>
+                    <td width="300">
+                    <select name="staddress.district.id" id="district1">
+                	</select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right">地址：</td>
+                    <td colspan="2"><input type="text" name="staddress.address" id="staddress.address" reg="^[\u4e00-\u9fa5]+$" tip="只允许中文字符">
+                    *</td>
+                  </tr>
+                  <tr>
+                    <td align="right">邮编：</td>
+                    <td colspan="2"><input type="text" name="staddress.postcode" id="staddress.postcode" reg="^\d{6}$" tip="国内邮政编码，格式: 518000">
+                    *</td>
+                  </tr>
+                  <tr>
+                    <td align="right">收货人姓名：</td>
+                    <td colspan="2"><input type="text" name="staddress.name" id="staddress.name" reg="^[\u4e00-\u9fa5]+$" tip="只允许中文字符">
+                    *</td>
+                  </tr>
+                  <tr>
+                    <td align="right">联系电话：</td>
+                    <td colspan="2"><input type="text" name="staddress.telephone" id="staddress.telephone" reg="^\d{3}-\d{8}$|^\d{4}-\d{7}$" tip="国内电话号码，格式: 0832-4405222 或 021-87888822"></td>
+                  </tr>
+                  <tr>
+                    <td align="right">联系手机：</td>
+                    <td colspan="2"><input type="text" name="staddress.mobile" id="staddress.mobile"></td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table>
+            </div>
+          </li>
+          <li>
+          </li>
+          <li>支付方式：&nbsp;&nbsp;&nbsp;<span>*</span>
+            
+            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td>&nbsp;</td>
+            <td>支付方式</td>
+            <td>&nbsp;</td>
+            <td>费率</td>
+          </tr>
+          #foreach( $item in $paymodeList )
+          <tr>
+            <td><input type="radio" name="pm" id="radio" value="$!{item.id}"></td>
+            <td>$!{item.name}</td>
+            <td>$!{item.intro}</td>
+            <td>$!{item.rate}</td>
+          </tr>
+          #end
+          <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="button2" id="button2" value="确认购买 - 去付款"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          </table>
+          
+          </li>
+        </ul>
+      </div>
+      </form>
+  </div>
+  
+  <div class="clear"></div>
+  <div class="quanxuan">
+    <table width="100%" border="0">
+      <tr>
+        <td width="48%" align="center" valign="middle">商品</td>
+        <td width="10%" align="center">折扣</td>
+        <td width="12%" align="center">单价(元)</td>
+        <td width="14%" align="center">数量</td>
+        <td width="11%" align="center">小计(元)</td>
+      </tr>
+    </table>
+  </div>
+  <div class="clear"></div>
+  <div class="yixuan">
+    <table width="100%" border="0">
+      #set( $number=0 )
+      #set( $amount=0 )
+      #foreach( $item in $session.getAttribute("orders").orderitems )
+      <tr>
+        <td width="48%" height="67" align="left" valign="middle" bgcolor="#e2f2ff" style=" padding-left:10px;"><span style="margin-left:10px;"><a href="goods.htm?gs=$!{item.goods.id}" target="_blank">$!{item.goods.name}</a></span></td>
+        <td width="10%" align="center" bgcolor="#e2f2ff">$!{item.discount}</td>
+        <td width="12%" align="center" bgcolor="#e2f2ff">$!{item.unitprice}</td>
+        <td width="14%" align="center" bgcolor="#e2f2ff">$!{item.number}</td>
+        <td width="11%" align="center" bgcolor="#e2f2ff">$!{item.subtotal}</td>
+      </tr>
+      #set( $number=$number+1 )
+      #set( $amount=$amount+$item.subtotal )
+      #end
+    </table>
+  </div>
+  <div class="clear"></div>
+  <div class="ze">
+    <p style="float:right;">商品总价(不含运费)：<strong style="color:#fa7b2d; font-size:18px;">$!{amount}</strong>元 </p>
+  </div>
+</div>
+
+
+<!------------------------底部------------------------>
+<div id="Box-bottom">
+  <div class="Box-bottom-menu">
+    #foreach( $doccate in $map.get("G_A") )
+    <dl>
+      <dt><strong>$!{doccate.name}</strong></dt>
+      #foreach( $document in $doccate.documents )
+      <dd><a href="channel.htm?c=help&amp;t=v&amp;d=$!{document.id}">$!{document.title}</a></dd>
+      #end
+    </dl>
+    #end
+    <dl class="Box-Nosty">
+      <dt><strong>订购热线</strong>(免长途费)</dt>
+      <dd><strong>400 600 6888</strong></dd>
+      <dt><strong>客户服务热线</strong>(免长途费)</dt>
+      <dd><strong>400 650 7099</strong></dd>
+    </dl>
+    <div class="clear"></div>
+  </div>
+  <p class="bZp"><a href="#"><img src="images/service01.jpg" width="157" height="55" /></a><a href="#"><img src="images/service02.jpg" width="178" height="55" /></a><a href="#"><img src="images/service03.jpg" width="198" height="55" /></a></p>
+  <p><a href="./">首页</a> | <a href="#">公司简介</a> | <a href="#">隐私申明</a> | <a href="#">团购优惠</a> | <a href="#">合作专区</a> | 加入<a href="3">E6Mall</a> | <a href="#">投诉与建议</a></p>
+  <p>Copyright 2007 - 2010 <a href="http://www.e6mall.com" target="_blank">e6mall.com</a> All Rights Reserved 粤ICP备06082025号</p>
+  <div class="clear"></div>
+</div>
+<div id="dialog">
+  <form id="form1" name="form1" method="post" action="">
+    <table width="600" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+        <td align="right">收货地区：</td>
+        <td>
+          <select name="select" id="select" onchange="getDistrict(this.value)">
+            <option value="">请选择省份/地区</option>
+            #foreach( $item in $districtroot )
+            <option value="$!{item.id}">$!{item.name}</option>
+            #end
+          </select>
+          <select name="staddress.district.id" id="district1">
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td align="right">详细地址：</td>
+        <td><input name="staddress.address" type="text" id="staddress.address" size="50" maxlength="255" reg="^[\u4e00-\u9fa5]+$" tip="只允许中文字符" /></td>
+      </tr>
+      <tr>
+        <td align="right">邮编：</td>
+        <td><input name="staddress.postcode" type="text" id="staddress.postcode" size="10" maxlength="6" reg="^\d{6}$" tip="国内邮政编码，格式: 518000" /></td>
+      </tr>
+      <tr>
+        <td align="right">收货人姓名：</td>
+        <td><input name="staddress.name" type="text" id="staddress.name" size="20" maxlength="100" reg="^[\u4e00-\u9fa5]+$" tip="只允许中文字符" /></td>
+      </tr>
+      <tr>
+        <td align="right">联系电话：</td>
+        <td><input name="staddress.telephone" type="text" id="staddress.telephone" size="30" maxlength="200" reg="^\d{3}-\d{8}$|^\d{4}-\d{7}$" tip="国内电话号码，格式: 0832-4405222 或 021-87888822" /></td>
+      </tr>
+      <tr>
+        <td align="right">手机：</td>
+        <td><input name="staddress.mobile" type="text" id="staddress.mobile" size="30" maxlength="200" /></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="submit" name="button" id="button" value="提交保存" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

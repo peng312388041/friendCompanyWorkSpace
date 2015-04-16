@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网店后台管理系统</title>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top">
+     <div id="top_head">
+	     <div id="logo"><a href="../"><img src="images/Home-box_03.jpg" alt="E6Mall 铱王星 在线商城" width="244" height="32" border="0" /></a></div>
+		 <div id="top_right">
+		     <ul>
+				<li class="line"></li>
+				<li><a href="logout.htm">退出</a></li>
+                <li class="line"></li>
+				<li><a href="security.htm">$!{session.getAttribute("member").account}</a></li>
+			 </ul>
+	   </div>
+	 </div>
+</div>
+<div id="blankline"></div>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="38" align="center" valign="middle" background="images/menubg.jpg"><table width="1003" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="492" height="38" align="right" valign="middle">&nbsp;</td>
+        <td width="511" align="right" valign="top">
+		 <div id="nav">
+		      <ul>
+			     <li><a href="index.htm" class="over">我的E6Mall</a></li>
+                 <li><a href="list_bought_items.htm">交易管理</a></li>
+				 <li><a href="my_bank.htm">账户管理</a></li>
+				 <li><a href="security.htm">账号设置</a></li>
+			  </ul>
+		 </div>
+		</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="202" height="500" align="left" valign="top">
+    <div id="lefttitle">我的E6Mall</div>
+	<div id="leftline"></div>
+	
+    <div style="padding-top:8px;"></div>
+    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="../my_scart.htm" target="_blank" class="list">我的购物车</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="list_bought_items.htm" class="list">我的订单</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="#" class="list">我的收藏</a></td>
+      </tr><tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="my_bank.htm" class="list">我的账户</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="staddresses.htm" class="list">管理收货地址</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle">&nbsp;</td>
+        <td width="92%" align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top">友情链接</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.iksns.com" title="即时技术服务，企业邮箱，企业建站" target="_blank" class="list">铱王星科技</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mall.com" title="立即建设自己的网上商城" target="_blank" class="list">E6Mall - 网上商城系统</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mail.com" title="大平台，企业交友，整合手机、企业邮箱、即时通信" target="_blank" class="list">E6Mail - 企业社交平台</a></td>
+      </tr>
+    </table></td>
+    <td width="1" bgcolor="#dbdbdb">
+	</td>
+    <td align="left" valign="top" style="padding-left:15px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="42" align="left" valign="middle" bgcolor="#f4f4f4" class="title" style="padding-left:15px;">管理中心&nbsp;--&nbsp;<span class="title1">我的E6Mall</span></td>
+      </tr>
+      <tr>
+        <td height="1" bgcolor="#e5e5e5">
+		</td>
+      </tr>
+    </table>
+      <div style="padding-top:10px;"></div>
+   
+      <table width="787" border="0" cellpadding="0" cellspacing="1" bgcolor="#dcdcdc" >
+         <form id="form2" name="form2" method="post" action=""><tr >
+           <td width="41" height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >&nbsp;</td>
+           </tr>
+        </form>
+      </table>
+    
+    <div style="padding-top:10px;"></div>
+    <table width="787" height="80" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="right" valign="top">&nbsp;</td>
+        </tr>
+    </table>
+    
+    <table width="787" border="0" cellpadding="0" cellspacing="0" bgcolor="#cdcdcd">
+      <tr>
+        <td width="1">
+		</td>
+      </tr>
+    </table>
+ <div  style="height:100px; text-align:center; width:787px; padding-top:10px;">© Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a></div>	
+	
+	
+	</td>
+  </tr>
+</table>
+</body>
+</html>

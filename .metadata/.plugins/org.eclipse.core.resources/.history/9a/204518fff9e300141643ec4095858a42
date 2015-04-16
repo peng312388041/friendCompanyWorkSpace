@@ -1,0 +1,10 @@
+package com.bbs.utils;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class HibernateSessionFactory {
+	@Autowired
+	private static SessionFactory sessionFactory;
+	public getsession()
+}

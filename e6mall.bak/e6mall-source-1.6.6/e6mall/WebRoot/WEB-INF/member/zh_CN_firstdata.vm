@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>magnatehardware</title>
+<link href="../css/Shopping.css" rel="stylesheet" type="text/css" />
+<link href="../css/mian.css" rel="stylesheet" type="text/css" />
+<link href="../css/global-reset.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div style="background:#CCC;">
+    <div id="header">
+        <div class="header_box">
+            <p>
+                #if( $session.getAttribute("member") )
+                <span class="gray">您好,</span> <span class="c_orange"><a href="member/index.htm"> $!{session.getAttribute("member").account}</a></span> <a href="member/logout.htm" class="gray">退出</a> &nbsp <span>欢迎来到 magnatehardware！</span>
+                #else
+                <span class="gray">您好,欢迎来到 magnatehardware！</span> <a href="login.htm">[请登录]</a> <span class="gray">，新用户？</span> <a href="register.htm">[免费注册]</a>
+                #end
+            </p>
+            <ul>
+               <!-- <li><a href="/?c=help" target="_blank">帮助中心</a></li>-->
+                <li class="top_fore"><a target="_blank" href="/member/list_bought_items.htm">我的订单</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="all">
+        <div id="logo">
+            <div style=" float:left;"><img  class="logo" src="../images/logo.png" /></div>
+            <div class="low">
+            <img src="../images/5.png"/><!--<a href="/?c=help&t=v&d=6d8d3083f9b3472d825d0384106798c4"><img id="low" src="../images/110.png"/></a>--><img id="tel"src="../images/z_tel.jpg"/></div>
+            <div class="tel">
+                <p><span><a href="/?l=zh_CN">中文</a></span> | <span><a href="/?l=en_US">English</a></span></p>
+            </div>
+        </div>
+         <div class="clear"></div>
+        <div id="nav_w">
+            <div id="nav">
+                <ul>
+                    <li class="current"><a href="/?c=home">主 页</a></li>
+                    <li class="nav1"><a href="/?c=download">资料下载</a></li>
+                   <!-- <li class="nav1"><a href="/?c=help">帮助中心</a></li>-->
+                    <li class="nav1"><a href="/member/">订单状态</a></li>
+                    <li class="nav1"><a href="/my_scart.htm">我的购物车</a></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="logo_x">
+            <table width="100%" border="0">
+                <form action="browse.htm" method="post" id="search">
+                    <tr>
+                        <td width="142"></td>
+                        <td align="right" width="555"><select name="c" id="c">
+                                <option value="">所有分类</option>
+                                #foreach( $item in $caterootlist )
+                                <option value="$!{item.id}" #if( $category.id==$item.id )selected="selected"#end>$!{item.name}</option>
+                                #end
+                            </select></td>
+                        <td align="right" width="150"><input name="keyword" type="text" id="keyword" value="$!{keyword}"></td>
+                        <td align="left" width="55"><input name="" type="image" src="../../images/ssss.png" /></td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+        <div class="clear"></div>
+        <div id="contant2">
+             <div class="gouwu">
+                <div class="gouwu1"> <span style=" float:left">您的位置： 首页 &gt; 我的购物车</span> <span style="float:right;">购物车帮您一次性完成批量购买与付款，下单更便捷，付款更简单！如何使用购物车 </span> </div>
+                <div class="clear"></div>
+                <div class="zhishi" style="margin-top:10px;"> <span class="xiaoguo3" style="float:left;">1. 查看购物车</span> <span class="xiaoguo2" style="float:left;">2. 确认订单信息</span> <span class="xiaoguo1" style="float:left;">3. 付款</span> <span class="xiaoguo4" style="float:left;">4. 确认收货</span> <span class="xiaoguo5" style="float:left;">5. 完成</span> </div>
+                <div class="clear"></div>
+                <div class="jg"></div>
+                <div class="yixuan tb_lightblue">
+                    <table width="100%" cellspacing="0">
+                        <tr>
+                            <th>商品</th>
+                            <th width="10%">折扣</th>
+                            <th width="12%">单价(USD)</th>
+                            <th width="10%">数量</th>
+                            <th width="10%">成本(USD)</th>
+                        </tr>
+                        #set( $number=0 )
+                        #set( $amount=0 )
+                        #foreach( $item in $orders.orderitems )
+                        <tr>
+                            <td align="left" valign="middle" style=" padding-left:10px;"><span style="margin-left:10px;">
+                            <a href="../goods.htm?gs=$!{item.goods.id}" target="_blank">$!{item.goods.name}</a>
+                            #foreach( $subitem in $item.spec.specvalues )
+                            [$!{subitem.specitem.name}:$!{subitem.name}]
+                            #end
+                            </span></td>
+                            <td align="center" >$!{item.discount}</td>
+                            <td align="center" >$!{item.unitprice}</td>
+                            <td align="center" >$!{item.number}</td>
+                            <td align="center" >$!{item.subtotal}</td>
+
+                        </tr>
+                        #set( $number=$number+1 )
+                        #set( $amount=$amount+$item.subtotal )
+                        #end
+                    </table>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="right" style="font-weight:bold;">小计 (USD):</td>
+        <td width="10%" align="center">$!{amount}</td>
+    </tr>
+    <tr>
+        <td align="right" style="font-weight:bold;">运费 (USD):</td>
+        <td width="10%" align="center">$!{orders.logicost}</td>
+    </tr>
+    <tr>
+        <td align="right" style="font-weight:bold;">税金 (USD):</td>
+        <td width="10%" align="center">0</td>
+    </tr>
+    <tr>
+        <td align="right" style="font-weight:bold;">总计 (USD):</td>
+        <td width="10%" align="center">#set( $actvalue=$orders.actamount+$orders.logicost )$!{actvalue}</td>
+
+    </tr>
+</table>
+                </div>
+            </div>
+                  <div class="clear"></div>
+                  <div class="connn">
+                       <table width="100%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td><div id="form">
+      <form action="https://www.linkpointcentral.com/lpc/servlet/lppay" method="post">
+        <input type="hidden" name="storename" value="1001276324" />
+        <input type="hidden" name="chargetotal" value="$!{actvalue}" />
+        <input type="hidden" name="txnorg" value="eci" />
+        <input type="hidden" name="mode" value="PayPlus" />
+        <input type="hidden" name="txntype" value="sale" />
+        <table>
+          <tr>
+            <td class="neme1">Credit card number:</td>
+            <td align="left"><input type="taxt" name="cardnumber" size="20" maxlength="30"/></td>
+            </tr>
+          <tr>
+            <td class="neme1">Expires:</td>
+            <td align="left"><select name="expmonth" size="1">
+              <option value="">...</option>
+              <option value="1">Jan</option>
+              <option value="2">Feb</option>
+              <option value="3">Mar</option>
+              <option value="4">Apr</option>
+              <option value="5">May</option>
+              <option value="6">Jun</option>
+              <option value="7">Jul</option>
+              <option value="8">Aug</option>
+              <option value="9">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+              </select>
+              /
+              <select name="expyear" size="1">
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                </select></td>
+            </tr>
+          <tr>
+            <td class="neme1">Card Code:</td>
+            <td align="left"><input name="cvm" type="text" size="4"/>
+              <input name="cvmnotpres" type="checkbox"/>
+              Code not present</td>
+            </tr>
+          <tr>
+            <td class="neme1">Name:</td>
+            <td align="left"><input name="bname" type="text" size="30" maxlength="30"/></td>
+            </tr>
+          <tr>
+            <td class="neme1">Address (1st line):</td>
+            <td align="left"><input name="baddr1" type="text" size="30" maxlength="30"/></td>
+            </tr>
+          <tr>
+            <td class="neme1">Zip code:</td>
+            <td align="left"><input name="bzip" type="text" size="5" maxlength="10"/></td>
+            </tr>
+          <tr>
+            <td class="neme1"></td>
+            <td align="left"><input type="submit" value="Continue to secure payment form"/></td>
+            </tr>
+          </table>
+        <p></p>
+      </form>
+    </div></td>
+  </tr>
+</table>
+
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div id="foot"> <a href="/?c=home">首页</a> | <a href="/?c=download">资料下载</a><!-- | <a href="/?c=privacy" target="_blank">帮助中心</a>--> | <a href="/member/" target="_blank">订单状态 </a>|<a href="/my_scart.htm" target="_blank"> 我的购物车</a>
+          <div class="clear"></div>
+ 版权所有:  magnatehardware  2000-2016 &nbsp;&nbsp;&nbsp;技术支持  <a href="http://www.e6mall.com" target="_blank">E6mill</a>
+  <div class="jg"></div>
+ </div>
+    </div>
+</div>
+<div id="dialog" style="display:none">
+    <form id="formaddst" name="formaddst" method="post" action="member/staddr_create_ajax.htm">
+        <table width="500" border="0" cellspacing="0" cellpadding="5" class="table">
+            <tr>
+                <td align="right">详细地址：</td>
+                <td><input name="staddress.address" type="text" id="staddress.address" size="50" maxlength="255" /></td>
+            </tr>
+            <tr>
+                <td align="right">邮编：</td>
+                <td><input name="staddress.postcode" type="text" id="staddress.postcode" size="10" maxlength="6" /></td>
+            </tr>
+            <tr>
+                <td align="right">收货人姓名：</td>
+                <td><input name="staddress.name" type="text" id="staddress.name" size="20" maxlength="100" /></td>
+            </tr>
+            <tr>
+                <td align="right">联系电话：</td>
+                <td><input name="staddress.telephone" type="text" id="staddress.telephone" size="30" maxlength="200" /></td>
+            </tr>
+            <tr>
+                <td align="right">手机：</td>
+                <td><input name="staddress.mobile" type="text" id="staddress.mobile" size="30" maxlength="200" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dialog_target"></div>
+</body>
+</html>

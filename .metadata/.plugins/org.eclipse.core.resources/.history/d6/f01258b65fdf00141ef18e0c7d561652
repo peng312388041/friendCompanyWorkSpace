@@ -1,0 +1,10 @@
+package model;
+
+public class Gongshi implements Company {
+
+	public int say() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+#* velocity document *#
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Return通知</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<p>$!{notice.status}</p>
+<p>$!{notice.code}</p>
+<p>$!{notice.title}</p>
+<p>$!{notice.body}</p>
+<p><a href="member/list_bought_items.htm">返回我的E6Mall</a></p>
+</body>
+</html>

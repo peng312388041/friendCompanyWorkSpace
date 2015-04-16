@@ -1,0 +1,7 @@
+package com.bbs.utils;
+
+import org.hibernate.SessionFactory;
+
+public class HibernateSessionFactory {
+	private SessionFactory sessionFactory;
+}

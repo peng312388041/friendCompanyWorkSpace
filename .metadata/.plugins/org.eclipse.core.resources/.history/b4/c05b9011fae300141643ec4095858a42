@@ -1,0 +1,15 @@
+package com.bbs.utils;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class HibernateSessionFactory {
+	@Autowired
+	private static SessionFactory sessionFactory;
+	public static getsession()
+	{
+		Session session=sessionFactory.getCurrentSession();
+		return session;
+	}
+}

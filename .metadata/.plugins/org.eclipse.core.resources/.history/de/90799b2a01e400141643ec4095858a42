@@ -1,0 +1,5 @@
+package com.bbs.dao.impl;
+
+public class ArticleDaoImpl {
+
+}

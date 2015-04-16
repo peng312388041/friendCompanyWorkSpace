@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>E6Mall在线商城</title>
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link href="styles/global.css" rel="stylesheet" type="text/css" />
+<link href="styles/inside.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.2.3.pack.js"></script>
+<script type="text/javascript" src="scripts/jquery-extend-AdAdvance.js"></script>
+<script type="text/javascript" src="scripts/jquery-extend-TrunAd2.js"></script>
+<script type="text/javascript" src="scripts/box.js"></script>
+</head>
+<body>
+<div id="Box-top">
+  <div id="Box-top-nav"><a onfocus="this.blur()" href="#">我的账户</a><a onfocus="this.blur()" href="#">每日特惠</a><a onfocus="this.blur()" href="#">断码专区</a><a onfocus="this.blur()" href="#">积分回馈</a><a onfocus="this.blur()" href="#">论坛</a><a onfocus="this.blur()" href="#">网站联盟</a><a onfocus="this.blur()" href="#">帮助中心</a><a onfocus="this.blur()" href="#"><img src="images/Home-box_01.jpg" width="70" height="16" alt="在线客服" /></a></div>
+  <div id="Box-top-logo">
+    <h1><a onfocus="this.blur()" href="#"><img src="images/Home-box_03.jpg" alt="E6Mall 铱王星 在线商城" width="244" height="32" /></a></h1>
+    <p class="Box-top-login">您好，欢迎光临E6Mall 铱王星。#if( $session.getAttribute("member") )<a href="member/index.htm">我的E6Mall</a>#else<a onfocus="this.blur()" href="login.htm">登录</a> | <a onfocus="this.blur()" href="register.htm">注册</a>#end</p>
+    <p class="Box-top-tel"><img src="images/Home-box_05.jpg" alt="订购热线" width="122" height="14" /></p>
+    <div class="clear"></div>
+  </div>
+  <!------------------------nav------------------------>
+  <div id="Box-nav">
+    <ul>
+      <li><a onfocus="this.blur()" href="index.htm">首页</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=2ffdf86fa01f44d9a5ee997a4cba6426">潮流服饰</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=87e9d2853d7b48f1a7867e3f87f44356">美容护肤</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=702742dcbf4b4467972e6c4ef46d6316">手机数码</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=833fb464077d4a77a2a4553212193f76">珠宝饰品</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=10ff85acdec645349dd6a52e3f0a58c8">食品保健</a></li>
+      <li><a onfocus="this.blur()" href="browse.htm?c=dc1a3f5f11e94de3a82dce52be404483">图书音像</a></li>
+    </ul>
+    <p><a href="http://www.e6mall.com" target="_blank"><img src="images/Home-box_07.jpg" alt="http://www.e6mall.com" width="187" height="26" border="0" /></a></p>
+    <div class="clear"></div>
+  </div>
+  <div id="Box-menu-left">
+    <div class="Box-sort white"><span>热门分类：</span><a href="#">商务衬衫</a><a href="#">男装外套</a><a href="#">女装针织衫</a><a href="#">休闲皮鞋</a><a href="#">皮带</a><span class="orange">特别关注：</span><a href="#">复古罗马凉鞋69元起</a>|<a href="#">热销商品</a>|<a href="#">会员积分换购</a></div>
+    <div class="Box-search">
+      <form action="search" method="get">
+        <label>
+          <input name="text-box" type="text" class="text-box" />
+        </label>
+        <label>
+          <select name="category" id="category">
+            <option selected="selected">商品类别</option>
+            <option>男装</option>
+            <option>女装</option>
+            <option>童装</option>
+            <option>鞋</option>
+            <option>配饰</option>
+            <option>家居</option>
+          </select>
+        </label>
+        <input name="button" type="button" id="button" value="搜索" class="button" />
+        <label>热门关键词:<a href="#">衬衫</a><a href="#">休闲裤</a><a href="#">水果鞋 打底裤</a><a href="#">风衣</a><a href="#">POLO/T恤</a><a href="#">裙子</a><a href="#">牛仔裤</a><a href="#">围巾</a><a href="#">领带</a></label>
+      </form>
+    </div>
+  </div>
+  <div id="Box-menu-right"><img src="images/Home-box_02.jpg" width="17" height="16" class="icon" />购物车中有 <b>0</b> 件商品<br />
+    合　计 <b>0</b> 元<img src="images/Home-box_11.jpg" width="53" height="19" class="button-b" /></div>
+  <div class="clear"></div>
+</div>
+<div class="Box-banner"><img src="images/Home-box_15.jpg" width="980" height="60" /></div>
+<!------------------------内容------------------------>
+<div id="Main-box">
+
+  <div class="Main-left left">
+  <div class="my_left_cat_list">
+  <h2>按网站类别</h2>
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">企业建站</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">网站设计</a></li>
+            <li><a href="#">网站广告</a></li>
+            <li><a href="#">推广</a></li>
+            <li><a href="#">建网站</a></li>
+            <li><a href="#">网站推广</a></li>
+            <li><a href="#">网站建设</a></li>
+            <li><a href="#">SEO</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">韩国男装</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">网站设计</a></li>
+            <li><a href="#">网站广告</a></li>
+            <li><a href="#">推广</a></li>
+            <li><a href="#">建网站</a></li>
+            <li><a href="#">网站推广</a></li>
+            <li><a href="#">网站建设</a></li>
+            <li><a href="#">SEO</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">源码爱好者</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">源码下载</a></li>
+            <li><a href="#">最新更新</a></li>
+            <li><a href="#">下载排行</a></li>
+            <li><a href="#">ASP</a></li>
+            <li><a href="#">PHP</a></li>
+            <li><a href="#">AJAX</a></li>
+            <li><a href="#">DELPHI</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- again -->
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#" style="color:#ff3333;">热销推荐</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">网站设计</a></li>
+            <li><a href="#">网站广告</a></li>
+            <li><a href="#">推广</a></li>
+            <li><a href="#">建网站</a></li>
+            <li><a href="#">网站推广</a></li>
+            <li><a href="#">网站建设</a></li>
+            <li><a href="#">SEO</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">网站建设</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">网站设计</a></li>
+            <li><a href="#">推广</a></li>
+            <li><a href="#">建网站</a></li>
+            <li><a href="#">网站推广</a></li>
+            <li><a href="#">推广</a></li>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">网站设计</a></li>
+            <li><a href="#">网站广告</a></li>
+            <li><a href="#">推广</a></li>
+            <li><a href="#">建网站</a></li>
+            <li><a href="#">网站推广</a></li>
+            <li><a href="#">网站建设</a></li>
+            <li><a href="#">LOGO设计</a></li>
+            <li><a href="#">网站设计</a></li>
+            <li><a href="#">网站建设</a></li>
+            <li><a href="#">SEO</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">网站程序</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">PHP</a></li>
+            <li><a href="#">ASP</a></li>
+            <li><a href="#">JSP</a></li>
+            <li><a href="#">ASP.Net</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h2_cat_1" onmouseover="this.className='h2_cat_1 active_cat'" onmouseout="this.className='h2_cat_1'">
+    <h3><a href="#">其他网站</a></h3>
+  </div>
+  <!-- again -->
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">低端价位</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">50元以下</a></li>
+            <li><a href="#">50-100元</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h2_cat" onmouseover="this.className='h2_cat active_cat'" onmouseout="this.className='h2_cat'">
+    <h3><a href="#">中高端价位</a></h3>
+    <div class="h3_cat">
+      <div class="shadow">
+        <div class="shadow_border">
+          <ul>
+            <li><a href="#">100-150元</a></li>
+            <li><a href="#">150-200元</a></li>
+            <li><a href="#">200-300元</a></li>
+            <li><a href="#">300元以上</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- again -->
+  <!--测试复制end-->
+</div>
+    <div class="Main-left-subNav">
+      <h3>产品分类</h3>
+      <ul>
+        #foreach( $item in $map.get("A") )
+        <li><a href="browse.htm?c=$!{item.id}&keyword=$!{keyword}&ev=$!{ev}&bd=$!{brand.id}">$!{item.name}</a> </li>
+        #end
+      </ul>
+    </div>
+    
+    <div class="Main-left-subNav" style="margin-top:20px;">
+      <h3>品牌分类</h3>
+      <ul class="Main-left-Brand">
+        #foreach( $item in $map.get("A_CurCategory").gstype.brands )
+        <li><a href="browse.htm?c=$!{c}&keyword=$!{keyword}&ev=$!{ev}&bd=$!{item.id}">$!{item.name}</a></li>
+        #end
+      </ul>
+    </div>
+    <p><img src="images/Main-img-01.jpg" width="200" height="303" /></p>
+    <p><img src="images/Main-img-02.jpg" width="200" height="350" /></p>
+  </div>
+  <div class="Main-right right">
+    <div><div id="play">
+      <!--轮播广告-->
+      <div id="play_list"> <a class="track" href="#" target="_blank" name="h-focus-01"><img src="images/Home-box-01.jpg" width="730" height="422"></a> <a class="track" href="#" target="_blank" name="h-focus-02"><img src="images/Home-box-02.jpg" width="730" height="422"></a> <a class="track" href="#" target="_blank" name="h-focus-03"><img src="images/Home-box-03.jpg" width="730" height="422"></a> <a class="track" href="#" target="_blank" name="h-focus-04"><img src="images/Home-box-04.jpg" width="730" height="422"></a> <a class="track" href="#" target="_blank" name="h-focus-05"><img src="images/Home-box-05.jpg" width="730" height="422"></a> <a class="track" href="#" target="_blank" name="h-focus-06"><img src="images/Home-box-06.jpg" width="730" height="422"></a> </div>
+      <div id="play_text"></div>
+      <SCRIPT type=text/javascript> 
+$('#play_list').TrunAd2();
+</SCRIPT>
+    </div></div>
+    <!------------------------新款上市------------------------>
+    <div class="Main-stroke">
+      <div class="Main-Title">
+        <h4 style="border-bottom:2px solid #a10000;"><a href="#" style="color:#a10000">1F.新款上市</a></h4>
+        <span><a href="#">更多 >></a></span>
+        <div class="clear"></div>
+      </div>
+      <ul>
+        #foreach( $item in $map.get("B").getItems() )
+        <li><a href="goods.htm?c=$!{c}&gs=$!{item.id}"><img src=".$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!{item.name}</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥$!{item.getPriceScope()}</span></p>
+          </div>
+        </li>
+        #end
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <!------------------------新款上市------------------------>
+    <p><img src="images/banner_02.jpg" width="765" height="260" /></p>
+    <!------------------------POLO衫＆T恤推荐------------------------>
+    <div>
+      <div class="Main-Title">
+        <h4 style="border-bottom:2px solid #f773be;"><a href="#" style="color:#f773be">2F.POLO衫＆T恤推荐</a></h4>
+        <span><a href="#">更多 >></a></span>
+        <div class="clear"></div>
+      </div>
+      <ul>
+        <li><a href="#"><img src="images/women_img-01.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-03.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-07.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-04.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-05.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-02.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-08.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-06.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <!------------------------POLO衫＆T恤推荐------------------------>
+    <p><img src="images/banner_03.jpg" width="765" height="260" /></p>
+    <!------------------------衬衫推荐------------------------>
+    <div>
+      <div class="Main-Title">
+        <h4 style="border-bottom:2px solid #9d7b4e;"><a href="#" style="color:#9d7b4e">3F.衬衫推荐</a></h4>
+        <span><a href="#">更多 >></a></span>
+        <div class="clear"></div>
+      </div>
+      <ul>
+        <li><a href="#"><img src="images/women_img-06.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-07.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-08.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-09.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <!------------------------衬衫推荐------------------------>
+    <!------------------------针织衫推荐------------------------>
+    <div>
+      <div class="Main-Title">
+        <h4 style="border-bottom:2px solid #9d7b4e;"><a href="#" style="color:#9d7b4e">4F.针织衫推荐</a></h4>
+        <span><a href="#">更多 >></a></span>
+        <div class="clear"></div>
+      </div>
+      <ul>
+        <li><a href="#"><img src="images/women_img-0.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-01.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-03.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-05.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <!------------------------针织衫推荐------------------------>
+    <!------------------------裙子推荐------------------------>
+    <div>
+      <div class="Main-Title">
+        <h4 style="border-bottom:2px solid #9d7b4e;"><a href="#" style="color:#9d7b4e">5F.裙子推荐</a></h4>
+        <span><a href="#">更多 >></a></span>
+        <div class="clear"></div>
+      </div>
+      <ul>
+        <li><a href="#"><img src="images/women_img-14.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-13.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-12.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+        <li><a href="#"><img src="images/women_img-11.jpg" width="150" height="205" /></a>
+          <div class="women-box">
+            <p><a href="#">优雅暗调提花短袖衬</a>...</p>
+            <p>市场价<del class="gray">￥398</del>　售价<span class="red">￥128</span></p>
+          </div>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <!------------------------裙子推荐------------------------>
+  </div>
+  <div class="clear"></div>
+</div>
+<!------------------------底部------------------------>
+<div id="Box-bottom">
+  <div class="Box-bottom-menu">
+    <dl class="Box-helpIntro">
+      <dt><strong>新手指南</strong></dt>
+      <dd><a href="#">注册新用户</a></dd>
+      <dd><a href="#">网站订购流程</a></dd>
+    </dl>
+    <dl>
+      <dt><strong>如何付款/退款</strong></dt>
+      <dd><a href="#">支付方式</a></dd>
+      <dd><a href="#">如何办理退款</a></dd>
+      <dd><a href="#">发票制度说明</a></dd>
+    </dl>
+    <dl>
+      <dt><strong>配送方式</strong></dt>
+      <dd><a href="#">货到付款城市及配送时间</a></dd>
+      <dd><a href="#">款到快递城市及配送时间</a></dd>
+      <dd><a href="#">配送费收取标准</a></dd>
+    </dl>
+    <dl>
+      <dt><strong>售后服务</strong></dt>
+      <dd><a href="#">退换货政策</a></dd>
+      <dd><a href="#">如何办理退换货</a></dd>
+    </dl>
+    <dl>
+      <dt><strong>帮助中心</strong></dt>
+      <dd><a href="#">常见热点问题</a></dd>
+      <dd><a href="#">联系我们</a></dd>
+      <dd><a href="#">投诉与建议</a></dd>
+    </dl>
+    <dl class="Box-Nosty">
+      <dt><strong>订购热线</strong>(免长途费)</dt>
+      <dd><strong>400 600 6888</strong></dd>
+      <dt><strong>客户服务热线</strong>(免长途费)</dt>
+      <dd><strong>400 650 7099</strong></dd>
+    </dl>
+    <div class="clear"></div>
+  </div>
+  <p class="bZp"><a href="#"><img src="images/service01.jpg" width="157" height="55" /></a><a href="#"><img src="images/service02.jpg" width="178" height="55" /></a><a href="#"><img src="images/service03.jpg" width="198" height="55" /></a></p>
+  <p><a href="#">首页</a> | <a href="#">公司简介</a> | <a href="#">隐私申明</a> | <a href="#">团购优惠</a> | <a href="#">合作专区</a> | 加入<a href="3">E6Mall</a> | <a href="#">投诉与建议</a></p>
+  <p>Copyright 2007 - 2010 <a href="http://www.e6mall.com" target="_blank">e6mall.com</a> All Rights Reserved 粤ICP备06082025号</p>
+  <div class="clear"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+package com.bbs.service.impl;
+
+import com.bbs.service.BaseArticleService;
+
+public class ArticleServiceImpl implements BaseArticleService{
+
+}

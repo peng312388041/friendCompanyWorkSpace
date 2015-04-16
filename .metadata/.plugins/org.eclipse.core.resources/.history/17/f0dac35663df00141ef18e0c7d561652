@@ -1,0 +1,6 @@
+package model;
+
+public class abstract Gongshi implements Company {
+ 
+	public abstract long count() ;
+}

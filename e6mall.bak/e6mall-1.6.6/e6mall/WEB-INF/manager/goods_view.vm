@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="styles/style.css" rel="stylesheet" />
+<link href="styles/validate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="scripts/easy_validator.pack.js"></script>
+<script type="text/javascript" src="scripts/jquery.bgiframe.min.js"></script>
+<title>商品图片</title>
+</head>
+<body>
+<div id="body-wrapper">
+  <div id="sidebar">
+    <div id="sidebar-wrapper">
+      <h1 id="sidebar-title"><a href="#">E6Mall网店系统管理</a></h1>
+      <a href="#"><img id="logo" alt="E6Mall网店系统管理" src="images/logo.png"></a>
+      <div id="profile-links">欢迎, <a title="Edit your profile" href="#">$!{session.getAttribute("manager").account}</a>, 你有 <a title="0 条信息" href="#messages" rel="modal">0 条信息</a><br />
+        <br />
+        <a href="../" title="商城首页" target="_blank">商城首页</a> | <a title="退出" href="logout.htm">退出</a> </div>
+      <ul id="main-nav">
+        <li><a href="index.htm" class="nav-top-item no-submenu">管理控制台 </a>
+        <li><a class="nav-top-item current" href="#">商品 </a>
+          <ul>
+            <li><a href="goods.htm">商品信息</a></li>
+            <li><a href="goods_input.htm">添加新商品</a></li>
+            <li><a href="comments.htm">用户评论</a></li>
+            <li><a href="categorys.htm">商品类别</a></li>
+            <li><a href="gstypes.htm">商品类型</a></li>
+            <li><a href="specitems.htm">商品规格</a></li>
+            <li><a href="extattrs.htm">商品扩展属性</a></li>
+            <li><a href="brands.htm">品牌管理</a></li>
+            <li><a href="goods_import.htm">商品批量导入</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">订单 </a>
+          <ul>
+            <li><a href="orders.htm">订单列表</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">用户和组 </a>
+          <ul>
+            <li><a href="members.htm">会员账户</a></li>
+            <li><a href="groups.htm">会员等级</a></li>
+            <li><a href="payin_getout.htm">充值提现申请</a></li>
+            <li><a href="bank.htm">资金管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">权限管理 </a>
+          <ul>
+            <li><a href="managers.htm">管理员列表</a></li>
+            <li><a href="mgroups.htm">角色管理</a></li>
+            <li><a href="#">管理员日志</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">网站频道 </a>
+          <ul>
+            <li><a href="channels.htm">频道列表</a></li>
+            <li><a href="documents.htm">文章列表</a></li>
+            <li><a href="doccates.htm">文章类别</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">商店配置 </a>
+          <ul>
+            <li><a href="configs.htm">系统设置</a></li>
+            <li><a href="paymodes.htm">第三方支付</a></li>
+            <li><a href="districts.htm">地区管理</a></li>
+            <li><a href="logistics.htm">第三方物流</a></li>
+            <li><a href="#">货币管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">数据库管理 </a>
+          <ul>
+            <li><a href="#">数据备份</a></li>
+            <li><a href="#">数据迁移</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="main-content">
+    <p>管理控制台 - 商品信息 - 商品图片</p>
+    <ul class="shortcut-buttons-set">
+      <li><a class="shortcut-button" href="goods.htm"><span><img alt="icon" src="images/menu_return.png"><br />
+        返回商品列表 </span></a></li>
+      <li><a class="shortcut-button" href="goods.htm?c=$!{goods.category.id}"><span><img alt="icon" src="images/menu_return.png"><br />
+        返回[$!{goods.category.name}]列表 </span></a></li>
+      <li><a class="shortcut-button" href="goods_input.htm"><span><img alt="icon" src="images/pencil_48.png" /><br />
+      商品录入 </span></a></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="content-box">
+      <div class="content-box-header">
+        <h3>$!{goods.name}</h3>
+        <ul class="content-box-tabs">
+          <li><a class="default-tab" href="#tab1">基本信息</a></li>
+          <li><a href="#tab2">详细信息</a></li>
+          <li><a href="#tab3">商品相册</a></li>
+          <li><a href="#tab4">上传图片</a></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td align="right">语言：</td>
+              <td>$!{goods.locale.name}</td>
+              <td align="right">商品类别：</td>
+              <td>$!{goods.category.name}</td>
+            </tr>
+            <tr>
+              <td align="right">简介：</td>
+              <td colspan="3">$!{goods.intro}</td>
+            </tr>
+            <tr>
+              <td align="right">单价：</td>
+              <td>$!{goods.price}</td>
+              <td align="right">赠送积分：</td>
+              <td>$!{goods.points}</td>
+            </tr>
+            <tr>
+              <td align="right">库存：</td>
+              <td>$!{goods.inventory}</td>
+              <td align="right">参与促销：</td>
+              <td>$!{goods.promote}</td>
+            </tr>
+            <tr>
+              <td align="right">状态：</td>
+              <td>$!{goods.status}</td>
+              <td align="right">排序：</td>
+              <td>$!{goods.csort}</td>
+            </tr>
+            <tr>
+              <td align="right">发布时间：</td>
+              <td>$!{goods.ctime} $!{goods.getVtime("yyyy-MM-dd")}</td>
+              <td align="right">更新时间：</td>
+              <td>$!{goods.utime}</td>
+            </tr>
+            <tr>
+              <td align="right">品牌：</td>
+              <td>$!{goods.brand.name}</td>
+              <td align="right">商品类型：</td>
+              <td>$!{goods.gstype.name}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="tab-content" id="tab2">
+          <p>$!{goods.details}</p>
+        </div>
+        <div class="tab-content" id="tab3">
+          <form id="form1" name="form1" method="post" action="attachment_del.htm">
+          <div style="padding-right:30px;"><p class="mubutton"><input  name="button" type="image" id="button" src="images/pic_03.jpg" /></p>
+          <ul>
+          #foreach( $item in $goods.attachments )
+          <li>
+          <a href="attachment_edit.action?am=$!{item.id}"><img src="..$!{item.path}/$!{item.name}" width="157" height="120" border="0"></a>
+          <div class="tab-box">
+          <p>#if($item.status=='default')默认图#else正常#end</p>
+          <p>说明：$!{item.details}</p>
+          <p><input name="checkbox" type="checkbox" id="checkbox" value="$!{item.id}"></p>
+          </div>
+          </li>
+          #end
+          </ul>
+          <div class="clear"></div>
+          <p class="mubutton"><input  name="button" type="image" id="button" src="images/pic_03.jpg" /></p>
+          </div>
+          </form>
+        </div>
+        <div class="tab-content" id="tab4">
+          <form action="attachment_create.htm" method="post" enctype="multipart/form-data" name="form1" id="form1">
+            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+              <tr>
+                <td align="right">商品：</td>
+                <td>$!{goods.name}
+                  <input name="attachment.goods.id" type="hidden" id="attachment.goods.id" value="$!{goods.id}" /></td>
+              </tr>
+              <tr>
+                <td align="right">图片文件：</td>
+                <td><input type="file" name="upload" id="upload" reg=".*gif|png|jpg|jpeg$" tip="允许JPG,GIF,PNG图片文件" /></td>
+              </tr>
+              <tr>
+                <td align="right">图片说明：</td>
+                <td><textarea name="attachment.details" id="attachment.details" cols="45" rows="10"></textarea></td>
+              </tr>
+              <tr>
+                <td align="right">默认图：</td>
+                <td>是
+                  <input type="radio" name="attachment.status" id="radio" value="default">
+                  否
+                  <input name="attachment.status" type="radio" id="radio" value="normal" checked="checked"></td>
+              </tr>
+              <tr>
+                <td align="right">排序：</td>
+                <td><input name="attachment.sort" type="text" id="attachment.sort" value="10" size="10" maxlength="11" reg="^\d{1,11}$" tip="输入图片排序，只允许数字。" /></td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" name="button" id="button" value="提交" /></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer"><small> © Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a></a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a> | <a href="#">Top</a> </small></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+1428558139994	Rename package 'implservice'
+1428558299310	Copy file
+1428558446166	Delete elements
+1428558452493	Delete element
+1428559307323	Rename resource 'dao.xml'
+1428559311633	Rename resource 'service.xml'
+1428559468492	Move file
+1428561051492	Delete element
+1428564301348	Copy file
+1428564359322	Move 'Person.hbm.xml' to 'domain'
+1428564378023	Delete element
+1428643405101	Rename field 'service'
+1428644858819	Rename field 'sessionFactory'
+1428645435921	Rename field 'mySessionFactory'

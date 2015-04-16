@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 前台 -->
+	<package name="index" extends="base-package" namespace="/">
+		<!-- 默认拦截器 -->
+		<default-interceptor-ref name="defaultStack" />
+		<!-- 全局结果 -->
+		<global-results>
+			<result name="error" type="velocity">/WEB-INF/public/error.vm</result>
+			<result name="notice" type="velocity">/WEB-INF/public/notice.vm</result>
+		</global-results>
+		<!-- 首页/频道 -->
+		<action name="index" class="com.e6mall.action.ChannelAction">
+			<result name="success" type="velocity">${template}</result>
+			<result name="siteclose" type="velocity">/WEB-INF/global/siteClose.vm</result>
+		</action>
+		<!-- 浏览 -->
+		<action name="browse" class="com.e6mall.action.BrowseAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_browse.vm</result>
+		</action>
+		<!-- 商品详细 -->
+		<action name="goods" class="com.e6mall.action.GoodsAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_goods.vm</result>
+		</action>
+		<!-- 商品规格 -->
+		<action name="goods_spec" class="com.e6mall.action.SpecAction">
+			<result type="json"></result>
+		</action>
+		<!-- 频道 -->
+		<action name="channel" class="com.e6mall.action.ChannelAction">
+			<result name="success" type="velocity">${template}</result>
+		</action>
+		<!-- 会员注册 -->
+		<action name="register" class="com.e6mall.action.RegisterAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_register.vm</result>
+		</action>
+		<action name="registering" class="com.e6mall.action.RegisterAction" method="registering">
+			<result name="success" type="velocity">/WEB-INF/public/registering.vm</result>
+		</action>
+		<!-- 会员登录 -->
+		<action name="login" class="com.e6mall.action.LoginAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_login.vm</result>
+		</action>
+		<action name="loggingin" class="com.e6mall.action.LoginAction" method="loggingin">
+			<result name="success" type="redirect">${url}</result>
+		</action>
+		<!-- 会员找回密码 -->
+		<action name="forget_password" class="com.e6mall.action.PasswordFindAction">
+			<result name="success" type="velocity">/WEB-INF/public/forget_password.vm</result>
+		</action>
+		<action name="find_password" class="com.e6mall.action.PasswordFindAction" method="find">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_find_password.vm</result>
+		</action>
+		<!-- 管理员登录 -->
+		<action name="mlogin" class="com.e6mall.action.MloginAction">
+			<result name="success" type="velocity">/WEB-INF/public/mlogin.vm</result>
+		</action>
+		<action name="mloggingin" class="com.e6mall.action.MloginAction" method="loggingin">
+			<result name="success" type="redirect">${url}</result>
+		</action>
+		
+		<!-- 商品加入购物车 -->
+		<action name="add_to_cart" class="com.e6mall.action.AddtocartAction">
+			<result name="success" type="redirect">my_scart.htm</result>
+		</action>
+		
+		<!-- 查看Session购物车 -->
+		<action name="my_scart" class="com.e6mall.action.ScartAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_my_scart.vm</result>
+		</action>
+		<!-- 更新Session购物车商品数量 -->
+		<action name="scart_update_amount" class="com.e6mall.action.ScartUpdateAction">
+			<result name="success" type="redirect">my_scart.htm</result>
+		</action>
+		<!-- 删除Session购物车商品 -->
+		<action name="scart_del_item" class="com.e6mall.action.ScartUpdateAction" method="delorderitem">
+			<result name="success" type="redirect">my_scart.htm</result>
+		</action>
+		<!-- 清空Session购物车商品 -->
+		<action name="scart_clear" class="com.e6mall.action.ScartUpdateAction" method="clear">
+			<result name="success" type="redirect">my_scart.htm</result>
+		</action>
+		
+		<!-- 会员设置订单 -->
+		<action name="my_sorders" class="com.e6mall.action.SordersAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_my_sorders.vm</result>
+			<result name="login" type="redirect">login.htm</result>
+		</action>
+		<!-- 地区联动 -->
+		<action name="getdistrict" class="com.e6mall.action.member.DistrictAction">
+            <result type="json">
+            	<param name="root">list</param>
+			</result>
+        </action>
+        <!-- AJAX配送地区费用 -->
+        <action name="getFreight" class="com.e6mall.action.GetFreightAction">
+			<result name="success" type="velocity">/WEB-INF/public/getfreight.vm</result>
+		</action>
+		<!-- 生成订单 -->
+		<action name="checkout" class="com.e6mall.action.CheckoutAction">
+			<result name="success" type="redirect">member/payment.htm?os=${os}</result>
+		</action>
+		
+		<!-- 支付宝Return返回通知 -->
+		<action name="alipay_return" class="com.e6mall.action.payment.alipay.ReturnAction">
+			<result name="success" type="velocity">/WEB-INF/public/alipay_return.vm</result>
+		</action>
+		
+		<!-- FirstData返回通知 -->
+		<action name="firstdata_success" class="com.e6mall.action.payment.firstdata.ReturnAction">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_firstdata_success.vm</result>
+		</action>
+		<action name="firstdata_failed" class="com.e6mall.action.payment.firstdata.ReturnAction" method="failed">
+			<result name="success" type="velocity">/WEB-INF/public/${defLocale.id}_firstdata_failed.vm</result>
+		</action>
+		
+		<!-- 商品评论 -->
+		<action name="comments_submit" class="com.e6mall.action.CommentsSubmitAction">
+			<result type="json">
+            	<param name="contentType">text/html</param>
+				<param name="objectType">array</param>
+				<param name="objectName">result</param>
+				<param name="jsonObjectProperty">list</param>
+				<param name="includeProperties">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

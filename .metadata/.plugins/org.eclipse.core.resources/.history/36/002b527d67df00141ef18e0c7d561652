@@ -1,0 +1,14 @@
+package model;
+
+public class   Gongshi implements Company {
+
+	@Override
+	public int say() {
+		
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public long count() {
+		return 0;
+	}
+}

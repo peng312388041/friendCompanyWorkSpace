@@ -1,0 +1,7 @@
+computeSourcePath=true
+contextsDir=C\:\\Users\\peng\\Downloads\\apache-tomcat-7.0.59-windows-x64\\apache-tomcat-7.0.59\\conf\\Catalina\\localhost
+eclipse.preferences.version=1
+managerUrl=http\://localhost\:8080/manager
+tomcatConfigFile=C\:\\Users\\peng\\Downloads\\apache-tomcat-7.0.59-windows-x64\\apache-tomcat-7.0.59\\conf\\server.xml
+tomcatDir=C\:\\Users\\peng\\Downloads\\apache-tomcat-7.0.59-windows-x64\\apache-tomcat-7.0.59
+tomcatVersion=tomcatV3

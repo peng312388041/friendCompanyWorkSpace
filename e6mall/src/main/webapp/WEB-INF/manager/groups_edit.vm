@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="styles/style.css" rel="stylesheet" />
+<link href="styles/validate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="scripts/easy_validator.pack.js"></script>
+<script type="text/javascript" src="scripts/jquery.bgiframe.min.js"></script>
+<title>编辑会员组</title>
+</head>
+<body>
+<div id="body-wrapper">
+  <div id="sidebar">
+    <div id="sidebar-wrapper">
+      <h1 id="sidebar-title"><a href="#">E6Mall网店系统管理</a></h1>
+      <a href="#"><img id="logo" alt="E6Mall网店系统管理" src="images/logo.png"></a>
+      <div id="profile-links">欢迎, <a title="Edit your profile" href="#">$!{session.getAttribute("manager").account}</a>, 你有 <a title="0 条信息" href="#messages" rel="modal">0 条信息</a><br />
+        <br />
+        <a href="../" title="商城首页" target="_blank">商城首页</a> | <a title="退出" href="logout.htm">退出</a> </div>
+      <ul id="main-nav">
+        <li><a href="index.htm" class="nav-top-item no-submenu">管理控制台 </a>
+        <li><a class="nav-top-item" href="#">商品 </a>
+          <ul>
+            <li><a href="goods.htm">商品信息</a></li>
+            <li><a href="goods_input.htm">添加新商品</a></li>
+            <li><a href="comments.htm">用户评论</a></li>
+            <li><a href="categorys.htm">商品类别</a></li>
+            <li><a href="gstypes.htm">商品类型</a></li>
+            <li><a href="specitems.htm">商品规格</a></li>
+            <li><a href="extattrs.htm">商品扩展属性</a></li>
+            <li><a href="brands.htm">品牌管理</a></li>
+            <li><a href="goods_import.htm">商品批量导入</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">订单 </a>
+          <ul>
+            <li><a href="orders.htm">订单列表</a></li>
+          </ul>
+        <li><a class="nav-top-item current" href="#">用户和组 </a>
+          <ul>
+            <li><a href="members.htm">会员账户</a></li>
+            <li><a href="groups.htm">会员等级</a></li>
+            <li><a href="managers.htm">系统管理员</a></li>
+            <li><a href="mgroups.htm">管理员组</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">网站频道 </a>
+          <ul>
+            <li><a href="channels.htm">频道列表</a></li>
+            <li><a href="documents.htm">文章列表</a></li>
+            <li><a href="doccates.htm">文章类别</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">商店配置 </a>
+          <ul>
+            <li><a href="configs.htm">系统设置</a></li>
+            <li><a href="paymodes.htm">第三方支付</a></li>
+            <li><a href="districts.htm">地区管理</a></li>
+            <li><a href="logistics.htm">第三方物流</a></li>
+            <li><a href="#">货币管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">数据库管理 </a>
+          <ul>
+            <li><a href="#">数据备份</a></li>
+            <li><a href="#">数据迁移</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="main-content">
+    <p>管理控制台 - 用户和组 - 会员组 - 编辑组</p>
+    <ul class="shortcut-buttons-set">
+      <li><a class="shortcut-button" href="groups.htm"><span><img alt="icon" src="images/menu_return.png"><br />
+        返回会员组列表 </span></a></li>
+      <li><a class="shortcut-button" href="groups_input.action"><span><img alt="icon" src="images/pencil_48.png" /><br />
+      新建会员组 </span></a></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="content-box">
+      <div class="content-box-header">
+        <h3>编辑会员组</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <form id="form1" name="form1" method="post" action="groups_update.action">
+            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+              <tr>
+                <td align="right">组名：</td>
+                <td><input name="groups.name" type="text" id="groups.name" value="$!{groups.name}" size="30" maxlength="255" reg="^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]{2,255}$" tip="中文，英文或下划线，最少两个字符，最多255个字符">
+                *</td>
+              </tr>
+              <tr>
+                <td align="right">折扣：</td>
+                <td><input name="groups.discount" type="text" id="groups.discount" value="$!{groups.discount}" size="20" maxlength="11" reg="^\d{1,12}(\.\d{1,2})?$" tip="输入该等级会员享受的折扣，只允许数字。">
+                  %</td>
+              </tr>
+              <tr>
+                <td align="right">是否默认组别：</td>
+                <td>是：
+              <input type="radio" name="groups.isdefault" id="radio" value="yes" #if($groups.isdefault=="yes")checked="checked"#end>
+              否：
+            <input name="groups.isdefault" type="radio" id="radio" value="no" #if($groups.isdefault=="no")checked="checked"#end></td>
+              </tr>
+              <tr>
+                <td align="right">需要积分：</td>
+                <td><input name="groups.requirepoints" type="text" id="groups.requirepoints" value="$!{groups.requirepoints}" size="20" maxlength="11" reg="^\d{1,11}$" tip="会员税分必须达到额度才可以申请成为该等级的会员，只允许数字。"></td>
+              </tr>
+              <tr>
+                <td align="right">备注：</td>
+                <td><textarea name="groups.remarks" id="groups.remarks" cols="45" rows="10">$!{groups.remarks}</textarea></td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" name="button" id="button" value="提交">
+                  <input name="groups.id" type="hidden" id="groups.id" value="$!{groups.id}"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer"><small> © Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a></a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a> | <a href="#">Top</a> </small></div>
+  </div>
+</div>
+</body>
+</html>

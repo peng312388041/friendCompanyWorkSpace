@@ -1,0 +1,21 @@
+package com.bbs.entity;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+//user_id	integer
+//user_username	varchar
+//user_password	varchar
+//user_age	integer
+//user_register_date	datetime
+//user_delete_date	datetime
+//user_active	boolean
+
+public class User implements Serializable{
+	private Integer id;
+	private String username;
+	private String password;
+	private int age;
+	private LocalDateTime registDate;
+	private LocalDateTime deleteDate;
+	private boolean active;
+}

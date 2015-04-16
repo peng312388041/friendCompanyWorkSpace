@@ -1,0 +1,10 @@
+package com.bbs.service;
+
+import com.bbs.utils.PaginationSupport;
+
+public interface BaseArticleService extends IBaseService{
+	public PaginationSupport getArticlePageByIndex(int)
+	{
+		
+	}
+}

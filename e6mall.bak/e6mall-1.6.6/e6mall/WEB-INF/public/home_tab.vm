@@ -1,0 +1,10 @@
+<ul>
+  #foreach( $item in $map.get("A").getItems() )
+  <li><a href="goods.htm?c=$!{c}&gs=$!{item.id}"><img src=".$!{item.getDefaultImage().path}/$!{item.getDefaultImage().name}" width="150" height="205" /></a>
+    <div class="women-box">
+      <p><a href="goods.htm?c=$!{c}&gs=$!{item.id}">$!{item.getSubname(36,"..")}</a></p>
+      <p>市场价<del class="gray">￥$!{item.mprice}</del>　售价<span class="red">￥$!{item.getPriceScope()}</span></p>
+    </div>
+  </li>
+  #end
+</ul>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>magnatehardware</title>
+<link href="css/Shopping.css" rel="stylesheet" type="text/css" />
+<link href="css/mian.css" rel="stylesheet" type="text/css" />
+<link href="css/global-reset.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div style="background:#CCC;">
+    <div id="header">
+        <div class="header_box">
+            <p>
+                #if( $session.getAttribute("member") )
+                <span class="gray">您好,</span> <span class="c_orange"><a href="member/index.htm"> $!{session.getAttribute("member").account}</a></span> <a href="member/logout.htm" class="gray">退出</a> &nbsp <span>欢迎来到 magnatehardware！</span>
+                #else
+                <span class="gray">您好,欢迎来到 magnatehardware！</span> <a href="login.htm">[请登录]</a> <span class="gray">，新用户？</span> <a href="register.htm">[免费注册]</a>
+                #end
+            </p>
+            <ul>
+               <!-- <li><a href="/?c=help" target="_blank">帮助中心</a></li>-->
+                <li class="top_fore"><a target="_blank" href="/member/list_bought_items.htm">我的订单</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="all">
+        <div id="logo">
+            <div style=" float:left;"><img  class="logo" src="images/logo.png" /></div>
+            <div class="low">
+            <img src="images/5.png"/><!--<a href="/?c=help&t=v&d=6d8d3083f9b3472d825d0384106798c4"><img id="low" src="images/110.png"/></a>--><img id="tel"src="images/z_tel.jpg"/></div>
+            <div class="tel">
+                <p><span><a href="/?l=zh_CN">中文</a></span> | <span><a href="/?l=en_US">English</a></span></p>
+            </div>
+        </div>
+         <div class="clear"></div>
+        <div id="nav_w">
+            <div id="nav">
+                <ul>
+                    <li class="current"><a href="/?c=home">主 页</a></li>
+                    <li class="nav1"><a href="/?c=download">资料下载</a></li>
+                   <!-- <li class="nav1"><a href="/?c=help">帮助中心</a></li>-->
+                    <li class="nav1"><a href="/member/">订单状态</a></li>
+                    <li class="nav1"><a href="/my_scart.htm">我的购物车</a></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="logo_x">
+            <table width="100%" border="0">
+                <form action="browse.htm" method="post" id="search">
+                    <tr>
+                        <td width="142"></td>
+                        <td align="right" width="555"><select name="c" id="c">
+                                <option value="">所有分类</option>
+                                #foreach( $item in $caterootlist )
+                                <option value="$!{item.id}" #if( $category.id==$item.id )selected="selected"#end>$!{item.name}</option>
+                                #end
+                            </select></td>
+                        <td align="right" width="150"><input name="keyword" type="text" id="keyword" value="$!{keyword}"></td>
+                        <td align="left" width="55"><input name="" type="image" src="images/ssss.png" /></td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+        <div class="clear"></div>
+        <div>
+       <img  src="images/failed.jpg"/>
+        </div>
+        <div class="clear"></div>
+        <div id="foot"> <a href="/?c=home">首页</a> | <a href="/?c=download">资料下载</a><!-- | <a href="/?c=privacy" target="_blank">帮助中心</a>--> | <a href="/member/" target="_blank">订单状态 </a>|<a href="/my_scart.htm" target="_blank"> 我的购物车</a>
+          <div class="clear"></div>
+ 版权所有:  magnatehardware  2000-2016 &nbsp;&nbsp;&nbsp;技术支持  <a href="http://www.e6mall.com" target="_blank">E6mill</a>
+  <div class="jg"></div>
+ </div>
+    </div>
+</div>
+<div id="dialog" style="display:none">
+    <form id="formaddst" name="formaddst" method="post" action="member/staddr_create_ajax.htm">
+        <table width="500" border="0" cellspacing="0" cellpadding="5" class="table">
+            <tr>
+                <td align="right">详细地址：</td>
+                <td><input name="staddress.address" type="text" id="staddress.address" size="50" maxlength="255" /></td>
+            </tr>
+            <tr>
+                <td align="right">邮编：</td>
+                <td><input name="staddress.postcode" type="text" id="staddress.postcode" size="10" maxlength="6" /></td>
+            </tr>
+            <tr>
+                <td align="right">收货人姓名：</td>
+                <td><input name="staddress.name" type="text" id="staddress.name" size="20" maxlength="100" /></td>
+            </tr>
+            <tr>
+                <td align="right">联系电话：</td>
+                <td><input name="staddress.telephone" type="text" id="staddress.telephone" size="30" maxlength="200" /></td>
+            </tr>
+            <tr>
+                <td align="right">手机：</td>
+                <td><input name="staddress.mobile" type="text" id="staddress.mobile" size="30" maxlength="200" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dialog_target"></div>
+</body>
+</html>

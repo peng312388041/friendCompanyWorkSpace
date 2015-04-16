@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>magnatehardware</title>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top">
+     <div id="top_head">
+	     <div id="logo"><a href="../"><img src="images/logo.jpg" alt="magnatehardware 在线商城" border="0"/></a></div>
+     </div>
+</div>
+<div id="blankline"></div>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="38" align="center" valign="middle" background="images/menubg.jpg"><table width="1003" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="250" height="38" align="left" valign="middle">
+        <div id="top_right">
+		     <ul>
+				<li class="line"></li>
+				<li><a href="logout.htm">Exit</a></li>
+                <li class="line"></li>
+				<li><a href="security.htm">$!{session.getAttribute("member").account}</a></li>
+			 </ul>
+	   </div>
+        </td>
+        <td width="400" height="38" align="left" valign="middle">&nbsp;</td>
+        <td width="511" align="right" valign="top">
+<div id="nav">
+		      <ul>
+			     <li><a href="index.htm">My  MH</a></li>
+                 <li><a href="list_bought_items.htm">management</a></li>
+				 <li><a href="my_bank.htm" class="over">Account</a></li>
+				 <li><a href="security.htm">Settings</a></li>
+			  </ul>
+		 </div>		</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="202" height="500" align="left" valign="top">
+    <div id="lefttitle">management</div>
+	<div id="leftline"></div>
+	
+    <div style="padding-top:8px;"></div>
+    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="../my_scart.htm" target="_blank" class="list">My shopping cart</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="list_bought_items.htm" class="list">My Order</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="#" class="list">My collection</a></td>
+      </tr><tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="my_bank.htm" class="list">My account</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="staddresses.htm" class="list">Pick-up address</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle">&nbsp;</td>
+        <td width="92%" align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top">links</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.iksns.com" title="即时技术服务，企业邮箱，企业建站" target="_blank" class="list">iksns</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mall.com" title="立即建设自己的网上商城" target="_blank" class="list">E6Mall </a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mail.com" title="大平台，企业交友，整合手机、企业邮箱、即时通信" target="_blank" class="list">E6Mail </a></td>
+      </tr>
+    </table></td>
+    <td width="1" bgcolor="#dbdbdb">
+	</td>
+    <td align="left" valign="top" style="padding-left:15px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="42" align="left" valign="middle" bgcolor="#f4f4f4" class="title" style="padding-left:15px;">management&nbsp;--&nbsp;<span class="title1">account</span></td>
+      </tr>
+      <tr>
+        <td height="1" bgcolor="#e5e5e5">
+		</td>
+      </tr>
+    </table>
+    <div style="padding-top:10px;"></div>
+    <form id="form1" name="form1" method="post" action="bank_paying.htm">
+      <table width="787" border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td align="right">balance：</td>
+          <td>$!{member.bank.balance}</td>
+        </tr>
+        <tr>
+          <td align="right">Amount full：</td>
+          <td><input name="payin" type="text" id="payin" maxlength="10"></td>
+        </tr>
+        <tr>
+          <td align="right">note：</td>
+          <td><textarea name="remarks" id="remarks" cols="45" rows="5"></textarea></td>
+        </tr>
+        <tr>
+          <td>
+            </td>
+          <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
+                #foreach( $item in $paymode_list )
+                <tr>
+                  <td><input type="radio" name="pm" id="radio" value="$!{item.id}"></td>
+                  <td>$!{item.name}</td>
+                  <td>$!{item.intro}</td>
+                  <td>$!{item.rate}</td>
+                </tr>
+                #end
+            </table></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input type="submit" name="button" id="button" value="submit"></td>
+        </tr>
+      </table>
+    </form>
+    <div style="padding-top:10px;"></div>
+    <table width="787" border="0" cellpadding="0" cellspacing="1" bgcolor="#dcdcdc" >
+      <tr >
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >time</td>
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >state</td>
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >balance</td>
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >deposit</td>
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >remove</td>
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >the<br></td>
+        <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >note<br></td>
+        <td align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >explain</td>
+        <td align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >more</td>
+      </tr>
+      #foreach( $item in $ps.getItems() )
+      <tr>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.ctime}</td>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >#if( $item.status=='audit' )
+          <div class="before">Confess not audit</div>
+          #elseif( $item.status=='ok' )
+          <div class="now">success</div>
+          #elseif( $item.status=='waitpay' )
+          <div class="before">Waiting for payment&nbsp;&nbsp;<a href="bank_run_acc_view.htm?bra=$!{item.id}">payment</a>&nbsp;&nbsp;<a href="bank_payin_cancel.htm?bra=$!{item.id}">cancel</a></div>
+          #else
+          $!{item.status}          
+          #end</td>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.balance}</td>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.payin}</td>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.getout}</td>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.tabloid}</td>
+        <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.remarks}</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.mremarks}</td>
+        <td align="center" valign="middle" bgcolor="#FFFFFF" ><a href="bank_run_acc_view.htm?bra=$!{item.id}">详情</a></td>
+      </tr>
+      #end
+    </table>
+    <div style="padding-top:10px;"></div>
+    <table width="787" height="80" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="right" valign="top"><table border="0" align="center" cellpadding="0" cellspacing="4" >
+          <tr>
+            <td align="center" class="page" ><a href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=1&amp;od=$!{od}&amp;sc=$!{sc}" title="首页" class="topmenu"> <img src="images/Page_First_0.gif" width="14" height="15" border="0" align="absmiddle" /></a></td>
+            <td class="page"><a href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=$ps.getPreviousTenPage()&amp;od=$!{od}&amp;sc=$!{sc}" title="前10页" class="topmenu"> <img src="images/Page_Previous_More_0.gif" width="14" height="15" border="0" align="absmiddle" /></a></td>
+            <td class="page"><a href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=$ps.getPreviousPage()&amp;od=$!{od}&amp;sc=$!{sc}" title="上一页" class="topmenu"> <img src="images/Page_Previous_0.gif" width="14" height="15" border="0" align="absmiddle" /></a></td>
+            #foreach( $infoitem in $ps.getPages() )
+            <td class="{currentpage}"><a class="number" title="第$!{infoitem}页" href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=$!{infoitem}&amp;od=$!{od}&amp;sc=$!{sc}">&nbsp;$!{infoitem}&nbsp;</a></td>
+            #end
+            <td class="page"><a href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=$ps.getNextPage()&amp;od=$!{od}&amp;sc=$!{sc}" title="下一页" class="topmenu"> <img height="15" src="images/Page_Next.gif" width="14" align="absmiddle" border="0" /></a></td>
+            <td class="page"><a href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=$ps.getNextTenPage()&amp;od=$!{od}&amp;sc=$!{sc}" title="后10页" class="topmenu"> <img height="15" src="images/Page_Next_More.gif" width="14" align="absmiddle" border="0" /></a></td>
+            <td class="page"><a href="?c=$!{c}&amp;keyword=$!{keyword}&amp;page=$ps.getPageCount()&amp;od=$!{od}&amp;sc=$!{sc}" title="最后页" class="topmenu"> <img height="15" src="images/Page_Last.gif" width="14" align="absmiddle" border="0" /></a></td>
+            <td align="center" class="page">&nbsp;Total&nbsp;$!{ps.getTotalCount()}&nbsp;Message，$!{ps.pageCount}page</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+	<div style="padding-top:10px;"></div>
+    <table width="787" border="0" cellpadding="0" cellspacing="0" bgcolor="#cdcdcd">
+      <tr>
+        <td width="1">
+		</td>
+      </tr>
+    </table>
+ <div  style="height:100px; text-align:center; width:787px; padding-top:10px;">© Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a></div>	
+	</td>
+  </tr>
+</table>
+</body>
+</html>

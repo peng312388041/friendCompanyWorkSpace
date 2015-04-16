@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="styles/style.css" rel="stylesheet" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
+<title>订单明细</title>
+</head>
+<body>
+<div id="body-wrapper">
+  <div id="sidebar">
+    <div id="sidebar-wrapper">
+      <h1 id="sidebar-title"><a href="#">E6Mall网店系统管理</a></h1>
+      <a href="#"><img id="logo" alt="E6Mall网店系统管理" src="images/logo.png"></a>
+      <div id="profile-links">欢迎, <a title="Edit your profile" href="#">$!{session.getAttribute("manager").account}</a>, 你有 <a title="0 条信息" href="#messages" rel="modal">0 条信息</a><br />
+        <br />
+        <a href="../" title="商城首页" target="_blank">商城首页</a> | <a title="退出" href="logout.htm">退出</a> </div>
+      <ul id="main-nav">
+        <li><a href="index.htm" class="nav-top-item no-submenu">管理控制台 </a>
+        <li><a class="nav-top-item" href="#">商品 </a>
+          <ul>
+            <li><a href="goods.htm">商品信息</a></li>
+            <li><a href="goods_input.htm">添加新商品</a></li>
+            <li><a href="comments.htm">用户评论</a></li>
+            <li><a href="categorys.htm">商品类别</a></li>
+            <li><a href="gstypes.htm">商品类型</a></li>
+            <li><a href="specitems.htm">商品规格</a></li>
+            <li><a href="extattrs.htm">商品扩展属性</a></li>
+            <li><a href="brands.htm">品牌管理</a></li>
+            <li><a href="goods_import.htm">商品批量导入</a></li>
+          </ul>
+        <li><a class="nav-top-item current" href="#">订单 </a>
+          <ul>
+            <li><a href="orders.htm">订单列表</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">用户和组 </a>
+          <ul>
+            <li><a href="members.htm">会员账户</a></li>
+            <li><a href="groups.htm">会员等级</a></li>
+            <li><a href="payin_getout.htm">充值提现申请</a></li>
+            <li><a href="bank.htm">资金管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">权限管理 </a>
+          <ul>
+            <li><a href="managers.htm">管理员列表</a></li>
+            <li><a href="mgroups.htm">角色管理</a></li>
+            <li><a href="#">管理员日志</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">网站频道 </a>
+          <ul>
+            <li><a href="channels.htm">频道列表</a></li>
+            <li><a href="documents.htm">文章列表</a></li>
+            <li><a href="doccates.htm">文章类别</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">商店配置 </a>
+          <ul>
+            <li><a href="configs.htm">系统设置</a></li>
+            <li><a href="paymodes.htm">第三方支付</a></li>
+            <li><a href="districts.htm">地区管理</a></li>
+            <li><a href="logistics.htm">第三方物流</a></li>
+            <li><a href="#">货币管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">数据库管理 </a>
+          <ul>
+            <li><a href="#">数据备份</a></li>
+            <li><a href="#">数据迁移</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="main-content">
+    <p>管理控制台 - 订单 - 订单明细</p>
+    <ul class="shortcut-buttons-set">
+      <li><a class="shortcut-button" href="orders.htm"><span><img alt="icon" src="images/menu_return.png"><br />
+        返回订单列表 </span></a></li>
+      <li><a class="shortcut-button" href="#"><span><img alt="icon" src="images/pencil_48.png" /><br />
+      新建订单 </span></a></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="content-box">
+      <div class="content-box-header">
+        <h3>订单：$!{orders.code}[#if( $orders.status == "TRADE_FINISHED" )交易成功#else<a href="orders_edit.action?os=$!{orders.id}">编辑</a>#end]</h3>
+        <ul class="content-box-tabs">
+          <li><a class="default-tab" href="#tab1">基本信息</a></li>
+          <li><a href="#tab2">订单商品</a></li>
+          <li><a href="#tab3">购买人信息</a></li>
+          <li><a href="#tab4">收货人信息</a></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td colspan="4">#if( $orders.status=="WAIT_SELLER_SEND_GOODS" )<a href="orders_send_goods.htm?os=$!{orders.id}">设置已发货</a>#end</td>
+            </tr>
+            <tr>
+              <td align="right">订单号：</td>
+              <td>$!{orders.code}</td>
+              <td align="right">下单日期：</td>
+              <td>$!{orders.ctime}</td>
+            </tr>
+            <tr>
+              <td align="right">商品总金额：</td>
+              <td>￥$!{orders.amount}</td>
+              <td align="right">商品重量：</td>
+              <td>$!{orders.weight}
+                g</td>
+            </tr>
+            <tr>
+              <td align="right">实收：</td>
+              <td>￥$!{orders.actamount}</td>
+              <td align="right">折扣：</td>
+              <td>$!{orders.discount}
+                %</td>
+            </tr>
+            <tr>
+              <td align="right">配送方式：</td>
+              <td>$!{orders.lsarea.logistics.name}[$!{orders.lsarea.name}]</td>
+              <td align="right">配送费用：</td>
+              <td>$!{orders.logicost}</td>
+            </tr>
+            <tr>
+              <td align="right">支付方式：</td>
+              <td>$!{orders.paymode.name}</td>
+              <td align="right">支付手续费：</td>
+              <td>￥$!{orders.paycost}</td>
+            </tr>
+            <tr>
+              <td align="right">发票抬头：</td>
+              <td>$!{orders.invoicetitle}</td>
+              <td align="right">税金：</td>
+              <td>￥$!{orders.duty}</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+        </div>
+        <div class="tab-content" id="tab2">
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td>
+              #if( $orders.status=="WAIT_SELLER_SEND_GOODS" )<a href="orders_send_goods.htm?os=$!{orders.id}">设置已发货</a>#end
+              </td>
+            </tr>
+            <tr>
+              <td>状态：$orders.status_brief
+              #if( $orders.status=="WAIT_BUYER_PAY" )<a href="orders_close.htm?os=$!{orders.id}">[关闭交易]</a>&nbsp;&nbsp;<a href="orders_paid.htm?os=$!{orders.id}">[已使用线下支付]</a>#end
+              </td>
+            </tr>
+          </table>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td>货号</td>
+              <td>商品名称</td>
+              <td>单价</td>
+              <td>数量</td>
+              <td>小计</td>
+              <td>折扣</td>
+              <td>实计</td>
+              <td>缺货</td>
+              <td>&nbsp;</td>
+            </tr>
+            #foreach( $item in $ps.getItems() )
+            <tr>
+              <td>$!{item.spec.gscode}</td>
+              <td>$!{item.goods.name}</td>
+              <td>$!{item.unitprice}</td>
+              <td>$!{item.number}</td>
+              <td>$!{item.subtotal}</td>
+              <td>$!{item.discount}</td>
+              <td>$!{item.actsum}</td>
+              <td>
+              #if( $orders.status=="WAIT_BUYER_PAY" )
+              #if( $item.goods.inventory >= $item.number )库存：$!{item.goods.inventory}
+              #else缺货/库存不足#end
+              #end
+              </td>
+              <td></td>
+            </tr>
+            #end
+          </table>
+        </div>
+        <div class="tab-content" id="tab3">
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td>会员用户名：</td>
+              <td>$!{orders.member.account}</td>
+              <td>姓名：</td>
+              <td>$!{orders.member.name}</td>
+            </tr>
+            <tr>
+              <td>联系电话：</td>
+              <td>$!{orders.member.telephone}</td>
+              <td>手机：</td>
+              <td>$!{orders.member.mobile}</td>
+            </tr>
+            <tr>
+              <td>EMAIL：</td>
+              <td>$!{orders.member.email}</td>
+              <td>邮编：</td>
+              <td>$!{orders.member.postcode}</td>
+            </tr>
+            <tr>
+              <td>所在地区：</td>
+              <td colspan="3">$!{orders.member.district.district.name} $!{orders.member.district.name}</td>
+            </tr>
+            <tr>
+              <td>联系地址：</td>
+              <td colspan="3">$!{orders.member.address}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="tab-content" id="tab4">
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr>
+              <td>收货人姓名：</td>
+              <td>$!{orders.staddress.name}</td>
+              <td>手机：</td>
+              <td>$!{orders.staddress.mobile}</td>
+            </tr>
+            <tr>
+              <td>固定电话：</td>
+              <td>$!{orders.staddress.telephone}</td>
+              <td>邮编：</td>
+              <td>$!{orders.staddress.postcode}</td>
+            </tr>
+            <tr>
+              <td>所在地区：</td>
+              <td colspan="3">$!{orders.staddress.district.district.name} $!{orders.staddress.district.name}</td>
+            </tr>
+            <tr>
+              <td>联系地址：</td>
+              <td colspan="3">$!{orders.staddress.address}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer"><small> © Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a></a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a> | <a href="#">Top</a> </small></div>
+  </div>
+</div>
+</body>
+</html>

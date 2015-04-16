@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>magnatehardware</title>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="scripts/jquery.filloptions.js"></script>
+<script type="text/javascript">
+function getDistrict(_id){
+	jQuery("#district1").FillOptions("getdistrict.htm?id="+_id,{datatype:"json",textfield:"name",valuefiled:"id"});
+}
+</script>
+</head>
+<body>
+<div id="top">
+     <div id="top_head">
+	     <div id="logo"><a href="../"><img src="images/logo.jpg" alt="magnatehardware 在线商城" border="0"/></a></div>
+	 </div>
+</div>
+<div id="blankline"></div>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="38" align="center" valign="middle" background="images/menubg.jpg"><table width="1003" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="250" height="38" align="left" valign="middle">
+        <div id="top_right">
+		     <ul>
+				<li class="line"></li>
+				<li><a href="logout.htm">Exit</a></li>
+                <li class="line"></li>
+				<li><a href="security.htm">$!{session.getAttribute("member").account}</a></li>
+			 </ul>
+	   </div>
+        </td>
+        <td width="400" height="38" align="left" valign="middle">&nbsp;</td>
+        <td width="511" align="right" valign="top">
+<div id="nav">
+		      <ul>
+			     <li><a href="index.htm">My  MH</a></li>
+                 <li><a href="list_bought_items.htm">management</a></li>
+				 <li><a href="my_bank.htm">Account</a></li>
+				 <li><a href="security.htm" class="over">Settings</a></li>
+			  </ul>
+		 </div>		</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="202" height="500" align="left" valign="top">
+    <div id="lefttitle">management</div>
+	<div id="leftline"></div>
+	
+    <div style="padding-top:8px;"></div>
+    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="../my_scart.htm" target="_blank" class="list">My shopping cart</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="list_bought_items.htm" class="list">My Order</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="#" class="list">My collection</a></td>
+      </tr><tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="my_bank.htm" class="list">My account</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="staddresses.htm" class="list">Pick-up address</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle">&nbsp;</td>
+        <td width="92%" align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top">links</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.iksns.com" title="即时技术服务，企业邮箱，企业建站" target="_blank" class="list">iksns</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mall.com" title="立即建设自己的网上商城" target="_blank" class="list">E6Mall </a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mail.com" title="大平台，企业交友，整合手机、企业邮箱、即时通信" target="_blank" class="list">E6Mail </a></td>
+      </tr>
+    </table></td>
+    <td width="1" bgcolor="#dbdbdb">
+	</td>
+    <td align="left" valign="top" style="padding-left:15px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="42" align="left" valign="middle" bgcolor="#f4f4f4" class="title" style="padding-left:15px;">management&nbsp;--&nbsp;<span class="title1">integral</span></td>
+      </tr>
+      <tr>
+        <td height="1" bgcolor="#e5e5e5">
+		</td>
+      </tr>
+    </table>
+    <div style="padding-top:10px;"></div>
+    <form id="form2" name="form1" method="post" action="staddress_create.htm">
+      <table width="787" border="0" cellspacing="0" cellpadding="5">
+      <!--  <tr>
+          <td width="100" align="right">收货地区：</td>
+          <td>
+          <select name="select" id="select" onchange="getDistrict(this.value)">
+            <option value="">请选择省份/地区</option>
+            #foreach( $item in $districtroot )
+            <option value="$!{item.id}">$!{item.name}</option>
+            #end
+          </select>
+          </td>
+          <td width="300">
+          <select name="staddress.district.id" id="district1">
+          $!{editDistrict}
+          </select>
+          </td>
+        </tr>-->
+        <tr>
+          <td align="right">address：</td>
+          <td colspan="2"><textarea name="staddress.address" id="staddress.address" cols="45" rows="5">$!{staddress.address}</textarea>
+            *</td>
+        </tr>
+        <tr>
+          <td align="right">zip：</td>
+          <td colspan="2"><input name="staddress.postcode" type="text" id="staddress.postcode" value="$!{staddress.postcode}">
+            *</td>
+        </tr>
+        <tr>
+          <td align="right">name：</td>
+          <td colspan="2"><input name="staddress.name" type="text" id="staddress.name" value="$!{staddress.name}">
+            *</td>
+        </tr>
+        <tr>
+          <td align="right">phone ：</td>
+          <td colspan="2"><input name="staddress.telephone" type="text" id="staddress.telephone" value="$!{staddress.telephone}">
+            *</td>
+        </tr>
+        <tr>
+          <td align="right">Mobile phone：</td>
+          <td colspan="2"><input name="staddress.mobile" type="text" id="staddress.mobile" value="$!{staddress.mobile}">
+            *</td>
+        </tr>
+        <tr>
+          <td align="right">default：</td>
+          <td colspan="2"><input name="staddress.status" type="checkbox" id="staddress.status" value="default" #if( $staddress.status=='default' )checked="checked"#end></td>
+        </tr>
+        <tr>
+          <td align="right">&nbsp;</td>
+          <td colspan="2"><input type="submit" name="button" id="button" value="submit">
+            <input name="staddress.id" type="hidden" id="staddress.id" value="$!{staddress.id}"></td>
+        </tr>
+      </table>
+    </form>
+   <div style="padding-top:10px;"></div>
+      <table width="787" border="0" cellpadding="0" cellspacing="1" bgcolor="#dcdcdc" >
+         <tr >
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >consignee</td>
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >region</td>
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >Street address</td>
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >zip</td>
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >phone</td>
+          <td align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >Mobile phone</td>
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >&nbsp;</td>
+          <td height="34" align="center" valign="middle" background="images/order_top_bg.jpg" bgcolor="#FFFFFF" class="bold" >operation</td>
+        </tr>
+        #foreach( $item in $list )
+        <tr>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.name}</td>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.district.district.name}&nbsp;&nbsp;$!{item.district.name}</td>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" ><a href="staddress_edit.htm?str=$!{item.id}">$!{item.address}</a></td>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.postcode}</td>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.telephone}</td>
+          <td align="center" valign="middle" bgcolor="#FFFFFF" >$!{item.mobile}</td>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" >#if( $item.status!='default' )<a href="staddress_setdefault.htm?stid=$!{item.id}">default</a>#elseDefault address#end</td>
+          <td height="43" align="center" valign="middle" bgcolor="#FFFFFF" ><a href="staddresses.htm?sid=$!{item.id}">editor</a> | <a href="staddresses_del.htm?stid=$!{item.id}">delete</a></td>
+        </tr>
+        #end
+      </table>
+    
+    <div style="padding-top:10px;"></div>
+    <table width="787" border="0" cellpadding="0" cellspacing="0" bgcolor="#cdcdcd">
+      <tr>
+        <td width="1">
+		</td>
+      </tr>
+    </table>
+ <div  style="height:100px; text-align:center; width:787px; padding-top:10px;">© Copyright 2006-2011 e6mall.com | Powered by E6Mall</a></div>	
+	
+	
+	</td>
+  </tr>
+</table>
+</body>
+</html>

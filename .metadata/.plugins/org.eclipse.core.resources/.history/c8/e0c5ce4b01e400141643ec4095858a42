@@ -1,0 +1,6 @@
+package com.bbs.dao.impl;
+
+import com.bbs.dao.BaseArticleDao;
+
+public class ArticleDaoImpl extends BaseArticleDao {
+}

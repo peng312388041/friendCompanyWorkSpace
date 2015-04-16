@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!--连接池中保留的最小连接数。-->
+		<property name="minPoolSize">
+			<value>5</value>
+		</property>
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize">
+			<value>30</value>
+		</property>
+		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="initialPoolSize">
+			<value>10</value>
+		</property>
+		<!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime">
+			<value>60</value>
+		</property>
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement">
+			<value>5</value>
+		</property>
+		<!--
+			JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+			属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
+			如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0
+		-->
+		<property name="maxStatements">
+			<value>0</value>
+		</property>
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod">
+			<value>60</value>
+		</property>
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		<property name="acquireRetryAttempts">
+			<value>30</value>
+		</property>
+		<!--
+			获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效
+			保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试
+			获取连接失败后该数据源将申明已断开并永久关闭。Default: false
+		-->
+		<property name="breakAfterAcquireFailure">
+			<value>true</value>
+		</property>
+		<!--
+			因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的
+			时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable
+			等方法来提升连接测试的性能。Default: false
+		-->
+		<property name="testConnectionOnCheckout">
+			<value>false</value>
+		</property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLInnoDBDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/e6mall/model/Bank.hbm.xml</value>
+				<value>com/e6mall/model/Brand.hbm.xml</value>
+				<value>com/e6mall/model/Comments.hbm.xml</value>
+				<value>com/e6mall/model/District.hbm.xml</value>
+				<value>com/e6mall/model/Setting.hbm.xml</value>
+				<value>com/e6mall/model/Locale.hbm.xml</value>
+				<value>com/e6mall/model/Eavalue.hbm.xml</value>
+				<value>com/e6mall/model/Mgroups.hbm.xml</value>
+				<value>com/e6mall/model/Orders.hbm.xml</value>
+				<value>com/e6mall/model/Staddress.hbm.xml</value>
+				<value>com/e6mall/model/Evaluate.hbm.xml</value>
+				<value>com/e6mall/model/Groups.hbm.xml</value>
+				<value>com/e6mall/model/Specitem.hbm.xml</value>
+				<value>com/e6mall/model/Category.hbm.xml</value>
+				<value>com/e6mall/model/Brunacc.hbm.xml</value>
+				<value>com/e6mall/model/Permission.hbm.xml</value>
+				<value>com/e6mall/model/Attachment.hbm.xml</value>
+				<value>com/e6mall/model/Gstype.hbm.xml</value>
+				<value>com/e6mall/model/Goods.hbm.xml</value>
+				<value>com/e6mall/model/Member.hbm.xml</value>
+				<value>com/e6mall/model/Logistics.hbm.xml</value>
+				<value>com/e6mall/model/Prunacc.hbm.xml</value>
+				<value>com/e6mall/model/Spec.hbm.xml</value>
+				<value>com/e6mall/model/Manager.hbm.xml</value>
+				<value>com/e6mall/model/Extattr.hbm.xml</value>
+				<value>com/e6mall/model/Points.hbm.xml</value>
+				<value>com/e6mall/model/Paymode.hbm.xml</value>
+				<value>com/e6mall/model/Specvalue.hbm.xml</value>
+				<value>com/e6mall/model/Orderitem.hbm.xml</value>
+				<value>com/e6mall/model/Document.hbm.xml</value>
+				<value>com/e6mall/model/Channel.hbm.xml</value>
+				<value>com/e6mall/model/Chcontent.hbm.xml</value>
+				<value>com/e6mall/model/Doccate.hbm.xml</value>
+				<value>com/e6mall/model/Config.hbm.xml</value>
+				<value>com/e6mall/model/Lsarea.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="BankDAO" class="com.e6mall.dao.impl.BankDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BrandDAO" class="com.e6mall.dao.impl.BrandDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CommentsDAO" class="com.e6mall.dao.impl.CommentsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DistrictDAO" class="com.e6mall.dao.impl.DistrictDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SettingDAO" class="com.e6mall.dao.impl.SettingDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="LocaleDAO" class="com.e6mall.dao.impl.LocaleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="EavalueDAO" class="com.e6mall.dao.impl.EavalueDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MgroupsDAO" class="com.e6mall.dao.impl.MgroupsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OrdersDAO" class="com.e6mall.dao.impl.OrdersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="StaddressDAO" class="com.e6mall.dao.impl.StaddressDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="EvaluateDAO" class="com.e6mall.dao.impl.EvaluateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GroupsDAO" class="com.e6mall.dao.impl.GroupsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SpecitemDAO" class="com.e6mall.dao.impl.SpecitemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CategoryDAO" class="com.e6mall.dao.impl.CategoryDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BrunaccDAO" class="com.e6mall.dao.impl.BrunaccDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PermissionDAO" class="com.e6mall.dao.impl.PermissionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AttachmentDAO" class="com.e6mall.dao.impl.AttachmentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GstypeDAO" class="com.e6mall.dao.impl.GstypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GoodsDAO" class="com.e6mall.dao.impl.GoodsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MemberDAO" class="com.e6mall.dao.impl.MemberDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="LogisticsDAO" class="com.e6mall.dao.impl.LogisticsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PrunaccDAO" class="com.e6mall.dao.impl.PrunaccDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SpecDAO" class="com.e6mall.dao.impl.SpecDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ManagerDAO" class="com.e6mall.dao.impl.ManagerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ExtattrDAO" class="com.e6mall.dao.impl.ExtattrDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PointsDAO" class="com.e6mall.dao.impl.PointsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PaymodeDAO" class="com.e6mall.dao.impl.PaymodeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SpecvalueDAO" class="com.e6mall.dao.impl.SpecvalueDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="OrderitemDAO" class="com.e6mall.dao.impl.OrderitemDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DoccateDAO" class="com.e6mall.dao.impl.DoccateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DocumentDAO" class="com.e6mall.dao.impl.DocumentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChannelDAO" class="com.e6mall.dao.impl.ChannelDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChcontentDAO" class="com.e6mall.dao.impl.ChcontentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ConfigDAO" class="com.e6mall.dao.impl.ConfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="LsareaDAO" class="com.e6mall.dao.impl.LsareaDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--创建事务管理代理类-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="allServiceMethods"
+			expression="execution(* com.e6mall.services.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethods" />
+	</aop:config>
+
+	<bean id="sattachment" class="com.e6mall.services.impl.SAttachment">
+		<property name="attachmentdao" ref="AttachmentDAO"></property>
+	</bean>
+	<bean id="sbank" class="com.e6mall.services.impl.SBank">
+		<property name="bankdao" ref="BankDAO"></property>
+	</bean>
+	<bean id="sbrand" class="com.e6mall.services.impl.SBrand">
+		<property name="branddao" ref="BrandDAO"></property>
+	</bean>
+	<bean id="sbrunacc" class="com.e6mall.services.impl.SBrunacc">
+		<property name="brunaccdao" ref="BrunaccDAO"></property>
+	</bean>
+	<bean id="scategory" class="com.e6mall.services.impl.SCategory">
+		<property name="categorydao" ref="CategoryDAO"></property>
+	</bean>
+	<bean id="schannel" class="com.e6mall.services.impl.SChannel">
+		<property name="channeldao" ref="ChannelDAO"></property>
+		<property name="sattachment" ref="sattachment"></property>
+	</bean>
+	<bean id="schcontent" class="com.e6mall.services.impl.SChcontent">
+		<property name="chcontentdao" ref="ChcontentDAO"></property>
+	</bean>
+	<bean id="scomments" class="com.e6mall.services.impl.SComments">
+		<property name="commentsdao" ref="CommentsDAO"></property>
+	</bean>
+	<bean id="sdistrict" class="com.e6mall.services.impl.SDistrict">
+		<property name="districtdao" ref="DistrictDAO"></property>
+	</bean>
+	<bean id="sdoccate" class="com.e6mall.services.impl.SDoccate">
+		<property name="doccatedao" ref="DoccateDAO"></property>
+	</bean>
+	<bean id="sdocument" class="com.e6mall.services.impl.SDocument">
+		<property name="documentdao" ref="DocumentDAO"></property>
+	</bean>
+	<bean id="seavalue" class="com.e6mall.services.impl.SEavalue">
+		<property name="eavaluedao" ref="EavalueDAO"></property>
+	</bean>
+	<bean id="sevaluate" class="com.e6mall.services.impl.SEvaluate">
+		<property name="evaluatedao" ref="EvaluateDAO"></property>
+	</bean>
+	<bean id="sextattr" class="com.e6mall.services.impl.SExtattr">
+		<property name="extattrdao" ref="ExtattrDAO"></property>
+	</bean>
+	<bean id="sgoods" class="com.e6mall.services.impl.SGoods">
+		<property name="goodsdao" ref="GoodsDAO"></property>
+	</bean>
+	<bean id="sgroups" class="com.e6mall.services.impl.SGroups">
+		<property name="groupsdao" ref="GroupsDAO"></property>
+	</bean>
+	<bean id="sgstype" class="com.e6mall.services.impl.SGstype">
+		<property name="gstypedao" ref="GstypeDAO"></property>
+	</bean>
+	<bean id="slocale" class="com.e6mall.services.impl.SLocale">
+		<property name="localedao" ref="LocaleDAO"></property>
+	</bean>
+	<bean id="slogistics" class="com.e6mall.services.impl.SLogistics">
+		<property name="logisticsdao" ref="LogisticsDAO"></property>
+	</bean>
+	<bean id="smanager" class="com.e6mall.services.impl.SManager">
+		<property name="managerdao" ref="ManagerDAO"></property>
+	</bean>
+	<bean id="smember" class="com.e6mall.services.impl.SMember">
+		<property name="memberdao" ref="MemberDAO"></property>
+		<property name="sorderitem" ref="sorderitem"></property>
+		<property name="sbank" ref="sbank"></property>
+		<property name="spoints" ref="spoints"></property>
+		<property name="sattachment" ref="sattachment"></property>
+	</bean>
+	<bean id="smgroups" class="com.e6mall.services.impl.SMgroups">
+		<property name="mgroupsdao" ref="MgroupsDAO"></property>
+	</bean>
+	<bean id="spermission" class="com.e6mall.services.impl.SPermission">
+		<property name="permissiondao" ref="PermissionDAO"></property>
+	</bean>
+	<bean id="sorderitem" class="com.e6mall.services.impl.SOrderitem">
+		<property name="orderitemdao" ref="OrderitemDAO"></property>
+	</bean>
+	<bean id="sorders" class="com.e6mall.services.impl.SOrders">
+		<property name="ordersdao" ref="OrdersDAO"></property>
+	</bean>
+	<bean id="spaymode" class="com.e6mall.services.impl.SPaymode">
+		<property name="paymodedao" ref="PaymodeDAO"></property>
+	</bean>
+	<bean id="spoints" class="com.e6mall.services.impl.SPoints">
+		<property name="pointsdao" ref="PointsDAO"></property>
+	</bean>
+	<bean id="sprunacc" class="com.e6mall.services.impl.SPrunacc">
+		<property name="prunaccdao" ref="PrunaccDAO"></property>
+	</bean>
+	<bean id="ssetting" class="com.e6mall.services.impl.SSetting">
+		<property name="settingdao" ref="SettingDAO"></property>
+	</bean>
+	<bean id="sspec" class="com.e6mall.services.impl.SSpec">
+		<property name="specdao" ref="SpecDAO"></property>
+	</bean>
+	<bean id="sspecitem" class="com.e6mall.services.impl.SSpecitem">
+		<property name="specitemdao" ref="SpecitemDAO"></property>
+	</bean>
+	<bean id="sspecvalue" class="com.e6mall.services.impl.SSpecvalue">
+		<property name="specvaluedao" ref="SpecvalueDAO"></property>
+		<property name="sattachment" ref="sattachment"></property>
+	</bean>
+	<bean id="sstaddress" class="com.e6mall.services.impl.SStaddress">
+		<property name="staddressdao" ref="StaddressDAO"></property>
+	</bean>
+	<bean id="sconfig" class="com.e6mall.services.impl.SConfig">
+		<property name="configdao" ref="ConfigDAO"></property>
+	</bean>
+	<bean id="slsarea" class="com.e6mall.services.impl.SLsarea">
+		<property name="lsareadao" ref="LsareaDAO"></property>
+	</bean>
+</beans>

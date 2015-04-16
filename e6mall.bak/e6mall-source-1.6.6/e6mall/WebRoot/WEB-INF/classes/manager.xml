@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 后台 -->
+	<package name="manager" extends="base-package" namespace="/manager">
+		<!-- 登录权限检查拦截器 -->
+		<interceptors>
+			<interceptor name="managerauth" class="com.e6mall.interceptor.ManagerAuthInterceptor">
+				<param name="name">管理权限检查</param>
+			</interceptor>
+			<!-- 操作权限检查拦截器 -->
+			<interceptor name="permissions" class="com.e6mall.interceptor.PermissionsInterceptor">
+				<param name="name">操作权限检查</param>
+			</interceptor>
+			<!-- 重新组合拦截器堆栈,加入了默认拦截器 -->
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="managerauth"></interceptor-ref>
+				<interceptor-ref name="permissions"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 使用自定义的拦截器 -->
+		<default-interceptor-ref name="mydefault" />
+		<!-- 全局结果 -->
+		<global-results>
+			<result name="notauth" type="redirect">/mlogin.htm</result>
+			<result name="notice" type="velocity">/WEB-INF/manager/notice.vm</result>
+		</global-results>
+		<!-- 登出 -->
+		<action name="logout" class="com.e6mall.action.MloginAction" method="logout">
+			<result name="success" type="redirect">/mlogin.htm</result>
+		</action>
+		<!-- 首页 -->
+		<action name="index" class="com.e6mall.action.manager.IndexAction">
+			<param name="funccode">index</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">首页信息读取</param>
+			<result name="success" type="velocity">/WEB-INF/manager/index.vm</result>
+		</action>
+		<!-- 附件 -->
+		<action name="attachment_input" class="com.e6mall.action.manager.AttachmentCreateAction">
+			<param name="funccode">attachment</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">附件上传录入</param>
+			<result name="success" type="velocity">/WEB-INF/manager/attachment_input.vm</result>
+		</action>
+		<action name="attachment_create" class="com.e6mall.action.manager.AttachmentCreateAction" method="create">
+			<param name="funccode">attachment</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">上传附件</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <!-- <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg,application/octet-stream</param> -->
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/goods_view.htm?gs=${gs}#tab3</result>
+			<result name="document" type="redirect">/manager/document_view.htm?d=${d}#tab3</result>
+		</action>
+		<action name="attachment_edit" class="com.e6mall.action.manager.AttachmentUpdateAction">
+			<result name="success" type="velocity">/WEB-INF/manager/attachment_edit.vm</result>
+		</action>
+		<action name="attachment_update" class="com.e6mall.action.manager.AttachmentUpdateAction" method="update">
+			<result name="success" type="redirect">/manager/goods_view.htm?gs=${gs}#tab3</result>
+			<result name="document" type="redirect">/manager/document_view.htm?d=${doc}#tab3</result>
+		</action>
+		<action name="attachment_del" class="com.e6mall.action.manager.AttachmentsAction" method="delete">
+			<result name="success" type="redirect">/manager/goods_view.htm?gs=${gs}#tab3</result>
+			<result name="document" type="redirect">/manager/document_view.htm?d=${dm}#tab3</result>
+		</action>
+		<action name="attachments" class="com.e6mall.action.manager.AttachmentsAction">
+			<param name="funccode">attachment</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取附件</param>
+			<result name="success" type="velocity">/WEB-INF/manager/attachments.vm</result>
+		</action>
+		<action name="files" class="com.e6mall.action.manager.AttachmentsAction">
+			<param name="funccode">file</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取附件</param>
+			<result name="success" type="velocity">/WEB-INF/manager/attachments.vm</result>
+		</action>
+		<action name="files_del" class="com.e6mall.action.manager.AttachmentsAction" method="files_delete">
+			<param name="funccode">file</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除图片文件</param>
+			<result name="success" type="redirect">files.htm</result>
+		</action>
+		<action name="file_upload" class="com.e6mall.action.manager.FilesAction" method="uploadFile">
+			<param name="funccode">file</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">上传文件</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">209715200</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/files.htm?CKEditor=${CKEditor}&amp;CKEditorFuncNum=${CKEditorFuncNum}&amp;langCode=${langCode}</result>
+		</action>
+		
+		<!-- 商品分类 -->
+		<action name="category_input" class="com.e6mall.action.manager.CategoryCreateAction">
+			<param name="funccode">category</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入商品分类</param>
+			<result name="success" type="velocity">/WEB-INF/manager/category_input.vm</result>
+		</action>
+		<action name="category_create" class="com.e6mall.action.manager.CategoryCreateAction" method="create">
+			<param name="funccode">category</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建商品分类</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/categorys.action</result>
+		</action>
+		<action name="category_edit" class="com.e6mall.action.manager.CategoryUpdateAction">
+			<param name="funccode">category</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑商品分类</param>
+			<result name="success" type="velocity">/WEB-INF/manager/category_edit.vm</result>
+		</action>
+		<action name="category_update" class="com.e6mall.action.manager.CategoryUpdateAction" method="update">
+			<param name="funccode">category</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新商品分类</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/categorys.action</result>
+		</action>
+		<action name="category_del" class="com.e6mall.action.manager.CategorysAction" method="delete">
+			<param name="funccode">category</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除商品分类</param>
+			<result name="success" type="redirect">/manager/categorys.action</result>
+		</action>
+		<action name="categorys" class="com.e6mall.action.manager.CategorysAction">
+			<param name="funccode">category</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取商品分类</param>
+			<result name="success" type="velocity">/WEB-INF/manager/categorys.vm</result>
+		</action>
+		<!-- 商品 -->
+		<action name="goods_input" class="com.e6mall.action.manager.GoodsCreateAction">
+			<param name="funccode">goods</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入商品</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_input.vm</result>
+		</action>
+		<action name="goods_create" class="com.e6mall.action.manager.GoodsCreateAction" method="create">
+			<param name="funccode">goods</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建商品</param>
+			<result name="success" type="redirect">/manager/goods.action</result>
+		</action>
+		<action name="goods_edit" class="com.e6mall.action.manager.GoodsUpdateAction">
+			<param name="funccode">goods</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑商品</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_edit.vm</result>
+		</action>
+		<action name="goods_update" class="com.e6mall.action.manager.GoodsUpdateAction" method="update">
+			<param name="funccode">goods</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新商品</param>
+			<result name="success" type="redirect">/manager/goods_edit.action?gs=${gs}</result>
+		</action>
+		<action name="goods_del" class="com.e6mall.action.manager.GoodsAction" method="delete">
+			<param name="funccode">goods</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除商品</param>
+			<result name="success" type="redirect">/manager/goods.htm</result>
+		</action>
+		<action name="goods" class="com.e6mall.action.manager.GoodsAction">
+			<param name="funccode">goods</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取商品</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods.vm</result>
+		</action>
+		<action name="goods_view" class="com.e6mall.action.manager.GoodsViewAction">
+			<param name="funccode">goods</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入商品图片</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_view.vm</result>
+		</action>
+		<action name="goods_genthum" class="com.e6mall.action.manager.GoodsThumbnailAction">
+			<param name="funccode">goods</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">生成商品缩略图</param>
+			<result name="success" type="redirect">/manager/goods.htm</result>
+		</action>
+		<action name="goods_genallthum" class="com.e6mall.action.manager.GoodsThumbnailAction" method="createAll">
+			<param name="funccode">goods</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">批量生成商品缩略图</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_thumbnail_create.vm</result>
+		</action>
+		<action name="goods_genallthum_do" class="com.e6mall.action.manager.GoodsThumbnailAction" method="createAllDo">
+			<param name="funccode">goods</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">批量生成商品缩略图</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_thumbnail_wait.vm</result>
+		</action>
+		<action name="goods_import" class="com.e6mall.action.manager.GoodsImportAction">
+			<param name="funccode">goods</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">导入商品</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_import.vm</result>
+		</action>
+		<action name="goods_doimport" class="com.e6mall.action.manager.GoodsImportAction" method="doimport">
+			<param name="funccode">goods</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">导入商品</param>
+			<result name="success" type="velocity">/WEB-INF/manager/goods_import_result.vm</result>
+		</action>
+		
+		<!-- 商品规格 -->
+		<action name="specs" class="com.e6mall.action.manager.SpecsAction">
+			<param name="funccode">spec</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取商品规格</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specs.vm</result>
+		</action>
+		<action name="spec_create" class="com.e6mall.action.manager.SpecCreateAction">
+			<param name="funccode">spec</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建商品规格</param>
+			<result name="success" type="redirect">/manager/specs.action?gs=${gs}</result>
+		</action>
+		<action name="specs_del" class="com.e6mall.action.manager.SpecsAction" method="delete">
+			<param name="funccode">spec</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除商品规格</param>
+			<result name="success" type="redirect">/manager/specs.action?gs=${gs}</result>
+		</action>
+		<action name="spec_update_ajax" class="com.e6mall.action.manager.SpecitemUpdateAjax">
+			<param name="funccode">spec</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">AJAX更新商品规格</param>
+		</action>
+		
+		<!-- 会员组 -->
+		<action name="groups_input" class="com.e6mall.action.manager.GroupsCreateAction">
+			<param name="funccode">groups</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入会员组</param>
+			<result name="success" type="velocity">/WEB-INF/manager/groups_input.vm</result>
+		</action>
+		<action name="groups_create" class="com.e6mall.action.manager.GroupsCreateAction" method="create">
+			<param name="funccode">groups</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建会员组</param>
+			<result name="success" type="redirect">/manager/groups.action</result>
+		</action>
+		<action name="groups_edit" class="com.e6mall.action.manager.GroupsUpdateAction">
+			<param name="funccode">groups</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑会员组</param>
+			<result name="success" type="velocity">/WEB-INF/manager/groups_edit.vm</result>
+		</action>
+		<action name="groups_update" class="com.e6mall.action.manager.GroupsUpdateAction" method="update">
+			<param name="funccode">groups</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新会员组</param>
+			<result name="success" type="redirect">/manager/groups.action</result>
+		</action>
+		<action name="groups" class="com.e6mall.action.manager.GroupsAction">
+			<param name="funccode">groups</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取会员组</param>
+			<result name="success" type="velocity">/WEB-INF/manager/groups.vm</result>
+		</action>
+		<action name="groups_del" class="com.e6mall.action.manager.GroupsAction" method="delete">
+			<param name="funccode">groups</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除会员组</param>
+			<result name="success" type="redirect">/manager/groups.htm</result>
+		</action>
+		<!-- 显示权限 -->
+		<action name="msettings" class="com.e6mall.action.manager.MsettingsAction">
+			<result name="groups" type="velocity">/WEB-INF/manager/msetting_groups.vm</result>
+			<result name="member" type="velocity">/WEB-INF/manager/msetting_member.vm</result>
+			<result name="mgroups" type="velocity">/WEB-INF/manager/msetting_mgroups.vm</result>
+			<result name="manager" type="velocity">/WEB-INF/manager/msetting_manager.vm</result>
+		</action>
+		<!-- 会员账号 -->
+		<action name="member_input" class="com.e6mall.action.manager.MemberCreateAction">
+			<param name="funccode">member</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入会员账号</param>
+			<result name="success" type="velocity">/WEB-INF/manager/member_input.vm</result>
+		</action>
+		<action name="member_create" class="com.e6mall.action.manager.MemberCreateAction" method="create">
+			<param name="funccode">member</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建会员账号</param>
+			<result name="success" type="redirect">/manager/members.action</result>
+		</action>
+		<action name="member_edit" class="com.e6mall.action.manager.MemberUpdateAction">
+			<param name="funccode">member</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑会员账号</param>
+			<result name="success" type="velocity">/WEB-INF/manager/member_edit.vm</result>
+		</action>
+		<action name="member_update" class="com.e6mall.action.manager.MemberUpdateAction" method="update">
+			<param name="funccode">member</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新会员账号</param>
+			<result name="success" type="redirect">/manager/members.action</result>
+		</action>
+		<action name="member_password" class="com.e6mall.action.manager.MemberPasswordAction">
+			<param name="funccode">member</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">修改会员密码视图</param>
+			<result name="success" type="velocity">/WEB-INF/manager/member_password.vm</result>
+		</action>
+		<action name="member_pass_update" class="com.e6mall.action.manager.MemberPasswordAction" method="update">
+			<param name="funccode">member</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">修改会员密码</param>
+			<result name="success" type="redirect">/manager/member_password.htm?mb=${mb}</result>
+		</action>
+		<action name="members" class="com.e6mall.action.manager.MembersAction">
+			<param name="funccode">member</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取会员账号</param>
+			<result name="success" type="velocity">/WEB-INF/manager/members.vm</result>
+		</action>
+		<action name="members_del" class="com.e6mall.action.manager.MembersAction" method="delete">
+			<param name="funccode">member</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除会员账号</param>
+			<result name="success" type="redirect">/manager/members.action</result>
+		</action>
+		<!-- 会员收货地址 -->
+		<action name="staddresses" class="com.e6mall.action.manager.StaddressesAction">
+			<param name="funccode">staddress</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取会员收货地址</param>
+			<result name="success" type="velocity">/WEB-INF/manager/staddresses.vm</result>
+		</action>
+		<action name="staddresses_del" class="com.e6mall.action.manager.StaddressesAction" method="delete">
+			<param name="funccode">staddress</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除会员收货地址</param>
+			<result name="success" type="redirect">staddresses.htm</result>
+		</action>
+		<!-- 管理员组 -->
+		<action name="mgroups_input" class="com.e6mall.action.manager.MgroupsCreateAction">
+			<param name="funccode">mgroups</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入管理员组</param>
+			<result name="success" type="velocity">/WEB-INF/manager/mgroups_input.vm</result>
+		</action>
+		<action name="mgroups_create" class="com.e6mall.action.manager.MgroupsCreateAction" method="create">
+			<param name="funccode">mgroups</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建管理员组</param>
+			<result name="success" type="redirect">/manager/mgroups.htm</result>
+		</action>
+		<action name="mgroups_edit" class="com.e6mall.action.manager.MgroupsUpdateAction">
+			<param name="funccode">mgroups</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑管理员组</param>
+			<result name="success" type="velocity">/WEB-INF/manager/mgroups_edit.vm</result>
+		</action>
+		<action name="mgroups_update" class="com.e6mall.action.manager.MgroupsUpdateAction" method="update">
+			<param name="funccode">mgroups</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新管理员组</param>
+			<result name="success" type="redirect">/manager/mgroups.htm</result>
+		</action>
+		<action name="mgroups" class="com.e6mall.action.manager.MgroupsAction">
+			<param name="funccode">mgroups</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取管理员组</param>
+			<result name="success" type="velocity">/WEB-INF/manager/mgroups.vm</result>
+		</action>
+		<action name="mgroups_del" class="com.e6mall.action.manager.MgroupsAction" method="delete">
+			<param name="funccode">mgroups</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除管理员组</param>
+			<result name="success" type="redirect">/manager/mgroups.htm</result>
+		</action>
+		<!-- 管理账号 -->
+		<action name="manager_input" class="com.e6mall.action.manager.ManagerCreateAction">
+			<param name="funccode">manager</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入管理账号</param>
+			<result name="success" type="velocity">/WEB-INF/manager/manager_input.vm</result>
+		</action>
+		<action name="manager_create" class="com.e6mall.action.manager.ManagerCreateAction" method="create">
+			<param name="funccode">manager</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建管理账号</param>
+			<result name="success" type="redirect">/manager/managers.action</result>
+		</action>
+		<action name="manager_edit" class="com.e6mall.action.manager.ManagerUpdateAction">
+			<param name="funccode">manager</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑管理账号</param>
+			<result name="success" type="velocity">/WEB-INF/manager/manager_edit.vm</result>
+		</action>
+		<action name="manager_update" class="com.e6mall.action.manager.ManagerUpdateAction" method="update">
+			<param name="funccode">manager</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新管理账号</param>
+			<result name="success" type="redirect">/manager/managers.action</result>
+		</action>
+		<action name="managers" class="com.e6mall.action.manager.ManagersAction">
+			<param name="funccode">manager</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取管理账号</param>
+			<result name="success" type="velocity">/WEB-INF/manager/managers.vm</result>
+		</action>
+		<action name="managers_del" class="com.e6mall.action.manager.ManagersAction" method="delete">
+			<param name="funccode">manager</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除管理员账号</param>
+			<result name="success" type="redirect">/manager/managers.htm</result>
+		</action>
+		<!-- 订单 -->
+		<action name="orders" class="com.e6mall.action.manager.OrdersAction">
+			<param name="funccode">orders</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取订单</param>
+			<result name="success" type="velocity">/WEB-INF/manager/orders.vm</result>
+		</action>
+		<action name="orders_del" class="com.e6mall.action.manager.OrdersAction" method="delete">
+			<param name="funccode">orders</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除订单</param>
+			<result name="success" type="redirect">/manager/orders.htm</result>
+		</action>
+		<!-- 订单条目 -->
+		<action name="orderitems" class="com.e6mall.action.manager.OrderitemsAction">
+			<param name="funccode">orderitem</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取订单条目</param>
+			<result name="success" type="velocity">/WEB-INF/manager/orderitems.vm</result>
+		</action>
+		<!-- 修改订单 -->
+		<action name="orders_edit" class="com.e6mall.action.manager.OrdersUpdateAction">
+			<param name="funccode">orders</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑订单</param>
+			<result name="success" type="velocity">/WEB-INF/manager/orders_edit.vm</result>
+		</action>
+		<action name="orders_update" class="com.e6mall.action.manager.OrdersUpdateAction" method="update">
+			<param name="funccode">orders</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新订单</param>
+			<result name="success" type="redirect">orders_edit.htm?os=${os}</result>
+			<result name="error" type="velocity">/WEB-INF/manager/error.vm</result>
+		</action>
+		<action name="orders_send_goods" class="com.e6mall.action.manager.OrdersStatusUpdateAction">
+			<param name="funccode">orders</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新订单状态 - 卖家已发货</param>
+			<result name="success" type="redirect">orderitems.htm?os=${os}</result>
+		</action>
+		<action name="orders_close" class="com.e6mall.action.manager.OrdersStatusUpdateAction" method="close">
+			<param name="funccode">orders</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新订单状态 - 交易关闭</param>
+			<result name="success" type="redirect">orderitems.htm?os=${os}</result>
+		</action>
+		<action name="orders_paid" class="com.e6mall.action.manager.OrdersStatusUpdateAction" method="paid">
+			<param name="funccode">orders</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新订单状态 - 买家已付款，等待卖家发货</param>
+			<result name="success" type="redirect">orderitems.htm?os=${os}</result>
+		</action>
+		<!-- 计算物流配送费用 -->
+		<action name="change_lsarea" class="com.e6mall.action.manager.ChangeFreightAction">
+            <result type="json">
+            	<param name="contentType">text/html</param>
+				<param name="objectName">result</param>
+			</result>
+        </action>
+        <!-- 计算支付费用 -->
+		<action name="change_paymode" class="com.e6mall.action.manager.ChangePaymodeAction">
+            <result type="json">
+            	<param name="contentType">text/html</param>
+				<param name="objectName">result</param>
+			</result>
+        </action>
+		
+		<!-- 物流供应商 -->
+		<action name="logistics_input" class="com.e6mall.action.manager.LogisticsCreateAction">
+			<param name="funccode">logistics</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入物流供应商</param>
+			<result name="success" type="velocity">/WEB-INF/manager/logistics_input.vm</result>
+		</action>
+		<action name="logistics_create" class="com.e6mall.action.manager.LogisticsCreateAction" method="create">
+			<param name="funccode">logistics</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建物流供应商</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/logistics.action</result>
+		</action>
+		<action name="logistics_edit" class="com.e6mall.action.manager.LogisticsUpdateAction">
+			<param name="funccode">logistics</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑物流供应商</param>
+			<result name="success" type="velocity">/WEB-INF/manager/logistics_edit.vm</result>
+		</action>
+		<action name="logistics_update" class="com.e6mall.action.manager.LogisticsUpdateAction" method="update">
+			<param name="funccode">logistics</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新物流供应商</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/logistics.action</result>
+		</action>
+		<action name="logistics_del" class="com.e6mall.action.manager.LogisticsAction" method="delete">
+			<param name="funccode">logistics</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除物流供应商</param>
+			<result name="success" type="redirect">/manager/logistics.action</result>
+		</action>
+		<action name="logistics" class="com.e6mall.action.manager.LogisticsAction">
+			<param name="funccode">logistics</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取物流供应商</param>
+			<result name="success" type="velocity">/WEB-INF/manager/logistics.vm</result>
+		</action>
+		
+		<!-- 配送地区 -->
+		<action name="lsareas" class="com.e6mall.action.manager.LsareasAction">
+			<param name="funccode">lsarea</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取配送地区</param>
+			<result name="success" type="velocity">/WEB-INF/manager/lsareas.vm</result>
+		</action>
+		<action name="lsarea_create" class="com.e6mall.action.manager.LsareaCreateAction">
+			<param name="funccode">lsarea</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建配送地区</param>
+			<result name="success" type="redirect">lsareas.action?ls=${ls}</result>
+		</action>
+		<action name="lsareas_update" class="com.e6mall.action.manager.LsareasUpdateAction">
+			<param name="funccode">lsarea</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">编辑配送地区</param>
+			<result name="success" type="redirect">lsareas.htm?ls=${ls}</result>
+		</action>
+		<action name="lsarea_del" class="com.e6mall.action.manager.LsareasAction" method="delete">
+			<param name="funccode">lsarea</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除配送地区</param>
+			<result name="success" type="redirect">lsareas.htm?ls=${ls}</result>
+		</action>
+		
+		<!-- 地区AJAX -->
+		<action name="districtajax" class="com.e6mall.action.manager.DistrictAjaxAction">
+            <result type="json">
+            	<param name="root">list</param>
+			</result>
+        </action>
+		
+		<!-- 地区联动 -->
+		<action name="getdistrict" class="com.e6mall.action.member.DistrictAction">
+            <result type="json">
+            	<param name="root">list</param>
+			</result>
+        </action>
+		
+		<!-- 支付方式 -->
+		<action name="paymode_input" class="com.e6mall.action.manager.PaymodeCreateAction">
+			<param name="funccode">paymode</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入支付方式</param>
+			<result name="success" type="velocity">/WEB-INF/manager/paymode_input.vm</result>
+		</action>
+		<action name="paymode_create" class="com.e6mall.action.manager.PaymodeCreateAction" method="create">
+			<param name="funccode">paymode</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建支付方式</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">paymodes.htm</result>
+		</action>
+		<action name="paymode_edit" class="com.e6mall.action.manager.PaymodeUpdateAction">
+			<param name="funccode">paymode</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑支付方式</param>
+			<result name="success" type="velocity">/WEB-INF/manager/paymode_edit.vm</result>
+		</action>
+		<action name="paymode_update" class="com.e6mall.action.manager.PaymodeUpdateAction" method="update">
+			<param name="funccode">paymode</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新支付方式</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">paymodes.htm</result>
+		</action>
+		<action name="paymode_update_setting" class="com.e6mall.action.manager.PaymodeUpdateAction" method="updateSetting">
+			<param name="funccode">paymode_param</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新支付方式参数</param>
+			<result name="success" type="redirect">paymodes.htm</result>
+		</action>
+		<action name="paymodes" class="com.e6mall.action.manager.PaymodesAction">
+			<param name="funccode">paymode</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取支付方式</param>
+			<result name="success" type="velocity">/WEB-INF/manager/paymodes.vm</result>
+		</action>
+		<action name="paymodes_del" class="com.e6mall.action.manager.PaymodesAction" method="delete">
+			<param name="funccode">paymode</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除支付方式</param>
+			<result name="success" type="redirect">paymodes.htm</result>
+		</action>
+		
+		<!-- 品牌 -->
+		<action name="brand_input" class="com.e6mall.action.manager.BrandCreateAction">
+			<param name="funccode">brand</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入品牌</param>
+			<result name="success" type="velocity">/WEB-INF/manager/brand_input.vm</result>
+		</action>
+		<action name="brand_create" class="com.e6mall.action.manager.BrandCreateAction" method="create">
+			<param name="funccode">brand</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建品牌</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/brands.htm</result>
+		</action>
+		<action name="brand_edit" class="com.e6mall.action.manager.BrandUpdateAction">
+			<param name="funccode">brand</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑品牌</param>
+			<result name="success" type="velocity">/WEB-INF/manager/brand_edit.vm</result>
+		</action>
+		<action name="brand_update" class="com.e6mall.action.manager.BrandUpdateAction" method="update">
+			<param name="funccode">brand</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新品牌</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/brands.action</result>
+		</action>
+		<action name="brands_del" class="com.e6mall.action.manager.BrandsAction" method="delete">
+			<param name="funccode">brand</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除品牌</param>
+			<result name="success" type="redirect">/manager/brands.action</result>
+		</action>
+		<action name="brands" class="com.e6mall.action.manager.BrandsAction">
+			<param name="funccode">brand</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取品牌</param>
+			<result name="success" type="velocity">/WEB-INF/manager/brands.vm</result>
+		</action>
+		
+		<!-- 规格项 -->
+		<action name="specitem_input" class="com.e6mall.action.manager.SpecitemCreateAction">
+			<param name="funccode">specitem</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入规格项</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specitem_input.vm</result>
+		</action>
+		<action name="specitem_create" class="com.e6mall.action.manager.SpecitemCreateAction" method="create">
+			<param name="funccode">specitem</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建规格项</param>
+			<result name="success" type="redirect">/manager/specitems.action</result>
+		</action>
+		<action name="specitem_edit" class="com.e6mall.action.manager.SpecitemUpdateAction">
+			<param name="funccode">specitem</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑规格项</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specitem_edit.vm</result>
+		</action>
+		<action name="specitem_update" class="com.e6mall.action.manager.SpecitemUpdateAction" method="update">
+			<param name="funccode">specitem</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新规格项</param>
+			<result name="success" type="redirect">/manager/specitems.action</result>
+		</action>
+		<action name="specitems" class="com.e6mall.action.manager.SpecitemsAction">
+			<param name="funccode">specitem</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取规格项</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specitems.vm</result>
+		</action>
+		<action name="specitems_del" class="com.e6mall.action.manager.SpecitemsAction" method="delete">
+			<param name="funccode">specitem</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除规格项</param>
+			<result name="success" type="redirect">/manager/specitems.action</result>
+		</action>
+		
+		<!-- 规格值 -->
+		<action name="specvalue_input" class="com.e6mall.action.manager.SpecvalueCreateAction">
+			<param name="funccode">specvalue</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入规格值</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specvalue_input.vm</result>
+		</action>
+		<action name="specvalue_create" class="com.e6mall.action.manager.SpecvalueCreateAction" method="create">
+			<param name="funccode">specvalue</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建规格值</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/specvalues.action?si=${si}</result>
+		</action>
+		<action name="specvalue_edit" class="com.e6mall.action.manager.SpecvalueUpdateAction">
+			<param name="funccode">specvalue</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑规格值</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specvalue_edit.vm</result>
+		</action>
+		<action name="specvalue_update" class="com.e6mall.action.manager.SpecvalueUpdateAction" method="update">
+			<param name="funccode">specvalue</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新规格值</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/specvalues.action?si=${si}</result>
+		</action>
+		<action name="specvalues" class="com.e6mall.action.manager.SpecvaluesAction">
+			<param name="funccode">specvalue</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取规格值</param>
+			<result name="success" type="velocity">/WEB-INF/manager/specvalues.vm</result>
+		</action>
+		<action name="specvalues_del" class="com.e6mall.action.manager.SpecvaluesAction" method="delete">
+			<param name="funccode">specvalue</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除规格值</param>
+			<result name="success" type="redirect">/manager/specvalues.action?si=${si}</result>
+		</action>
+		
+		<!-- 商品类型 -->
+		<action name="gstype_input" class="com.e6mall.action.manager.GstypeCreateAction">
+			<param name="funccode">gstype</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入商品类型</param>
+			<result name="success" type="velocity">/WEB-INF/manager/gstype_input.vm</result>
+		</action>
+		<action name="gstype_create" class="com.e6mall.action.manager.GstypeCreateAction" method="create">
+			<param name="funccode">gstype</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建商品类型</param>
+			<result name="success" type="redirect">/manager/gstypes.action</result>
+		</action>
+		<action name="gstype_edit" class="com.e6mall.action.manager.GstypeUpdateAction">
+			<param name="funccode">gstype</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑商品类型</param>
+			<result name="success" type="velocity">/WEB-INF/manager/gstype_edit.vm</result>
+		</action>
+		<action name="gstype_update" class="com.e6mall.action.manager.GstypeUpdateAction" method="update">
+			<param name="funccode">gstype</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新商品类型</param>
+			<result name="success" type="redirect">/manager/gstypes.action</result>
+		</action>
+		<action name="gstypes" class="com.e6mall.action.manager.GstypesAction">
+			<param name="funccode">gstype</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取商品类型</param>
+			<result name="success" type="velocity">/WEB-INF/manager/gstypes.vm</result>
+		</action>
+		<action name="gstypes_del" class="com.e6mall.action.manager.GstypesAction" method="delete">
+			<param name="funccode">gstype</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除商品类型</param>
+			<result name="success" type="redirect">/manager/gstypes.action</result>
+		</action>
+		
+		<!-- 商品扩展属性 -->
+		<action name="extattr_input" class="com.e6mall.action.manager.ExtattrCreateAction">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入商品扩展属性</param>
+			<result name="success" type="velocity">/WEB-INF/manager/extattr_input.vm</result>
+		</action>
+		<action name="extattr_create" class="com.e6mall.action.manager.ExtattrCreateAction" method="create">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建商品扩展属性</param>
+			<result name="success" type="redirect">/manager/extattrs.htm</result>
+		</action>
+		<action name="extattr_edit" class="com.e6mall.action.manager.ExtattrUpdateAction">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑商品扩展属性</param>
+			<result name="success" type="velocity">/WEB-INF/manager/extattr_edit.vm</result>
+		</action>
+		<action name="extattr_update" class="com.e6mall.action.manager.ExtattrUpdateAction" method="update">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新商品扩展属性</param>
+			<result name="success" type="redirect">/manager/extattrs.htm</result>
+		</action>
+		<action name="extattrs" class="com.e6mall.action.manager.ExtattrsAction">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取商品扩展属性</param>
+			<result name="success" type="velocity">/WEB-INF/manager/extattrs.vm</result>
+		</action>
+		<action name="extattrs_del" class="com.e6mall.action.manager.ExtattrsAction" method="delete">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除商品扩展属性</param>
+			<result name="success" type="redirect">/manager/extattrs.htm</result>
+		</action>
+		<action name="extattr_update_ajax" class="com.e6mall.action.manager.ExtattrUpdateAction" method="updateDisplay">
+			<param name="funccode">extattrs</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">AJAX更新商品扩展属性是否显示</param>
+		</action>
+		
+		<!-- 商品扩展属性值 -->
+		<action name="eavalue_create" class="com.e6mall.action.manager.EavalueCreateAction">
+			<param name="funccode">eavalues</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">录入商品扩展属性值</param>
+			<result name="success" type="redirect">/manager/eavalues.action?ea=${ea}</result>
+		</action>
+		<action name="eavalues_update" class="com.e6mall.action.manager.EavaluesUpdateAction">
+			<param name="funccode">eavalues</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新商品扩展属性值</param>
+			<result name="success" type="redirect">/manager/eavalues.action?ea=${ea}</result>
+		</action>
+		<action name="eavalues" class="com.e6mall.action.manager.EavaluesAction">
+			<param name="funccode">eavalues</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取商品扩展属性值</param>
+			<result name="success" type="velocity">/WEB-INF/manager/eavalues.vm</result>
+		</action>
+		<action name="eavalue_del" class="com.e6mall.action.manager.EavaluesAction" method="delete">
+			<param name="funccode">eavalues</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除商品扩展属性值</param>
+			<result name="success" type="redirect">/manager/eavalues.action?ea=${ea}</result>
+		</action>
+		
+		<!-- 商品类型规格 -->
+		<action name="gstypespecitem_edit" class="com.e6mall.action.manager.GstypeSpecitemUpdateAction">
+			<param name="funccode">gstypespecitem</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑商品类型规格</param>
+			<result name="success" type="velocity">/WEB-INF/manager/gstype_specitems.vm</result>
+		</action>
+		<action name="gstypespecitem_update" class="com.e6mall.action.manager.GstypeSpecitemUpdateAction" method="update">
+			<param name="funccode">gstypespecitem</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新商品类型规格</param>
+			<result name="success" type="redirect">/manager/gstypespecitem_edit.action?ge=${ge}</result>
+		</action>
+		
+		<!-- 频道 -->
+		<action name="channel_input" class="com.e6mall.action.manager.ChannelCreateAction">
+			<param name="funccode">channel</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入频道</param>
+			<result name="success" type="velocity">/WEB-INF/manager/channel_input.vm</result>
+		</action>
+		<action name="channel_create" class="com.e6mall.action.manager.ChannelCreateAction" method="create">
+			<param name="funccode">channel</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建频道</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">text/plain,text/html,application/octet-stream</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/WEB-INF/template</param>
+			<result name="success" type="redirect">/manager/channels.htm</result>
+		</action>
+		<action name="channel_edit" class="com.e6mall.action.manager.ChannelUpdateAction">
+			<param name="funccode">channel</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑频道</param>
+			<result name="success" type="velocity">/WEB-INF/manager/channel_edit.vm</result>
+		</action>
+		<action name="channel_update" class="com.e6mall.action.manager.ChannelUpdateAction" method="update">
+			<param name="funccode">channel</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新频道</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">text/plain,text/html,application/octet-stream</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/WEB-INF/template</param>
+			<result name="success" type="redirect">/manager/channel_edit.htm?ca=${channel.id}</result>
+		</action>
+		<action name="channels" class="com.e6mall.action.manager.ChannelsAction">
+			<param name="funccode">channel</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取频道</param>
+			<result name="success" type="velocity">/WEB-INF/manager/channels.vm</result>
+		</action>
+		<action name="channels_del" class="com.e6mall.action.manager.ChannelsAction" method="delete">
+			<param name="funccode">channel</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除频道</param>
+			<result name="success" type="redirect">/manager/channels.htm</result>
+		</action>
+		
+		<!-- 频道内容 -->
+		<action name="chcontent_input" class="com.e6mall.action.manager.ChcontentCreateAction">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入频道内容</param>
+			<result name="success" type="velocity">/WEB-INF/manager/chcontent_input.vm</result>
+		</action>
+		<action name="chcontent_doc_input" class="com.e6mall.action.manager.ChcontentCreateAction" method="doc_input">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入频道内容</param>
+			<result name="success" type="velocity">/WEB-INF/manager/chcontent_doc_input.vm</result>
+		</action>
+		<action name="chcontent_global_input" class="com.e6mall.action.manager.ChcontentCreateAction" method="global_input">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入全局频道内容</param>
+			<result name="success" type="velocity">/WEB-INF/manager/chcontent_global_input.vm</result>
+		</action>
+		<action name="chcontent_create" class="com.e6mall.action.manager.ChcontentCreateAction" method="create">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建频道内容</param>
+			<result name="success" type="redirect">/manager/chcontents.htm?ca=${ca}</result>
+			<result name="channels" type="redirect">/manager/channels.htm</result>
+		</action>
+		<action name="chcontent_edit" class="com.e6mall.action.manager.ChcontentUpdateAction">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑频道内容</param>
+			<result name="success" type="velocity">/WEB-INF/manager/chcontent_edit.vm</result>
+			<result name="global" type="velocity">/WEB-INF/manager/chcontent_global_edit.vm</result>
+		</action>
+		<action name="chcontent_update" class="com.e6mall.action.manager.ChcontentUpdateAction" method="update">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新频道内容</param>
+			<result name="success" type="redirect">/manager/chcontents.htm?ca=${ca}</result>
+			<result name="global" type="redirect">/manager/channels.htm</result>
+		</action>
+		<action name="chcontents" class="com.e6mall.action.manager.ChcontentsAction">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取频道内容</param>
+			<result name="success" type="velocity">/WEB-INF/manager/chcontents.vm</result>
+		</action>
+		<action name="chcontents_del" class="com.e6mall.action.manager.ChcontentsAction" method="delete">
+			<param name="funccode">chcontent</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除频道内容</param>
+			<result name="success" type="redirect">/manager/chcontents.htm?ca=${ca}</result>
+			<result name="global" type="redirect">/manager/channels.htm</result>
+		</action>
+		
+		<!-- 文章分类 -->
+		<action name="doccate_input" class="com.e6mall.action.manager.DoccateCreateAction">
+			<param name="funccode">doccate</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入文章分类</param>
+			<result name="success" type="velocity">/WEB-INF/manager/doccate_input.vm</result>
+		</action>
+		<action name="doccate_create" class="com.e6mall.action.manager.DoccateCreateAction" method="create">
+			<param name="funccode">doccate</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建文章分类</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/doccates.action</result>
+		</action>
+		<action name="doccate_edit" class="com.e6mall.action.manager.DoccateUpdateAction">
+			<param name="funccode">doccate</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑文章分类</param>
+			<result name="success" type="velocity">/WEB-INF/manager/doccate_edit.vm</result>
+		</action>
+		<action name="doccate_update" class="com.e6mall.action.manager.DoccateUpdateAction" method="update">
+			<param name="funccode">doccate</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新文章分类</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/doccates.action</result>
+		</action>
+		<action name="doccates_del" class="com.e6mall.action.manager.DoccatesAction" method="delete">
+			<param name="funccode">doccate</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">删除文章分类</param>
+			<result name="success" type="redirect">/manager/doccates.action</result>
+		</action>
+		<action name="doccates" class="com.e6mall.action.manager.DoccatesAction">
+			<param name="funccode">doccate</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">读取文章分类</param>
+			<result name="success" type="velocity">/WEB-INF/manager/doccates.vm</result>
+		</action>
+		
+		<!-- 文章 -->
+		<action name="document_input" class="com.e6mall.action.manager.DocumentCreateAction">
+			<param name="funccode">document</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入文章</param>
+			<result name="success" type="velocity">/WEB-INF/manager/document_input.vm</result>
+		</action>
+		<action name="document_create" class="com.e6mall.action.manager.DocumentCreateAction" method="create">
+			<param name="funccode">document</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建文章</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/documents.action</result>
+		</action>
+		<action name="document_edit" class="com.e6mall.action.manager.DocumentUpdateAction">
+			<param name="funccode">document</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑文章</param>
+			<result name="success" type="velocity">/WEB-INF/manager/document_edit.vm</result>
+		</action>
+		<action name="document_update" class="com.e6mall.action.manager.DocumentUpdateAction" method="update">
+			<param name="funccode">document</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新文章</param>
+			<interceptor-ref name="fileUpload">
+                <!-- 配置允许上传的文件类型 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/GPG,image/x-png,image/pjpeg</param>
+                <!-- 配置上传文件的大小 -->
+                <param name="maximumSize">20971520</param>
+            </interceptor-ref>
+            <interceptor-ref name="mydefault" />
+			<param name="savePath">/upload</param>
+			<result name="success" type="redirect">/manager/documents.action</result>
+		</action>
+		<action name="documents_del" class="com.e6mall.action.manager.DocumentsAction" method="delete">
+			<param name="funccode">document</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除文章</param>
+			<result name="success" type="redirect">/manager/documents.action</result>
+		</action>
+		<action name="document_view" class="com.e6mall.action.manager.DocumentUpdateAction">
+			<param name="funccode">document</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑文章</param>
+			<result name="success" type="velocity">/WEB-INF/manager/document_view.vm</result>
+		</action>
+		<action name="documents" class="com.e6mall.action.manager.DocumentsAction">
+			<param name="funccode">document</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取文章</param>
+			<result name="success" type="velocity">/WEB-INF/manager/documents.vm</result>
+		</action>
+		
+		<!-- 系统设置 -->
+		<action name="setting_input" class="com.e6mall.action.manager.SettingCreateAction">
+			<param name="funccode">paymode_param</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入支付方式参数</param>
+			<result name="success" type="velocity">/WEB-INF/manager/setting_input.vm</result>
+		</action>
+		<action name="setting_create" class="com.e6mall.action.manager.SettingCreateAction" method="create">
+			<param name="funccode">paymode_param</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">创建支付方式参数</param>
+			<result name="success" type="redirect">setting_input.htm?pm=${pm}</result>
+		</action>
+		<action name="setting_update" class="com.e6mall.action.manager.SettingUpdateAction">
+			<param name="funccode">paymode_param</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">AJAX更新支付方式参数</param>
+		</action>
+		<action name="settings" class="com.e6mall.action.manager.SettingsAction">
+			<param name="funccode">paymode_param</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取支付方式参数</param>
+			<result name="success" type="velocity">/WEB-INF/manager/settings.vm</result>
+		</action>
+		<action name="settings_del" class="com.e6mall.action.manager.SettingsAction" method="delete">
+			<param name="funccode">paymode_param</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除支付方式参数</param>
+			<result name="success" type="redirect">setting_input.htm?pm=${pm}</result>
+		</action>
+		
+		<!-- 权限 -->
+		<action name="pms_member" class="com.e6mall.action.manager.PermissionsAction" method="member">
+			<result name="success" type="velocity">/WEB-INF/manager/pms_member.vm</result>
+		</action>
+		<action name="pms_groups" class="com.e6mall.action.manager.PermissionsAction" method="groups">
+			<result name="success" type="velocity">/WEB-INF/manager/pms_groups.vm</result>
+		</action>
+		<action name="pms_manager" class="com.e6mall.action.manager.PermissionsAction" method="manager">
+			<param name="funccode">pms_manager</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">查看管理员权限</param>
+			<result name="success" type="velocity">/WEB-INF/manager/pms_manager.vm</result>
+		</action>
+		<action name="pms_manager_update" class="com.e6mall.action.manager.PermissionsUpdateAction">
+			<param name="funccode">pms_manager</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">设置更新管理员权限</param>
+			<result name="success" type="redirect">/manager/pms_manager.htm?mg=${mg}</result>
+		</action>
+		<action name="pms_mgroups" class="com.e6mall.action.manager.PermissionsAction" method="mgroups">
+			<result name="success" type="velocity">/WEB-INF/manager/pms_mgroups.vm</result>
+		</action>
+		<!-- 高级权限管理 -->
+		<action name="pms_admin_input" class="com.e6mall.action.manager.PmsAdminCreateAction">
+			<param name="funccode">pms_admin</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入权限</param>
+			<result name="success" type="velocity">/WEB-INF/manager/pms_admin_input.vm</result>
+		</action>
+		<action name="pms_admin_create" class="com.e6mall.action.manager.PmsAdminCreateAction" method="create">
+			<param name="funccode">pms_admin</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">新建权限</param>
+			<result name="success" type="redirect">pms_admin.htm</result>
+		</action>
+		<action name="pms_admin_edit" class="com.e6mall.action.manager.PmsAdminUpdateAction">
+			<param name="funccode">pms_admin</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑权限</param>
+			<result name="success" type="velocity">/WEB-INF/manager/pms_admin_edit.vm</result>
+		</action>
+		<action name="pms_admin_update" class="com.e6mall.action.manager.PmsAdminUpdateAction" method="update">
+			<param name="funccode">pms_admin</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新权限</param>
+			<result name="success" type="redirect">pms_admin.htm</result>
+		</action>
+		<action name="pms_admin_delete" class="com.e6mall.action.manager.PmsAdminAction" method="delete">
+			<param name="funccode">pms_admin</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除权限</param>
+			<result name="success" type="redirect">pms_admin.htm</result>
+		</action>
+		<action name="pms_admin" class="com.e6mall.action.manager.PmsAdminAction">
+			<param name="funccode">pms_admin</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取权限</param>
+			<result name="success" type="velocity">/WEB-INF/manager/pms_admin.vm</result>
+		</action>
+		
+		<!-- 地区管理 -->
+		<action name="districts" class="com.e6mall.action.manager.DistrictsAction">
+			<param name="funccode">district</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取地区信息</param>
+			<result name="success" type="velocity">/WEB-INF/manager/districts.vm</result>
+		</action>
+		
+		<!-- 商品用户评论 -->
+		<action name="comments" class="com.e6mall.action.manager.CommentsAction">
+			<param name="funccode">comments</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取用户评论</param>
+			<result name="success" type="velocity">/WEB-INF/manager/comments.vm</result>
+		</action>
+		<action name="comments_update" class="com.e6mall.action.manager.CommentsAction" method="update">
+			<param name="funccode">comments</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新用户评论</param>
+			<result name="success" type="redirect">comments.htm</result>
+		</action>
+		<action name="comments_del" class="com.e6mall.action.manager.CommentsAction" method="delete">
+			<param name="funccode">comments</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除用户评论</param>
+			<result name="success" type="redirect">comments.htm</result>
+		</action>
+		
+		<!-- 系统配置 -->
+		<action name="configs" class="com.e6mall.action.manager.ConfigsAction">
+			<param name="funccode">config</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取系统配置</param>
+			<result name="success" type="velocity">/WEB-INF/manager/configs.vm</result>
+		</action>
+		<action name="config_input" class="com.e6mall.action.manager.ConfigCreateAction">
+			<param name="funccode">config</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">录入系统配置</param>
+			<result name="success" type="velocity">/WEB-INF/manager/config_input.vm</result>
+		</action>
+		<action name="config_create" class="com.e6mall.action.manager.ConfigCreateAction" method="create">
+			<param name="funccode">config</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">新建系统配置</param>
+			<result name="success" type="redirect">configs.htm</result>
+		</action>
+		<action name="config_edit" class="com.e6mall.action.manager.ConfigUpdateAction">
+			<param name="funccode">config</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">管理编辑系统配置</param>
+			<result name="success" type="velocity">/WEB-INF/manager/config_edit.vm</result>
+		</action>
+		<action name="config_update" class="com.e6mall.action.manager.ConfigUpdateAction" method="update">
+			<param name="funccode">config</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">管理更新系统配置</param>
+			<result name="success" type="redirect">configs.htm</result>
+		</action>
+		<action name="config_set" class="com.e6mall.action.manager.ConfigUpdateAction">
+			<param name="funccode">config</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">编辑系统配置</param>
+			<result name="success" type="velocity">/WEB-INF/manager/config_set.vm</result>
+		</action>
+		<action name="config_doset" class="com.e6mall.action.manager.ConfigUpdateAction" method="doset">
+			<param name="funccode">config</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">更新系统配置</param>
+			<result name="success" type="redirect">configs.htm</result>
+		</action>
+		<action name="config_update_ajax" class="com.e6mall.action.manager.ConfigUpdateAjaxAction">
+			
+		</action>
+		<action name="config_getoptional" class="com.e6mall.action.manager.ConfigUpdateAjaxAction" method="getOptional">
+			<result type="json">
+            	<param name="contentType">text/html</param>
+				<param name="objectType">array</param>
+				<param name="objectName">optionallist</param>
+				<param name="includeProperties">optionallist</param>
+			</result>
+		</action>
+		<action name="config_delete" class="com.e6mall.action.manager.ConfigsAction" method="delete">
+			<param name="funccode">config</param>
+			<param name="funcaction">delete</param>
+			<param name="funcname">删除系统配置</param>
+			<result name="success" type="redirect">configs.htm</result>
+		</action>
+		
+		<!-- 资金管理 -->
+		<action name="bank" class="com.e6mall.action.manager.BankAction">
+			<param name="funccode">bank</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">读取资金信息</param>
+			<result name="success" type="velocity">/WEB-INF/manager/bank.vm</result>
+		</action>
+		<!-- 充值提现申请信息-->
+		<action name="payin_getout" class="com.e6mall.action.manager.PayinGetoutAction">
+			<param name="funccode">bank</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">充值提现申请信息列表</param>
+			<result name="success" type="velocity">/WEB-INF/manager/payin_getout.vm</result>
+		</action>
+		<!-- 充值提现审核 -->
+		<action name="payin_getout_view" class="com.e6mall.action.manager.PayinGetoutAction" method="view">
+			<param name="funccode">bank</param>
+			<param name="funcaction">read</param>
+			<param name="funcname">查看充值提现申请</param>
+			<result name="success" type="velocity">/WEB-INF/manager/payin_getout_view.vm</result>
+		</action>
+		<action name="payin_getout_audit" class="com.e6mall.action.manager.PayinGetoutAction" method="audit">
+			<param name="funccode">bank</param>
+			<param name="funcaction">write</param>
+			<param name="funcname">审核充值提现申请</param>
+			<result name="success" type="redirect">payin_getout.htm</result>
+		</action>
+	</package>
+</struts>

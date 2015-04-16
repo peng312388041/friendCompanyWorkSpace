@@ -1,0 +1,12 @@
+package model;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int a = 18;
+		int tool = 0x0f;
+		int b = a & tool;
+		System.out.println(b);
+	}
+
+}

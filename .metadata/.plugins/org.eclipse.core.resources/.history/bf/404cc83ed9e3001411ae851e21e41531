@@ -1,0 +1,68 @@
+package com.bbs.entity;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+//article_id	integer
+//article_title	varchar
+//article_content	text
+//article_regist_date	datetime
+//article_last_edit_date	datetime
+//article_delete_date	datetime
+//article_active	boolean
+
+public class Article implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
+	private String title;
+	private String content;
+	private LocalDateTime registDate;
+	private LocalDateTime lastEditDate;
+	private LocalDateTime deleteDate;
+	private boolean active;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public LocalDateTime getRegistDate() {
+		return registDate;
+	}
+	public void setRegistDate(LocalDateTime registDate) {
+		this.registDate = registDate;
+	}
+	public LocalDateTime getLastEditDate() {
+		return lastEditDate;
+	}
+	public void setLastEditDate(LocalDateTime lastEditDate) {
+		this.lastEditDate = lastEditDate;
+	}
+	public LocalDateTime getDeleteDate() {
+		return deleteDate;
+	}
+	public void setDeleteDate(LocalDateTime deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+}

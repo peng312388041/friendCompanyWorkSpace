@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/global-reset.css" rel="stylesheet" type="text/css" />
+<link type="text/css" href="styles/style.css" rel="stylesheet" />
+<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="scripts/simpla.jquery.configuration.js"></script>
+<title>创建频道内容</title>
+</head>
+<body>
+<div id="body-wrapper">
+  <div id="sidebar">
+    <div id="sidebar-wrapper">
+      <h1 id="sidebar-title"><a href="#">E6Mall网店系统管理</a></h1>
+      <a href="#"><img id="logo" alt="E6Mall网店系统管理" src="images/logo.png"></a>
+      <div id="profile-links">欢迎, <a title="Edit your profile" href="#">$!{session.getAttribute("manager").account}</a>, 你有 <a title="0 条信息" href="#messages" rel="modal">0 条信息</a><br />
+        <br />
+        <a href="../" title="商城首页" target="_blank">商城首页</a> | <a title="退出" href="logout.htm">退出</a> </div>
+      <ul id="main-nav">
+        <li><a href="index.htm" class="nav-top-item no-submenu">管理控制台 </a>
+        <li><a class="nav-top-item" href="#">商品 </a>
+          <ul>
+            <li><a href="goods.htm">商品信息</a></li>
+            <li><a href="goods_input.htm">添加新商品</a></li>
+            <li><a href="comments.htm">用户评论</a></li>
+            <li><a href="categorys.htm">商品类别</a></li>
+            <li><a href="gstypes.htm">商品类型</a></li>
+            <li><a href="specitems.htm">商品规格</a></li>
+            <li><a href="extattrs.htm">商品扩展属性</a></li>
+            <li><a href="brands.htm">品牌管理</a></li>
+            <li><a href="goods_import.htm">商品批量导入</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">订单 </a>
+          <ul>
+            <li><a href="orders.htm">订单列表</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">用户和组 </a>
+          <ul>
+            <li><a href="members.htm">会员账户</a></li>
+            <li><a href="groups.htm">会员等级</a></li>
+            <li><a href="payin_getout.htm">充值提现申请</a></li>
+            <li><a href="bank.htm">资金管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">权限管理 </a>
+          <ul>
+            <li><a href="managers.htm">管理员列表</a></li>
+            <li><a href="mgroups.htm">角色管理</a></li>
+            <li><a href="#">管理员日志</a></li>
+          </ul>
+        <li><a class="nav-top-item current" href="#">网站频道 </a>
+          <ul>
+            <li><a href="channels.htm">频道列表</a></li>
+            <li><a href="documents.htm">文章列表</a></li>
+            <li><a href="doccates.htm">文章类别</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">商店配置 </a>
+          <ul>
+            <li><a href="configs.htm">系统设置</a></li>
+            <li><a href="paymodes.htm">第三方支付</a></li>
+            <li><a href="districts.htm">地区管理</a></li>
+            <li><a href="logistics.htm">第三方物流</a></li>
+            <li><a href="#">货币管理</a></li>
+          </ul>
+        <li><a class="nav-top-item" href="#">数据库管理 </a>
+          <ul>
+            <li><a href="#">数据备份</a></li>
+            <li><a href="#">数据迁移</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="main-content">
+    <p>管理控制台 - 网站频道 - 频道内容 - 创建全局频道内容</p>
+    <ul class="shortcut-buttons-set">
+      <li><a class="shortcut-button" href="channels.htm"><span><img alt="icon" src="images/menu_return.png"><br />
+        返回频道列表 </span></a></li>
+      <li><a class="shortcut-button" href="channel_input.htm"><span><img alt="icon" src="images/pencil_48.png" /><br />
+      新建频道 </span></a></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="content-box">
+      <div class="content-box-header">
+        <h3>新建全局频道内容</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <form id="form1" name="form1" method="post" action="chcontent_create.htm">
+            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+              <tr>
+                <td align="right">内容类型：</td>
+                <td><select name="chcontent.type" id="chcontent.type">
+                  <option value="" selected="selected">请选择内容类型</option>
+                  <option value="dmenu">文章分类</option>
+                  <option value="dlist">文章列表</option>
+                  <option value="drclist">推荐文章列表</option>
+                  <option value="dpagelist">分页文章列表</option>
+                  <option value="gmenu">商品分类</option>
+                  <option value="glist">商品列表</option>
+                  <option value="grclist">推荐商品列表</option>
+                  <option value="gpagelist">分页商品列表</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right">文章分类：</td>
+                <td>
+                <select name="chcontent.doccate.id" id="chcontent.doccate.id">
+                  <option selected="selected" value="">请选择文章分类</option>
+            	  #foreach( $item in $doccates )
+                  <option value="$!{item.id}">$!{item.nodestr} $!{item.name}</option>
+                  #end
+                </select>
+                </td>
+              </tr>
+              <tr>
+                <td align="right">商品分类：</td>
+                <td>
+                <select name="chcontent.category.id" id="chcontent.category.id">
+                  <option selected="selected" value="">请选择商品分类</option>
+                  <option value="">所有分类</option>
+            	  #foreach( $item in $categorys )
+                  <option value="$!{item.id}">$!{item.nodestr} $!{item.name}</option>
+                  #end
+                </select>
+                </td>
+              </tr>
+              <tr>
+                <td align="right">商品标签：</td>
+                <td>
+                精品：<input name="chcontent.keys" type="checkbox" id="chcontent.keys" value="btq">
+                新品：<input name="chcontent.keys" type="checkbox" id="chcontent.keys" value="new">
+                热销：<input name="chcontent.keys" type="checkbox" id="chcontent.keys" value="hot">
+                </td>
+              </tr>
+              <tr>
+                <td align="right">数量：</td>
+                <td><input name="chcontent.number" type="text" id="chcontent.number" value="5">
+                *[数字]</td>
+              </tr>
+              <tr>
+                <td align="right">偏移：</td>
+                <td><input name="chcontent.offset" type="text" id="chcontent.offset" value="0">
+                *[数字]</td>
+              </tr>
+              <tr>
+                <td align="right">模板标记：</td>
+                <td><select name="chcontent.marker" id="chcontent.marker">
+                  <option value="G_A">G_A</option>
+                  <option value="G_B">G_B</option>
+                  <option value="G_C">G_C</option>
+                  <option value="G_D">G_D</option>
+                  <option value="G_E">G_E</option>
+                  <option value="G_F">G_F</option>
+                  <option value="G_G">G_G</option>
+                  <option value="G_H">G_H</option>
+                  <option value="G_I">G_I</option>
+                  <option value="G_J">G_J</option>
+                  <option value="G_K">G_K</option>
+                  <option value="G_L">G_L</option>
+                  <option value="G_M">G_M</option>
+                  <option value="G_N">G_N</option>
+                  <option value="G_O">G_O</option>
+                  <option value="G_P">G_P</option>
+                  <option value="G_Q">G_Q</option>
+                  <option value="G_R">G_R</option>
+                  <option value="G_S">G_S</option>
+                  <option value="G_T">G_T</option>
+                  <option value="G_U">G_U</option>
+                  <option value="G_V">G_V</option>
+                  <option value="G_W">G_W</option>
+                  <option value="G_X">G_X</option>
+                  <option value="G_Y">G_Y</option>
+                  <option value="G_Z">G_Z</option>
+                  <option value="G_AA">G_AA</option>
+                  <option value="G_AB">G_AB</option>
+                  <option value="G_AC">G_AC</option>
+                  <option value="G_AD">G_AD</option>
+                  <option value="G_AE">G_AE</option>
+                  <option value="G_AF">G_AF</option>
+                  <option value="G_AG">G_AG</option>
+                  <option value="G_AH">G_AH</option>
+                  <option value="G_AI">G_AI</option>
+                  <option value="G_AJ">G_AJ</option>
+                  <option value="G_AK">G_AK</option>
+                  <option value="G_AL">G_AL</option>
+                  <option value="G_AM">G_AM</option>
+                  <option value="G_AN">G_AN</option>
+                  <option value="G_AO">G_AO</option>
+                  <option value="G_AP">G_AP</option>
+                  <option value="G_AQ">G_AQ</option>
+                  <option value="G_AR">G_AR</option>
+                  <option value="G_AS">G_AS</option>
+                  <option value="G_AT">G_AT</option>
+                  <option value="G_AU">G_AU</option>
+                  <option value="G_AV">G_AV</option>
+                  <option value="G_AW">G_AW</option>
+                  <option value="G_AX">G_AX</option>
+                  <option value="G_AY">G_AY</option>
+                  <option value="G_AZ">G_AZ</option>
+                </select>
+                *[字母]</td>
+              </tr>
+              <tr>
+                <td align="right">详细页显示：</td>
+                <td><input type="radio" name="chcontent.detail" id="radio" value="yes">
+                  是
+                  <input name="chcontent.detail" type="radio" id="radio" value="no" checked="checked">
+                  否</td>
+              </tr>
+              <tr>
+                <td align="right">语言：</td>
+                <td>
+                  <select name="chcontent.locale.id" id="chcontent.locale.id">
+                    #foreach( $item in $localelist )
+                    <option value="$!{item.id}" #if( $item.id=='zh_CN' )selected="selected"#end>$!{item.name}</option>
+                    #end
+                  </select>
+                *</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" name="button" id="button" value="提交">
+                  <input name="chcontent.global" type="hidden" id="chcontent.global" value="yes">
+                <input type="hidden" name="chcontent.document.id" id="chcontent.document.id"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer"><small> © Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a></a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a> | <a href="#">Top</a> </small></div>
+  </div>
+</div>
+</body>
+</html>

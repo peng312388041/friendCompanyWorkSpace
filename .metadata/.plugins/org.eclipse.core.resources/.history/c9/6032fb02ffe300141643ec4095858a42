@@ -1,0 +1,64 @@
+package com.bbs.utils;
+
+import java.util.List;
+
+public class PaginationSupport {
+	public static int PAGESIZE = 5;
+
+	private int pageSize;
+	private List items;
+	private int startIndex;
+	private int count;
+	private int currentPage;
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public List getItems() {
+		return items;
+	}
+
+	public void setItems(List items) {
+		this.items = items;
+	}
+
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public PaginationSupport(List items, int startIndex, int count,
+			int currentPage) {
+		super();
+		this.pageSize = pageSize;
+		this.items = items;
+		this.startIndex = startIndex;
+		this.count = count;
+		this.currentPage = currentPage;
+	}
+
+}

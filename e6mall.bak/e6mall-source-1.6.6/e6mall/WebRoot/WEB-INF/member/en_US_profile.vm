@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>magnatehardware</title>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top">
+     <div id="top_head">
+	     <div id="logo"><a href="../"><img src="images/logo.jpg" alt="magnatehardware 在线商城" border="0"/></a></div>
+	 </div>
+</div>
+<div id="blankline"></div>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="38" align="center" valign="middle" background="images/menubg.jpg"><table width="1003" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="250" height="38" align="left" valign="middle">
+        <div id="top_right">
+		     <ul>
+				<li class="line"></li>
+				<li><a href="logout.htm">Exit</a></li>
+                <li class="line"></li>
+				<li><a href="security.htm">$!{session.getAttribute("member").account}</a></li>
+			 </ul>
+	   </div>
+        </td>
+        <td width="400" height="38" align="left" valign="middle">&nbsp;</td>
+        <td width="511" align="right" valign="top">
+<div id="nav">
+		      <ul>
+			     <li><a href="index.htm">My  MH</a></li>
+                 <li><a href="list_bought_items.htm">management</a></li>
+				 <li><a href="my_bank.htm">Account</a></li>
+				 <li><a href="security.htm" class="over">Settings</a></li>
+			  </ul>
+		 </div>		</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="202" height="500" align="left" valign="top">
+    <div id="lefttitle">My magnatehardware</div>
+	<div id="leftline"></div>
+	
+    <div style="padding-top:8px;"></div>
+    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="../my_scart.htm" target="_blank" class="list">My shopping cart</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="list_bought_items.htm" class="list">My Order</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="#" class="list">My collection</a></td>
+      </tr><tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="my_bank.htm" class="list">My account</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="staddresses.htm" class="list">Pick-up address</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle">&nbsp;</td>
+        <td width="92%" align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top">links</td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.iksns.com" title="即时技术服务，企业邮箱，企业建站" target="_blank" class="list">iksns</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mall.com" title="立即建设自己的网上商城" target="_blank" class="list">E6Mall</a></td>
+      </tr>
+      <tr>
+        <td width="8%" align="center" valign="middle"><img src="images/list_d.jpg" width="3" height="3" /></td>
+        <td width="92%" align="left" valign="top"><a href="http://www.e6mail.com" title="大平台，企业交友，整合手机、企业邮箱、即时通信" target="_blank" class="list">E6Mail</a></td>
+      </tr>
+    </table></td>
+    <td width="1" bgcolor="#dbdbdb">
+	</td>
+    <td align="left" valign="top" style="padding-left:15px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="42" align="left" valign="middle" bgcolor="#f4f4f4" class="title" style="padding-left:15px;">management&nbsp;--&nbsp;<span class="title1">My registration information</span></td>
+      </tr>
+      <tr>
+        <td height="1" bgcolor="#e5e5e5">
+		</td>
+      </tr>
+    </table>
+    <div style="padding-top:10px;"></div>
+    <table width="787" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td><a href="profile_edit.htm" class="page">modify<br>
+        </a></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td><img src="..$!{member.image.path}/$!{member.image.name}" alt="我的头像" width="100" height="100"></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="100" align="right">Login name：</td>
+        <td>$!{member.account}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">E-mail：</td>
+        <td>$!{member.email}</td>
+        <td>&nbsp;</td>
+        </tr>
+      <tr>
+        <td align="right">name：</td>
+        <td>$!{member.name}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">Mobile phone：</td>
+        <td>$!{member.mobile}</td>
+        <td>&nbsp;</td>
+        </tr>
+      <tr>
+        <td align="right">nickname：</td>
+        <td>$!{member.nickname}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">Id number：</td>
+        <td>$!{member.idcard}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">region：</td>
+        <td>$!{member.district.district.name} $!{member.district.name}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">address：</td>
+        <td>$!{member.address}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">zip：</td>
+        <td>$!{member.postcode}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">phone：</td>
+        <td>$!{member.telephone}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">QQ：</td>
+        <td>$!{member.qq}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">MSN：</td>
+        <td>$!{member.msn}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">The latest login：</td>
+        <td>$!{member.lastlogin}</td>
+        <td>&nbsp;</td>
+        </tr>
+      <tr>
+        <td align="right">Total login number：</td>
+        <td>$!{member.logincount}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">Registration time：</td>
+        <td>$!{member.ctime}</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td><a href="profile_edit.htm" class="page">modify</a></td>
+        <td>&nbsp;</td>
+      </tr>
+      </table>
+    <div style="padding-top:10px;"></div>
+    <table width="787" border="0" cellpadding="0" cellspacing="0" bgcolor="#cdcdcd">
+      <tr>
+        <td width="1">
+		</td>
+      </tr>
+    </table>
+ <div  style="height:100px; text-align:center; width:787px; padding-top:10px;">© Copyright 2006-2011 <a href="http://www.e6mall.com" target="_blank">www.e6mall.com</a> | Powered by <a href="http://www.e6mall.com" target="_blank">E6Mall</a></div>	
+	
+	
+	</td>
+  </tr>
+</table>
+</body>
+</html>

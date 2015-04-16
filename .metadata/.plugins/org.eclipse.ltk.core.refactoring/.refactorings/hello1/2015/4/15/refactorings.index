@@ -1,0 +1,37 @@
+1428302199518	Copy package
+1428302208737	Copy package
+1428302225709	Copy packages
+1428302243830	Copy package
+1428302658048	Rename package 'idao'
+1428302684872	Copy package
+1428302691245	Copy package
+1428302884442	Rename type 'Person'
+1428303026759	Rename package 'idao.hibernate'
+1428303032697	Rename package 'idao.jdbc'
+1428303037928	Rename package 'idao.mybatis'
+1428303052645	Rename package 'dao'
+1428303137352	Delete element
+1428303150985	Rename package 'iDao'
+1428303158674	Rename package 'implDao'
+1428303167333	Rename package 'dao.hibernate'
+1428303180594	Rename package 'dao.jdbc'
+1428303187882	Rename package 'dao.mybatis'
+1428303257475	Rename type 'PersonDao'
+1428303295926	Rename type 'PersonDao'
+1428303549295	Copy package
+1428303555975	Delete element
+1428304729260	Move file
+1428305888632	Rename package 'service'
+1428305944924	Rename type 'PersonService'
+1428306229738	Delete element
+1428308881576	Move file
+1428378118158	Copy file
+1428387074197	Move 'log4j.properties' to 'hello1'
+1428388484074	Rename resource 'person.hbm.xml'
+1428390242314	Move 'hibernate.cfg.xml' to 'hello1'
+1428390267721	Copy file
+1428390270726	Delete element
+1428456162157	Infer generic type arguments
+1428457637211	Delete element
+1428471505839	Rename method 'getSession'
+1428540091322	Rename field 'sessionFactory'

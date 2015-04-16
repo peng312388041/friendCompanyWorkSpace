@@ -1,0 +1,5 @@
+package com.bbs.entity;
+
+public class Article {
+
+}

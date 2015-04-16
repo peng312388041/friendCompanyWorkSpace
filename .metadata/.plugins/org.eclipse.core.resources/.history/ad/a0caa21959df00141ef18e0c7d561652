@@ -1,0 +1,11 @@
+package model;
+
+import java.math.BigInteger;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.out.println(2222>>3);
+		BigInteger b1=BigInteger.valueOf(9837394857394573948579W);
+	}
+}

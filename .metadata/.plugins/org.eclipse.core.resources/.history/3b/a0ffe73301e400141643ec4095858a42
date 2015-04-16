@@ -1,0 +1,7 @@
+package com.bbs.dao.impl;
+
+import com.bbs.dao.BaseUserDao;
+
+public class UserDaoImpl extends BaseUserDao{
+
+}

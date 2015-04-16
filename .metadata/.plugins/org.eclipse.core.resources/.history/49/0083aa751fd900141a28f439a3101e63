@@ -1,0 +1,27 @@
+
+
+import mapper.PersonMapper;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import entity.Person;
+import util.SqlSessionFactoryManager;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SqlSessionFactory sessionFactory=SqlSessionFactoryManager.getSqlSessionFactory();
+		SqlSession session=sessionFactory.openSession();
+		Person person=new Person();
+		person.setAge(10);
+		person.setName("pengchong");
+
+		PersonMapper pMapper=session.getMapper(PersonMapper.class);
+		pMapper.insert(person);
+		session.commit();
+		session.close();
+	}
+
+}

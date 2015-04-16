@@ -1,0 +1,12 @@
+* 系统设置不存在时，应提示
+* 用户退出导致管理session过期？
+* 库存不够时不允许购物超过库存数量的商品
+* 已运行的版本都没有传jaxen包
+* 删除商品类型，或品牌，，商品类型和品牌的关联没有删除
+* 子目录没有删除，因为频道引用了某个子目录，父目录已被删除，子目录同有删除成功，或者商品类型没有删除
+* 子目录的父目录是自己
+* 删除管理账号可能引起问题
+* 20110629	java.lang.NullPointerException
+	com.e6mall.action.BaseAction.GlobalChcontent(BaseAction.java:202)
+	com.e6mall.action.ChannelAction.execute(ChannelAction.java:47)
+	可能是内容被删除了
