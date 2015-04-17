@@ -1,7 +1,7 @@
 package com.bbs.utils;
 
 import java.util.List;
- 
+
 public class PaginationSupport {
 	public static int PAGESIZE = 5;
 
@@ -15,6 +15,7 @@ public class PaginationSupport {
 	}
 
 	public void setPageSize(int pageSize) {
+		// FileOutputStream
 		this.pageSize = pageSize;
 	}
 

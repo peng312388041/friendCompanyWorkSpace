@@ -10,4 +10,8 @@ public class Person {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+	public String getClassName()
+	{
+		return getClass().getName();
+	}
 }
