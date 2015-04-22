@@ -1,0 +1,10 @@
+package com.peng;
+
+public class Test implements Runnable{
+
+	@Override
+	public void run() {
+		while(true)
+		System.out.println("哈哈.............");
+	}
+}

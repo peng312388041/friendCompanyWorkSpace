@@ -1,0 +1,23 @@
+ 
+
+public class Person {
+	private Company company;
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	public String getClassName()
+	{
+		return getClass().getName();
+	}
+ 
+}
+
+class A()
+{
+	
+}

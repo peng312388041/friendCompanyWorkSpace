@@ -1,0 +1,414 @@
+//思路:先根据id创建空的sheet，然后遍历source，更改各个sheet属性。最后再建立表。
+package excel;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableCell;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
+
+public class UserExcel {
+	// 源文件
+	private static Workbook sourceWorkbook = null;
+	// 目标文件
+	private static WritableWorkbook targetWorkbook = null;
+	private static int order = 0;
+
+	private static IndexSheet bigSheet = new IndexSheet();
+	private static List<IndexSheet> middleSheetList = new ArrayList<>();;
+	private static List<IndexSheet> littleSheetList = new ArrayList<>();;
+	private static List<GoodsSheet> goodsSheetList = new ArrayList<>();;
+
+	// 可考虑改为泛型
+	public static IndexSheet findIndexSheetById(
+			List<IndexSheet> indexsheetList, String id) {
+		IndexSheet sheet = null;
+		for (IndexSheet i : indexsheetList)
+			if (id.equals(i.getSheetId())) {
+				sheet = i;
+			}
+		return sheet;
+	}
+
+	public static GoodsSheet findGoosSheetById(List<GoodsSheet> goodsSheetList,
+			String id) {
+		GoodsSheet sheet = null;
+		for (GoodsSheet i : goodsSheetList)
+			if (id.equals(i.getSheetId())) {
+				sheet = i;
+			}
+		return sheet;
+	}
+
+	public static Workbook getSourceWorkbook() {
+		InputStream inputStream = null;
+		try {
+			inputStream = new FileInputStream(new File("D:/source3.xls"));
+			sourceWorkbook = Workbook.getWorkbook(inputStream);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sourceWorkbook;
+	}
+
+	public static WritableWorkbook getTargetWorkbook() {
+		OutputStream outputStream = null;
+		try {
+			outputStream = new FileOutputStream(new File("D:/target.xls"));
+			targetWorkbook = Workbook.createWorkbook(outputStream);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		targetWorkbook.setProtected(true);
+		return targetWorkbook;
+	}
+
+	public static List<String> getSetLittle(Workbook sourceWorkbook) {
+		Set<String> setLittle = new HashSet<>();
+		for (int i = 1; i < 4; i++) {
+			Sheet sheet = sourceWorkbook.getSheet(i);
+			for (Cell cell : sheet.getColumn(7)) {
+				setLittle.add(cell.getContents());
+			}
+		}
+
+		String string[] = setLittle.toArray(new String[] {});
+		Arrays.sort(string);
+		List<String> listLittle = new ArrayList<String>(Arrays.asList(string));
+		listLittle.remove(listLittle.size() - 1);
+		return listLittle;
+	}
+
+	public static List<String> getSetMiddle(Workbook sourceWorkbook) {
+		Set<String> setMiddle = new HashSet<>();
+		for (int i = 1; i < 4; i++) {
+			Sheet sheet = sourceWorkbook.getSheet(i);
+			for (Cell cell : sheet.getColumn(5)) {
+				setMiddle.add(cell.getContents());
+			}
+		}
+
+		String string[] = setMiddle.toArray(new String[] {});
+		Arrays.sort(string);
+		List<String> listMiddle = new ArrayList<String>(Arrays.asList(string));
+		listMiddle.remove(listMiddle.size() - 1);
+		return listMiddle;
+	}
+
+	public static List<String> getSetBig(Workbook sourceWorkbook) {
+		Set<String> setBig = new HashSet<>();
+		for (int i = 1; i < 4; i++) {
+			Sheet sheet = sourceWorkbook.getSheet(i);
+			for (Cell cell : sheet.getColumn(3)) {
+				setBig.add(cell.getContents());
+			}
+		}
+
+		String string[] = setBig.toArray(new String[] {});
+		Arrays.sort(string);
+		List<String> listBig = new ArrayList<String>(Arrays.asList(string));
+		listBig.remove(listBig.size() - 1);
+		return listBig;
+	}
+
+	public static void createSheets(WritableWorkbook targetWorkbook,
+			Workbook sourceWorkbook) throws IOException, WriteException {
+
+		// 创建大分类表
+
+		List<String> headerBig = new ArrayList<>();
+		headerBig.add("NO");
+		headerBig.add("大分類コード");
+		headerBig.add("大分類名称");
+		List<IndexSheetData> datasBig = new ArrayList<>();
+
+		bigSheet.setParent(null);
+		bigSheet.setSheetId("00");
+		bigSheet.setSheetName("大分類");
+		bigSheet.setSheetEntity(null);
+		bigSheet.setSheetType(0);
+		bigSheet.setHeader(headerBig);
+		bigSheet.setDatas(datasBig);
+		bigSheet.setNumber(1);
+
+		// 创建所有中分类表
+		List<String> headerMiddle = new ArrayList<>();
+		headerMiddle.add("NO");
+		headerMiddle.add("中分類コード");
+		headerMiddle.add("中分類名称");
+
+		int temp = 1;
+		for (String string : getSetBig(sourceWorkbook)) {
+			IndexSheet middleSheet = new IndexSheet();
+			List<IndexSheetData> datasMiddle = new ArrayList<>();
+			middleSheet.setSheetEntity(null);
+			middleSheet.setSheetId(string);
+			middleSheet.setSheetName("中分類(" + temp + ")");
+			middleSheet.setParent(null);
+			middleSheet.setSheetType(1);
+			middleSheet.setDatas(datasMiddle);
+			middleSheet.setNumber(temp);
+			middleSheet.setHeader(headerMiddle);
+			middleSheetList.add(middleSheet);
+			temp++;
+		}
+		temp = 1;
+		// 创建所有小分类表
+		List<String> headerLittle = new ArrayList<>();
+
+		headerLittle.add("NO");
+		headerLittle.add("小分類コード");
+		headerLittle.add("小分類名称");
+		for (String string : getSetMiddle(sourceWorkbook)) {
+			List<IndexSheetData> datasLittle = new ArrayList<>();
+			IndexSheet littleSheet = new IndexSheet();
+			littleSheet.setSheetEntity(null);
+			littleSheet.setSheetId(string);
+			littleSheet.setDatas(datasLittle);
+			littleSheet.setHeader(headerLittle);
+			littleSheet.setNumber(temp);
+			littleSheet.setSheetType(2);
+			littleSheet.setParent(null);
+			littleSheet.setSheetName("小分類(" + temp + ")");
+			littleSheetList.add(littleSheet);
+			temp++;
+		}
+
+		// 创建所有商品类表
+		temp = 1;
+
+		List<String> headerGoods = new ArrayList<>();
+		headerGoods.add("商品コード");
+		headerGoods.add("商品名");
+		headerGoods.add("JANコード");
+		headerGoods.add("大分類コード");
+		headerGoods.add("大分類名称");
+		headerGoods.add("中分類コード");
+		headerGoods.add("中分類名称");
+		headerGoods.add("小分類コード");
+		headerGoods.add("小分類名称");
+		headerGoods.add(" 最重要成分");
+		headerGoods.add(" 成分名称");
+		headerGoods.add(" メーカー名");
+		headerGoods.add("ブランドコード");
+		headerGoods.add("ブランド名");
+		headerGoods.add("ランキング");
+		headerGoods.add("ご提案卸価格(税抜）");
+		headerGoods.add("URL");
+
+		for (String string : getSetLittle(sourceWorkbook)) {
+			List<GoodsSheetData> datas2 = new ArrayList<>();
+			GoodsSheet goodsSheet = new GoodsSheet();
+			goodsSheet.setSheetEntity(null);
+			goodsSheet.setSheetId(string);
+			goodsSheet.setGoodsdatas(datas2);
+			goodsSheet.setHeader(headerGoods);
+			goodsSheet.setNumber(temp);
+			goodsSheet.setParent(null);
+			goodsSheet.setSheetName("商品类(" + temp + ")");
+			goodsSheet.setSheetType(3);
+			goodsSheetList.add(goodsSheet);
+			temp++;
+		}
+	}
+
+	public static void initSheets(WritableWorkbook targetWorkbook)
+			throws IOException, WriteException {
+		// 对source的所有sheet进行遍历
+		for (int i = 1; i < 4; i++) {
+			Sheet sourceSheet = sourceWorkbook.getSheet(i);
+			// 对每一行进行遍历
+			for (int j = 1; j < sourceSheet.getRows(); j++) {
+				Cell row[] = sourceSheet.getRow(j);
+				String bigId = row[3].getContents();
+				String middleId = row[5].getContents();
+				String littleId = row[7].getContents();
+
+				// 对大分类表进行初始化
+				List<IndexSheetData> datasBig;
+				if (bigSheet.getAllCodes().indexOf(bigId) == -1) {
+					datasBig = bigSheet.getDatas();
+					String bigCode = row[3].getContents();
+					String bigName = row[4].getContents();
+					IndexSheetData data = new IndexSheetData();
+					data.setName(bigName);
+					data.setCode(bigCode);
+					datasBig.add(data);
+					bigSheet.setDatas(datasBig);
+				}
+
+				// 对中分类表进行初始化
+
+				IndexSheet middleSheet = findIndexSheetById(middleSheetList,
+						bigId);
+
+				if (middleSheet.getAllCodes().indexOf(middleId) == -1) {
+					List<IndexSheetData> datasMiddle = middleSheet.getDatas();
+					String bigCode = row[5].getContents();
+					String bigName = row[6].getContents();
+					IndexSheetData data = new IndexSheetData();
+					data.setName(bigName);
+					data.setCode(bigCode);
+					datasMiddle.add(data);
+					middleSheet.setDatas(datasMiddle);
+					middleSheet.setParent(bigSheet);
+				 
+					middleSheet.setSheetName("中分類(" + middleSheet.getNumber()
+							+ ")");
+				}
+
+				// 对小分类表进行初始化
+				IndexSheet littleSheet = findIndexSheetById(littleSheetList,
+						middleId);
+				if (littleSheet.getAllCodes().indexOf(littleId) == -1) {
+					List<IndexSheetData> datasLittle = littleSheet.getDatas();
+					String bigCode = row[7].getContents();
+					String bigName = row[8].getContents();
+
+					IndexSheetData data = new IndexSheetData();
+					data.setName(bigName);
+					data.setCode(bigCode);
+					datasLittle.add(data);
+					littleSheet.setDatas(datasLittle);
+					BaseSheet parent = findIndexSheetById(middleSheetList,
+							bigId);
+					littleSheet.setParent(parent);
+					int child = parent.getChildCount() + 1;
+					parent.setChildCount(child);
+					littleSheet.setSheetName("小分類("
+							+ littleSheet.getParent().getNumber() + "-" + child
+							+ ")");
+				}
+
+				// 对商品表进行初始化
+				GoodsSheet goodsSheet = findGoosSheetById(goodsSheetList,
+						littleId);
+				List<GoodsSheetData> datasGoods = goodsSheet.getGoodsdatas();
+				GoodsSheetData data = new GoodsSheetData();
+				data.setA(row[0].getContents());
+				data.setB(row[1].getContents());
+				data.setC(row[2].getContents());
+				data.setD(row[3].getContents());
+				data.setE(row[4].getContents());
+				data.setF(row[5].getContents());
+				data.setG(row[6].getContents());
+				data.setH(row[7].getContents());
+				data.setI(row[8].getContents());
+				data.setJ(row[9].getContents());
+				data.setK(row[10].getContents());
+				data.setL(row[11].getContents());
+				data.setM(row[12].getContents());
+				data.setN(row[13].getContents());
+				data.setO(row[14].getContents());
+				data.setP(row[15].getContents());
+				data.setQ(row[16].getContents());
+				datasGoods.add(data);
+				goodsSheet.setGoodsdatas(datasGoods);
+				BaseSheet parent = findIndexSheetById(littleSheetList, middleId);
+				goodsSheet.setParent(parent);
+				int child = parent.getChildCount() + 1;
+				parent.setChildCount(child);
+				goodsSheet.setSheetName("商品类("
+						+ goodsSheet.getParent().getParent().getChildCount()
+						+ "-" + goodsSheet.getParent().getChildCount() + "-"
+						+ parent.getChildCount() + ")");
+
+			}
+		}
+		Collections.sort(bigSheet.getDatas(), new DataComparator());
+		fillIndexSheet(bigSheet);
+
+		for (IndexSheet sheet : middleSheetList) {
+			Collections.sort(sheet.getDatas(), new DataComparator());
+			fillIndexSheet(sheet);
+		}
+		for (IndexSheet sheet : littleSheetList) {
+			Collections.sort(sheet.getDatas(), new DataComparator());
+			fillIndexSheet(sheet);
+		}
+
+		for (GoodsSheet sheet : goodsSheetList) {
+			fillGoodsSheet(sheet);
+		}
+	}
+
+	public static void fillIndexSheet(IndexSheet sheet)
+			throws RowsExceededException, WriteException, IOException {
+		WritableSheet targetSheet = targetWorkbook.createSheet(
+				sheet.getSheetName(), order++);
+		sheet.setSheetEntity(targetSheet);
+		for (int i = 0; i < sheet.getDatas().size(); i++) {
+			IndexSheetData data = sheet.getDatas().get(i);
+			WritableCell cellNumber = new Label(0, i + 3, i + 1 + "");
+			WritableCell cellCode = new Label(1, i + 3, data.getCode());
+			WritableCell cellName = new Label(2, i + 3, data.getName());
+			targetSheet.addCell(cellCode);
+			targetSheet.addCell(cellNumber);
+			targetSheet.addCell(cellName);
+		}
+	}
+
+	public static void fillGoodsSheet(GoodsSheet sheet)
+			throws RowsExceededException, WriteException, IOException
+
+	{
+		WritableSheet targetSheet = targetWorkbook.createSheet(
+				sheet.getSheetName(), order++);
+		int i = 0;
+		for (GoodsSheetData data : sheet.getGoodsdatas()) {
+			WritableCell cellA = new Label(0, i + 3, data.getA());
+			WritableCell cellB = new Label(1, i + 3, data.getB());
+			WritableCell cellC = new Label(2, i + 3, data.getC());
+			WritableCell cellD = new Label(3, i + 3, data.getD());
+			WritableCell cellE = new Label(4, i + 3, data.getE());
+			WritableCell cellF = new Label(5, i + 3, data.getF());
+			WritableCell cellG = new Label(6, i + 3, data.getG());
+			WritableCell cellH = new Label(7, i + 3, data.getH());
+			WritableCell cellI = new Label(8, i + 3, data.getI());
+			WritableCell cellJ = new Label(9, i + 3, data.getJ());
+			WritableCell cellK = new Label(10, i + 3, data.getK());
+			WritableCell cellL = new Label(11, i + 3, data.getL());
+			WritableCell cellM = new Label(12, i + 3, data.getM());
+			WritableCell cellN = new Label(13, i + 3, data.getN());
+			WritableCell cellO = new Label(14, i + 3, data.getO());
+			WritableCell cellP = new Label(15, i + 3, data.getP());
+			WritableCell cellQ = new Label(16, i + 3, data.getQ());
+			targetSheet.addCell(cellA);
+			targetSheet.addCell(cellB);
+			targetSheet.addCell(cellC);
+			targetSheet.addCell(cellD);
+			targetSheet.addCell(cellE);
+			targetSheet.addCell(cellF);
+			targetSheet.addCell(cellG);
+			targetSheet.addCell(cellH);
+			targetSheet.addCell(cellI);
+			targetSheet.addCell(cellJ);
+			targetSheet.addCell(cellK);
+			targetSheet.addCell(cellL);
+			targetSheet.addCell(cellM);
+			targetSheet.addCell(cellN);
+			targetSheet.addCell(cellO);
+			targetSheet.addCell(cellP);
+			targetSheet.addCell(cellQ);
+			i++;
+		}
+		sheet.setSheetEntity(targetSheet);
+	}
+}

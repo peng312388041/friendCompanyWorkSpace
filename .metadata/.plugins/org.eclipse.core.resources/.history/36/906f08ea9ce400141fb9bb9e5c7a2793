@@ -1,0 +1,14 @@
+package model;
+
+public class Main extends Person {
+	public static final int a = 1;
+	
+	public static void main(String[] args) {
+		String s1=new String("abc");
+		String s2=new String("abc");
+	}
+
+	public String test() {
+		return getClass().getName();
+	}
+}

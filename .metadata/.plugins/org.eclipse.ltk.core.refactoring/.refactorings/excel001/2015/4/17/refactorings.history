@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;GoodsSheet.java&apos; to &apos;treeSheet/src/excel&apos;&#x0D;&#x0A;- Original project: &apos;excel001&apos;&#x0D;&#x0A;- Destination element: &apos;treeSheet/src/excel&apos;&#x0D;&#x0A;- Original element: &apos;excel.GoodsSheet.java&apos;" description="Copy compilation unit" destination="=treeSheet/src&lt;excel" element1="/src&lt;excel{GoodsSheet.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1429520684674" units="1" version="1.0"/>
+</session>

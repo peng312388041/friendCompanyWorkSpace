@@ -1,0 +1,19 @@
+package com.peng;
+
+public class Main {
+
+	public static void main(String[] args) {
+//		// 定义三个生产者
+//		Thread producerThread1 = new Thread(new Producer());
+//
+//		producerThread1.start();
+//
+//		// 定义三个消费者
+//		Thread consumeThread1 = new Thread(new Consumer());
+//
+//		consumeThread1.start();
+		Thread T=	new Thread(new Test());
+		T.start();
+	}
+
+}

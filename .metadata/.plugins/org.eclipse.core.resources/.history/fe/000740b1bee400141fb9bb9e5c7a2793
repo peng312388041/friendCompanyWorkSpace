@@ -1,0 +1,6 @@
+package model;
+
+public class Seller {
+	public static int ticket=100;
+
+}

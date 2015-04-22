@@ -1,0 +1,24 @@
+package com.peng;
+
+import java.util.List;
+
+public class Consumer implements Runnable {
+
+	@Override
+	public void run() {
+
+		if(Constants.getCount()<=0)
+		{
+			synchronized (Constants.goodsList) {
+				Constants.goodsList
+			}
+		}
+		if (Constants.getCount() > 0)
+			consume();
+	}
+
+	public void consume() {
+		List<Goods> list = Constants.goodsList;
+		list.remove(list.size());
+	}
+}

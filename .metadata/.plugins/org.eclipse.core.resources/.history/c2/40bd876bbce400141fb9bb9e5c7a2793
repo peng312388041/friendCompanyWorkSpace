@@ -1,0 +1,17 @@
+package model;
+
+public class Main {
+	public static final int a = 1;
+
+	public static void main(String[] args) {
+		Thread thread1 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				System.err.println();Singleton.getInstance();
+			}
+		});
+		Thread thread2 = new Thread();
+	}
+
+}

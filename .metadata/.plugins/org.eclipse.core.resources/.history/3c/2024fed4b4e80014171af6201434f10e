@@ -1,0 +1,26 @@
+package com.peng;
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+//		// 定义5个生产者
+//		Thread producerThread1 = new Thread(new Producer());
+//		Thread producerThread1 = new Thread(new Producer());
+//		Thread producerThread1 = new Thread(new Producer());
+//		Thread producerThread1 = new Thread(new Producer());
+//
+//		producerThread1.start();
+//
+//		// 定义3个消费者
+//		Thread consumeThread1 = new Thread(new Consumer());
+//		Thread consumeThread1 = new Thread(new Consumer());
+//		Thread consumeThread1 = new Thread(new Consumer());
+//		Thread consumeThread1 = new Thread(new Consumer());
+//		Thread consumeThread1 = new Thread(new Consumer());
+//
+//		consumeThread1.start();
+		Thread t=	new Thread(new Test());
+		t.start();
+	}
+
+}

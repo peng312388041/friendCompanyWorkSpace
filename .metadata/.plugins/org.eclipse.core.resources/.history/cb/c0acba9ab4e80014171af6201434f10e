@@ -1,0 +1,29 @@
+package com.peng;
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+		// 定义三个生产者
+//		Thread producerThread1 = new Thread(new Producer());
+//
+//		producerThread1.start();
+
+		// 定义三个消费者
+		
+		Goods g1=new Goods();
+		Goods g2=new Goods();
+		Goods g3=new Goods();
+		Goods g4=new Goods();
+		Goods g5=new Goods();
+		Constants.goodsList.add(g1);
+		Constants.goodsList.add(g1);
+		Constants.goodsList.add(g1);
+		Constants.goodsList.add(g1);
+		Constants.goodsList.add(g1);
+		Thread consumeThread1 = new Thread(new Consumer());
+
+		consumeThread1.start();
+ 
+	}
+
+}

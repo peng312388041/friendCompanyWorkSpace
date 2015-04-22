@@ -1,0 +1,12 @@
+package model;
+
+public class Singleton {
+	private Singleton()
+	{
+		
+	}
+	public getInstance()
+	{
+		
+	}
+}

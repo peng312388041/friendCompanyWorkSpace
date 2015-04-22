@@ -1,0 +1,15 @@
+package com.peng;
+
+public class Main {
+
+	public static void main(String[] args) throws InterruptedException {
+		// 定义三个生产者
+		Thread producerThread1 = new Thread(new Producer());
+
+		producerThread1.start();
+		
+		
+//		t.start();
+	}
+
+}

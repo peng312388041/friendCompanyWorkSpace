@@ -1,0 +1,9 @@
+package com.peng;
+
+import java.util.List;
+
+public class Constants {
+	private int id;
+	public static List<Goods> goodsList;
+	
+}

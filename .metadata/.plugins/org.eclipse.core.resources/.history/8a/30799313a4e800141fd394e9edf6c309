@@ -1,0 +1,15 @@
+package com.peng;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Thread producerThread1 = new Thread(new Producer());
+		Thread producerThread2 = new Thread(new Producer());
+		Thread producerThread3 = new Thread(new Producer());
+		Thread producerThread4 = new Thread(new Producer());
+		Thread producerThread5 = new Thread(new Producer());
+		
+		Thread consumeThread1=new Consumer(new Consumer());
+	}
+
+}

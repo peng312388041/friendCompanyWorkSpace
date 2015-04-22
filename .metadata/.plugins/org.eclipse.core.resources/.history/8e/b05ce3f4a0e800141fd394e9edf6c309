@@ -1,0 +1,11 @@
+package com.peng;
+
+public class Producer implements Runnable{
+
+	@Override
+	public void run() {
+		
+	}
+	
+	public void produce()
+	{}

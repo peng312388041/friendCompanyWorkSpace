@@ -1,0 +1,12 @@
+package model;
+
+public class Seller implements Runnable{
+	public static int ticket=100;
+
+	@Override
+	public void run() {
+		System.out.println("sell the number "+ticket+"of ticket");
+	}
+
+	
+}

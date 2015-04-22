@@ -1,7 +1,0 @@
-package action;
-
-import org.springframework.web.servlet.mvc.Controller;
-
-public class HelloController implements Controller{
-
-}

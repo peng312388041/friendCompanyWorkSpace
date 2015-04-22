@@ -1,0 +1,17 @@
+package com.peng;
+
+public class Goods {
+	
+	private int id;       //商品id
+	private String name;  //商品名称
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+}

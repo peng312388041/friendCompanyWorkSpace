@@ -1,0 +1,12 @@
+package com.peng;
+
+public class Test implements Runnable{
+
+	@Override
+	public void run() {
+		while(true)
+		System.out.println("哈哈.............");
+		Thread.sleep(2*1000*100);
+		
+	}
+}

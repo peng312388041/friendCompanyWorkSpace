@@ -1,13 +1,36 @@
 package model;
 
-public class Main extends Person {
+
+public class Main {
 	public static final int a = 1;
-	
+
 	public static void main(String[] args) {
-		System.out.println(new Main().getClass().getSuperclass().getName());
+		System.gc();
+		// Runnable runnable1 = new Seller("A");
+		// Runnable runnable2 = new Seller("B");
+		// Runnable runnable3 = new Seller("C");
+		// Runnable runnable4 = new Seller("D");
+		// new Thread(runnable1).start();
+		// new Thread(runnable2).start();
+		// new Thread(runnable3).start();
+		// new Thread(runnable4).start();
+//		Set<String> set = new HashSet<>();
+//		set.add("D");
+//		set.add("A");
+//		set.add("B");
+//		set.add("G");
+//		set.add("E");
+//		for (String s : set) {
+//			System.out.println(s);
+//		}
+//		Object object=new Object();
+//		object.hashCode();
+//		new Stack<>()
+//		System.out.println("ABC".hashCode());
+//		System.out.println(new Object().hashCode());
+//		System.out.println("ABCD".hashCode());
+//		System.out.println(new Object().hashCode());
+
 	}
 
-	public String test() {
-		return getClass().getName();
-	}
 }

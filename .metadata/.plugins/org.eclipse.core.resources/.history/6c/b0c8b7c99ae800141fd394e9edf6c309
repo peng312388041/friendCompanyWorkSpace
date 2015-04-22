@@ -1,0 +1,11 @@
+package com.peng;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GoodsManager {
+	private  List<Goods> goodsList = new ArrayList<Goods>();
+	private static 
+	
+ 
+}

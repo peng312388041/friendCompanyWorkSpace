@@ -1,0 +1,32 @@
+package model;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
+
+public class Main {
+	public static final int a = 1;
+
+	public static void main(String[] args) {
+		// Runnable runnable1 = new Seller("A");
+		// Runnable runnable2 = new Seller("B");
+		// Runnable runnable3 = new Seller("C");
+		// Runnable runnable4 = new Seller("D");
+		// new Thread(runnable1).start();
+		// new Thread(runnable2).start();
+		// new Thread(runnable3).start();
+		// new Thread(runnable4).start();
+		Set<String> set = new HashSet<>();
+		set.add("D");
+		set.add("A");
+		set.add("B");
+		set.add("G");
+		set.add("E");
+		for (String s : set) {
+			System.out.println(s);
+		}
+		new LinkedList<>()
+
+	}
+
+}

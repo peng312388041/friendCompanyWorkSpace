@@ -1,0 +1,12 @@
+package com.peng;
+
+import java.util.List;
+
+public class Constants {
+	private static int id;
+	public static List<Goods> goodsList;
+	public static generateId()
+	{
+		return id++;
+	}
+}

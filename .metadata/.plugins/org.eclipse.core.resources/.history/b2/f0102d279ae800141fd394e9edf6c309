@@ -1,0 +1,8 @@
+package com.peng;
+
+public class Goods {
+	
+	private int id;       //商品id
+	
+	
+}

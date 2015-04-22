@@ -1,0 +1,29 @@
+package model;
+
+public class Main extends Person {
+	public static final int a = 1;
+
+	public static void main(String[] args) {
+		String s1 = new String("abc");
+		String s2 = new String("abc");
+		long start = System.currentTimeMillis();
+		StringBuffer sBuffer = new StringBuffer();
+		for (int i = 1; i < 10000; i++) {
+			sBuffer.append(i);
+		}
+		long end = System.currentTimeMillis();
+		System.out.println(end - start + "毫秒");
+
+		long start2 = System.currentTimeMillis();
+		String s = "";
+		for (int i = 1; i < 10000; i++) {
+			s = s + i;
+		}
+		long end2 = System.currentTimeMillis();
+		System.out.println(end2 - start2 + "毫秒");
+	}
+
+	public String test() {
+		return getClass().getName();
+	}
+}

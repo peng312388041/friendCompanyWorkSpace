@@ -21126,3 +21126,143 @@ org.eclipse.core.runtime.CoreException: Launch configuration Main (3) references
 2015-04-17 09:40:11,974 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
 2015-04-17 09:40:12,052 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
 2015-04-17 09:40:12,067 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 15:04:32,989 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 15:04:33,098 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-04-17 15:04:33,335 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 15:04:33,337 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 15:04:52,223 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 15:04:52,234 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 15:04:52,237 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 15:04:52,240 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 15:27:10,520 [Worker-11] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.e6mall.peng:e6mall:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\e6mall\pom.xml.
+2015-04-17 15:27:20,611 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 15:27:20,615 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 16 resources
+2015-04-17 15:27:20,627 [Worker-14] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 15:27:20,629 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:06:05,680 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:06:05,711 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2015-04-17 17:06:05,725 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:06:05,727 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:06:51,773 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:06:55,425 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:06:55,433 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:06:55,435 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:06:55,508 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:06:56,033 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:06:57,480 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:06:57,584 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:06:57,587 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:06:57,589 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:07:43,866 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:07:47,377 [Worker-9] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/jexcelapi/jxl/2.6/jxl-2.6.pom
+2015-04-17 17:07:47,969 [Worker-9] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/jexcelapi/jxl/2.6/jxl-2.6.pom
+2015-04-17 17:07:48,394 [Worker-9] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/net/sourceforge/jexcelapi/jxl/2.6/jxl-2.6.pom
+2015-04-17 17:07:48,727 [Worker-9] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/net/sourceforge/jexcelapi/jxl/2.6/jxl-2.6.pom
+2015-04-17 17:07:48,744 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:07:48,983 [Worker-9] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/net/sourceforge/jexcelapi/jxl/2.6/jxl-2.6.jar
+2015-04-17 17:07:54,327 [Worker-9] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/net/sourceforge/jexcelapi/jxl/2.6/jxl-2.6.jar
+2015-04-17 17:07:54,638 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:07:54,705 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:07:54,918 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:07:54,920 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:07:54,923 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:07:54,925 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:07:54,958 [Worker-9] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of hello
+2015-04-17 17:07:54,960 [Worker-9] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for hello
+2015-04-17 17:07:54,972 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:07:56,294 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:07:56,373 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:07:56,391 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:07:56,397 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:07:56,400 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:09,579 [Worker-6] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2015-04-17 17:08:09,729 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:08:09,858 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:10,116 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:10,162 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:10,417 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /hello/src/main/java
+2015-04-17 17:08:10,419 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hello/src/main/resources
+2015-04-17 17:08:10,420 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /hello/src/test/java
+2015-04-17 17:08:10,421 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hello/src/test/resources
+2015-04-17 17:08:11,976 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:08:11,979 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:12,148 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:12,190 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:12,352 [Worker-6] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for hello
+2015-04-17 17:08:12,435 [Worker-6] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2015-04-17 17:08:14,524 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:14,579 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:14,586 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:14,589 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:14,592 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:27,779 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:08:27,887 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:28,098 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:28,156 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:28,378 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:28,380 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:28,382 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:28,384 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:28,385 [Worker-9] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of hello
+2015-04-17 17:08:28,385 [Worker-9] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for hello
+2015-04-17 17:08:28,417 [Worker-9] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:30,375 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:30,773 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.peng.hello:hello:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\hello\pom.xml.
+2015-04-17 17:08:30,898 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:31,155 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:31,207 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-17 17:08:31,417 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:31,419 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:31,426 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:08:31,428 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-17 17:08:31,429 [Worker-2] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of hello
+2015-04-17 17:08:31,429 [Worker-2] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for hello
+2015-04-17 17:08:31,437 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-17 17:27:18,066 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/net/sourceforge/jexcelapi/jxl/2.6/jxl-2.6-sources.jar
+2015-04-17 17:27:18,119 [Worker-3] ERROR o.e.m.j.internal.DownloadSourcesJob - Could not download sources for net.sourceforge.jexcelapi:jxl:2.6
+org.eclipse.core.runtime.CoreException: Could not resolve artifact net.sourceforge.jexcelapi:jxl:jar:sources:2.6
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl$5.call(MavenImpl.java:769) ~[org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl$5.call(MavenImpl.java:1) ~[org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:166) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:109) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:96) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:736) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:713) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:244) [org.eclipse.m2e.jdt_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:223) [org.eclipse.m2e.jdt_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:157) [org.eclipse.m2e.jdt_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:136) [org.eclipse.m2e.jdt_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob$1.call(DownloadSourcesJob.java:1) [org.eclipse.m2e.jdt_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:166) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:142) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:96) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1348) [org.eclipse.m2e.core_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:134) [org.eclipse.m2e.jdt_1.5.1.20150109-1820.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54) [org.eclipse.core.jobs_3.6.1.v20141014-1248.jar:na]
+2015-04-20 09:53:16,717 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jexcelapi:jxl:jar:2.6 has been relocated to net.sourceforge.jexcelapi:jxl:jar:2.6
+2015-04-20 09:53:18,156 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-20 09:53:18,168 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-20 09:53:18,174 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-20 09:53:18,177 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-21 10:28:45,632 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.bbs.peng:bbs:0.0.1-SNAPSHOT @ C:\Users\peng\workspace\bbs\pom.xml.
+2015-04-21 10:28:46,801 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/poi/poi/3.11/poi-3.11.pom
+2015-04-21 10:28:47,339 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/poi/poi/3.11/poi-3.11.pom
+2015-04-21 10:28:47,600 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.pom
+2015-04-21 10:28:48,043 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.pom
+2015-04-21 10:28:48,292 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/32/commons-parent-32.pom
+2015-04-21 10:28:49,138 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/32/commons-parent-32.pom
+2015-04-21 10:28:49,699 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/poi/poi/3.11/poi-3.11.jar
+2015-04-21 10:29:03,949 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/poi/poi/3.11/poi-3.11.jar
+2015-04-21 10:29:04,083 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.jar
+2015-04-21 10:29:08,598 [Worker-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9.jar
+2015-04-21 10:29:10,432 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-21 10:29:10,455 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2015-04-21 10:29:10,484 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-21 10:29:10,487 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-21 10:29:14,372 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-21 10:29:14,385 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2015-04-21 10:29:14,595 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (MS932 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-04-21 10:29:14,612 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-04-21 11:17:26,913 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/poi/poi/3.11/poi-3.11-sources.jar
+2015-04-21 11:17:31,941 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/poi/poi/3.11/poi-3.11-sources.jar
+2015-04-21 11:17:32,219 [Worker-21] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.apache.poi:poi:3.11

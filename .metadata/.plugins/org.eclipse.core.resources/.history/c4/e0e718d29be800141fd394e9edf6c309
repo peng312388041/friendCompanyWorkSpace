@@ -1,0 +1,50 @@
+package com.peng;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GoodsManager {
+	//一种商品的集合
+	public   List<Goods> goodsList = new ArrayList<Goods>();
+	
+	//返回商品数目
+	public  int getGoodsCount()
+	{
+		return goodsList.size();
+	}
+	
+	//定义生产者
+	private Producer producer;
+	
+	//定义消费者
+	private Consumer consumer;
+	
+	public void produce(Producer producer , )
+	{
+		
+	}
+	
+	public void Consumer()
+	{
+		
+	}
+
+	public Producer getProducer() {
+		return producer;
+	}
+
+	public void setProducer(Producer producer) {
+		this.producer = producer;
+	}
+
+	public Consumer getConsumer() {
+		return consumer;
+	}
+
+	public void setConsumer(Consumer consumer) {
+		this.consumer = consumer;
+	}
+	
+	
+ 
+}

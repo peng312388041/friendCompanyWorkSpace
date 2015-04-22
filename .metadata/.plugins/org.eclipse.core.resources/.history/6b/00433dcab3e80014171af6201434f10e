@@ -1,0 +1,42 @@
+package com.peng;
+
+public class Producer implements Runnable {
+
+	@Override
+	public void run() {
+
+		while (true) {
+			// 有5个时等待
+			if (Constants.getCount() >= 5) {
+				synchronized (Constants.goodsList) {
+					try {
+						System.out.println("等待中............");
+						Constants.goodsList.wait();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+
+				produce();
+				System.out.println("生产中............");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				synchronized (Constants.goodsList) {
+					Constants.goodsList.notify();
+				}
+
+			}
+		}
+	}
+
+	public void produce() {
+		Goods goods = new Goods();
+		goods.setId(Constants.generateId());
+		Constants.goodsList.add(goods);
+	}
+}

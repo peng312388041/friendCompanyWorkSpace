@@ -1,0 +1,16 @@
+package com.peng;
+
+public class Producer implements Runnable {
+
+	@Override
+	public void run() {
+
+	}
+
+	public void produce() {
+		Goods goods=new Goods();
+		goods.setId(Constants.generateId());
+		
+		Constants.goodsList.add(goods);
+	}
+}

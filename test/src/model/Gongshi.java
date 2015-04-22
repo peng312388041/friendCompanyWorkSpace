@@ -9,3 +9,4 @@ public abstract class Gongshi implements Company {
 
 	public abstract long getCount();
 }
+ 

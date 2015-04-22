@@ -1,0 +1,30 @@
+package com.peng;
+
+public class Producer implements Runnable {
+
+	@Override
+	public void run() {
+		if (Constants.getCount() >= 5)
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			produce();
+	}
+
+	public void produce() {
+
+		Goods goods = new Goods();
+		goods.setId(Constants.generateId());
+		Constants.goodsList.add(goods);
+		if(Constants.getCount()>=5)
+		{
+			synchronized (Constants.class) {
+				Constants.class.wait();
+			}
+		}
+
+	}
+}

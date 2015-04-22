@@ -1,0 +1,6 @@
+package model;
+
+public class Seller implements Runnable{
+	public static int ticket=100;
+
+}

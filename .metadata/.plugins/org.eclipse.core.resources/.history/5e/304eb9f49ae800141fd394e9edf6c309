@@ -1,0 +1,15 @@
+package com.peng;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GoodsManager {
+	//所有商品
+	public static  List<Goods> goodsList = new ArrayList<Goods>();
+	
+	public static int getGoodsCount()
+	{
+		return goodsList.size();
+	}
+ 
+}

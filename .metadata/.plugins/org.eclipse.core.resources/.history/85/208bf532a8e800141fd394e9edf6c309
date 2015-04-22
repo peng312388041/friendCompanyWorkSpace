@@ -1,0 +1,35 @@
+package com.peng;
+
+public class Producer implements Runnable {
+
+	@Override
+	public void run() {
+
+		//有5个时等待
+		if (Constants.getCount() >= 5) {
+			synchronized (Constants.class) {
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		if (Constants.getCount() < 5) {
+			produce();
+			
+			//生产一个后若只有一个，则唤醒一个线程
+			if (Constants.getCount() == 1) {
+				synchronized (Constants.class) {
+					Constants.class.notify();
+				}
+			}
+		}
+	}
+
+	public void produce() {
+		Goods goods = new Goods();
+		goods.setId(Constants.generateId());
+		Constants.goodsList.add(goods);
+	}
+}

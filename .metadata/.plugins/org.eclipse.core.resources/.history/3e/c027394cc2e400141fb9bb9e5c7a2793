@@ -1,0 +1,18 @@
+package model;
+
+public class Main {
+	public static final int a = 1;
+
+	public static void main(String[] args) {
+//		Runnable runnable1 = new Seller("A");
+//		Runnable runnable2 = new Seller("B");
+//		Runnable runnable3 = new Seller("C");
+//		Runnable runnable4 = new Seller("D");
+//		new Thread(runnable1).start();
+//		new Thread(runnable2).start();
+//		new Thread(runnable3).start();
+//		new Thread(runnable4).start();
+
+	}
+
+}

@@ -1,0 +1,6 @@
+package com.peng;
+
+public class Constants {
+
+	public static int goodsCount = 100;
+}

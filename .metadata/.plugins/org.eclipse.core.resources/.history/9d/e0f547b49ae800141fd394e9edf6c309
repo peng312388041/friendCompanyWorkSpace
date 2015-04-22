@@ -1,0 +1,16 @@
+package com.peng;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GoodsManager {
+	private  List<Goods> goodsList = new ArrayList<Goods>();
+
+	public List<Goods> getGoodsList() {
+		return goodsList;
+	}
+
+	public void setGoodsList(List<Goods> goodsList) {
+		this.goodsList = goodsList;
+	}
+}

@@ -1,0 +1,13 @@
+package com.peng;
+
+public class Consumer implements Runnable {
+
+	@Override
+	public void run() {
+		consume();
+	}
+
+	public void consume() {
+		Constants.goodsList.remove(Constants.goodsList.size());
+	}
+}

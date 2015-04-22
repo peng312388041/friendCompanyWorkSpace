@@ -1,0 +1,17 @@
+package com.peng;
+
+public class Test implements Runnable {
+
+	@Override
+	public void run() {
+		while (true) {
+			System.out.println("哈哈.............");
+			try {
+				Thread.sleep(2 * 1000 * 1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

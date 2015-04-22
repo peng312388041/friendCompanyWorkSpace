@@ -1,0 +1,28 @@
+package model;
+
+public class Seller implements Runnable {
+	public static int ticket = 100;
+	private String name;
+
+	@Override
+	public void run() {
+		while (ticket > 0) {
+			System.out.println(name+" sell the number " + ticket-- + " of ticket.");
+		}
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Seller(String name) {
+		super();
+		this.name = name;
+	}
+
+}
